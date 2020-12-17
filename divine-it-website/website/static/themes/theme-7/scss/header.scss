@@ -1,0 +1,75 @@
+//header top css
+
+.search-box-wrap{
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  float: right;
+  right: -15px;
+  #search{
+    background: $primary-color;
+    border: none;
+    font-size: 10pt;
+    float: right;
+    padding: 5px 10px;
+    -webkit-border-radius: .2rem;
+    -moz-border-radius: .2rem;
+    border-radius: .2rem;
+    -webkit-transition: width .55s ease;
+    -moz-transition: width .55s ease;
+    -ms-transition: width .55s ease;
+    -o-transition: width .55s ease;
+    transition: width .55s ease;
+    &:active{
+      outline:none;
+    }
+    &:focus{
+      outline:none;
+    }
+  }
+  .icon{
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+    color: $theme-color;
+    padding: 10px;
+    background: $primary-color;
+    font-size: 18px;
+    line-height: initial;
+    border-left: 1px solid $theme-color;
+    border-radius: 0 4px 4px 0;
+  }
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+.search-box-wrap input[type=search]::placeholder{
+  color: $white;
+}
+input[type=search]
+
+//search result css
+
+.search-result-list{
+  .card{
+      li{
+        padding: 10px 15px;
+        h2{
+          .search-title{
+            a{
+              display: block;
+            font-size: 12px !important;
+            line-height: 20px;
+            margin-bottom: 5px;
+            }
+          }
+        }
+      }
+    }
+}

@@ -1,0 +1,19 @@
+{% load i18n %}
+
+<form method="get" action="{% url 'search:search' %}" class="search-form">
+    <div class="input-group custom-search-field">
+         {{ search_form.q }}
+        <span class="input-group-append">
+            <button class="btn border-left-0" type="submit">
+                <i class="ti-search"></i>
+            </button>
+        </span>
+    </div>
+</form>
+
+{#<form method="get" action="{% url 'search:search' %}" class="navbar-form navbar-right">#}
+{#    <div class="form-group">#}
+{#        {{ search_form.q }}#}
+{#    </div>#}
+{#    <input type="submit" value="{% trans "Search" %}" class="btn btn-default"/>#}
+{#</form>#}

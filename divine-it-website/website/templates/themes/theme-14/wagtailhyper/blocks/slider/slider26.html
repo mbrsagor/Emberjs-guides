@@ -1,0 +1,10 @@
+<div id="{{ obj.id }}" class="{{ obj.general.classes }}" data-ride="carousel">
+    <!-- Carousel slider start -->
+    <ul class="bxslider">
+      {% for slider in obj.settings.slides %}
+        <li><img src="{{ slider.image.url }}" /></li>
+     {% endfor %}
+
+    </ul>
+    <!-- Carousel slider end -->
+</div>

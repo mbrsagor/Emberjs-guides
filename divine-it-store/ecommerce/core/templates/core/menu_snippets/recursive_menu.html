@@ -1,0 +1,25 @@
+{% load block_renderer %}
+{% if counter <= menu_level %}
+    {% for item in item %}
+        {% if item.children %}
+            <li class="{% if counter %}dropdown-submenu{% else %}nav-item dropdown{% endif %}">
+                <a {% if counter %}class="dropdown-item dropdown-toggle" href="#"{% else %}class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"{% endif %}>
+                  {{ item.text }}
+                </a>
+                <ul class="dropdown-menu"{% if not counter %} aria-labelledby="navbarDropdownMenuLink"{% endif %}>
+                {% if not counter %}
+                    {% include 'core/menu_snippets/recursive_menu.html' with item=item.children counter=1 menu_level=menu_level %}
+                {% else %}
+                    {% include 'core/menu_snippets/recursive_menu.html' with item=item.children counter=counter|increment menu_level=menu_level %}
+                {% endif %}
+                </ul>
+            </li>
+        {% else %}
+            {% if item.text %}
+                <li class="{% if not counter %}nav-item{% endif %} {% if request.path == item.href %}active{% endif %}">
+                    <a class="{% if not counter %}nav-link{% else %}dropdown-item{% endif %}" href="{{ item.href }}" target="{{ item.target }}">{{ item.text }} <span class="sr-only">(current)</span></a>
+                </li>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+{% endif %}

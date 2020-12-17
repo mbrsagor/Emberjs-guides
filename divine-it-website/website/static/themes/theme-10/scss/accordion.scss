@@ -1,0 +1,52 @@
+
+//accordion one style
+.hyper-accordion{
+  .card{
+    background: transparent;
+    .card-header {
+      background: $background-color-active;
+      a{
+        display: inline-block;
+        width: 100%;
+        font-family: $secondary-font;
+        color: inherit;
+        font-weight: bold;
+      }
+      a.not-collapse {
+        &:after {
+          font-family: "fontawesome";
+          content: "\f068";
+          display: inline-block;
+          padding-right: 3px;
+          vertical-align: middle;
+          font-weight: 300;
+          float: right;
+        }
+      }
+      a.collapsed{
+        &:after {
+          font-family: "fontawesome";
+          content: "\f067";
+          display: inline-block;
+          padding-right: 3px;
+          vertical-align: middle;
+          font-weight: 300;
+          float: right;
+        }
+      }
+    }
+    &:last-child{
+      border-bottom: none !important;
+    }
+
+    .card-body{
+      p{
+        opacity: 0.9;
+      }
+      &:last-child{
+        border-bottom: 1px solid rgba(0,0,0,.125);
+      }
+    }
+
+  }
+}

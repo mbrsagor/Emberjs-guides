@@ -1,0 +1,23 @@
+
+<div id="{{ obj.id }}" class="carousel slide  {{ obj.general.classes }}">
+    <div class="owl-carousel owl-theme slider-bg-image slider-with-background-image slider-with-background-image-2">
+        {% for slider in obj.settings.slides %}
+            <div class="item" style="background: url('{{ slider.image.url }}')no-repeat center center" >
+               <div class="container-fluid">
+                   <div class="single-content-wrap">
+                       {% if  slider.title %}
+                       <h1>{{ slider.title }}</h1>
+                       {% endif %}
+                       {% if  slider.subTitle %}
+                       <span>{{ slider.subTitle }}</span>
+                       {% endif %}
+                       {% if  slider.shortDescription %}
+                       <p>{{ slider.shortDescription|safe }}</p>
+                       {% endif %}
+                   </div>
+               </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+

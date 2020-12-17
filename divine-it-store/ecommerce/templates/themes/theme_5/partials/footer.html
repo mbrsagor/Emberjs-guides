@@ -1,0 +1,67 @@
+{% load staticfiles %}
+{% load i18n %}
+
+
+{% block footer %}
+<div class="background-image-wraper" style="background: url('{% static "vendors/img/footer-bg.jpg" %}'); opacity: 1;">
+        <img alt="background" src="img/footer-bg.jpg">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="footer-content">
+                    <h5 class="text-uppercase">About Us</h5>
+                    <p>Rayhan Motors (RM) was established in Chittagong, Bangladesh in 1987.</p>
+                    <p>Today RM is recognized
+                        as one of the major tyre importers supplying and distributing in several notable markets
+                        throughout Bangladesh with a volume turnover exceeding one hundred thousand tyres per year.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="footer-list">
+                    <h5 class="text-uppercase">Site Map</h5>
+                    <ul class="list--hover">
+                        <li>
+                            <a href="#">Brand</a>
+                        </li>
+                        <li>
+                            <a href="#">Media</a>
+                        </li>
+                        <li>
+                            <a href="#">RM Culture</a>
+                        </li>
+                        <li>
+                            <a href="#">Sustainability</a>
+                        </li>
+                        <li>
+                            <a href="#">Tiers and Services</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="footer-list">
+                    <h5 class="text-uppercase">Products</h5>
+                    <ul class="list--hover">
+                        <li>
+                            <a href="#">Trucks and Buses</a>
+                        </li>
+                        <li>
+                            <a href="#">Motorcycle</a>
+                        </li>
+                        <li>
+                            <a href="#">Passenger Car</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="text-right">
+                    <img src="{% static "vendors/img/winner-image.png" %}" alt="product" class="img-fluid">
+                </div>
+            </div>
+        </div>
+        <!--end of row-->
+    </div>
+    <!--end of container-->
+{% endblock %}

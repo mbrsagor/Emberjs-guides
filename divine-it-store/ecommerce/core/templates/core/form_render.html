@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% extends 'dashboard/layout.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+    {% block extrastyles %}
+       {{ super }}
+
+        <style>
+            body {
+              padding: 0;
+              margin: 10px 0;
+            }
+            #fb-editor {
+                margin-top: 35px;
+                margin-bottom: 40px;
+            }
+        </style>
+    {% endblock %}
+
+    {% block dashboard_content %}
+
+        <form action="">
+            <div class="render-wrap"></div>
+        </form>
+
+    {% endblock dashboard_content %}
+
+    {% block extrascripts %}
+        {{ super }}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script src="{% static 'core/js/form-builder.js' %}"></script>
+        <script src="{% static 'core/js/form-render.js' %}"></script>
+        <script>
+          jQuery(function($) {
+              var formData = {% if object %}{{ object.content|safe }}{% else %}[]{% endif %};
+              $('.render-wrap').formRender({formData:formData});
+          });
+        </script>
+    {% endblock %}

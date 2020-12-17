@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+{% extends 'dashboard/layout.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+    {% block extrastyles %}
+       {{ super }}
+
+        <style>
+            body {
+              padding: 0;
+              margin: 10px 0;
+            }
+            #fb-editor {
+                margin-top: 35px;
+                margin-bottom: 40px;
+            }
+            .form-actions.btn-group {
+                display: none !important;
+            }
+            .form-wrap.form-builder .stage-wrap {
+                padding: 10px !important;
+                width: calc(74% - 20px) !important;
+                border: 3px dashed #ccc;
+                border-radius: 5px;
+            }
+            #form-json-field {
+                display: none;
+            }
+        </style>
+    {% endblock %}
+
+    {% block dashboard_content %}
+        <div class="row">
+            <div class="col-md-3">
+                 <div class="list-group">
+                  <span class="list-group-item active"><strong>All Forms</strong></span>
+                     {% if all_forms %}
+                         {% for form in all_forms %}
+                             <a href="{{ form.get_absolute_url }}" class="list-group-item">{{ form.name }}</a>
+                         {% endfor %}
+                     {% else %}
+                        <a id="form-creator" class="list-group-item">No forms found! Create One</a>
+                     {% endif %}
+                 </div>
+                <a href="{% url 'dashboard:extensions-create-form' %}" class="btn text-center btn-primary"><strong>Create New Form <i class="fa fa-plus-circle"></i></strong></a>
+            </div>
+            <div class="col-md-9">
+                <form class="form-horizontal" id="form-creation-form" method="POST">
+
+                     {% csrf_token %}
+
+                    {% for hidden in form.hidden_fields %}
+                      {{ hidden }}
+                    {% endfor %}
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-9 col-sm-3">
+                            {% if form.instance.id %}
+                                <button class="btn btn-danger" id="delete-form" style="margin-right: 5px;">Delete Form</button><button type="submit" class="btn btn-primary form-submit-btn">Update Form</button>
+                            {% else %}
+                                <button type="submit" class="btn btn-primary pull-right form-submit-btn">Create Form</button>
+                            {% endif %}
+                        </div>
+                    </div>
+                  <div class="form-group">
+                    <label class="control-label col-sm-1" for="{{ form.name.id_for_label }}">{{ form.name.label }}:</label>
+                    <div class="col-sm-11">
+                      {% render_field form.name id="name-form-txt" class="form-control" placeholder=form.name.label %}
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-sm-1" for="{{ form.code.id_for_label }}">{{ form.code.label }}:</label>
+                    <div class="col-sm-11">
+                      {% render_field form.code class="form-control" placeholder=form.code.label %}
+                    </div>
+                  </div>
+                     <div class="form-group" id="form-json-field">
+                        <label class="control-label col-sm-1" for="{{ form.content.id_for_label }}">{{ form.content.label }}:</label>
+                        <div class="col-sm-11">
+                          {% render_field form.content class="form-control" id="form-json-data" placeholder=form.content.label %}
+                        </div>
+                      </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="fb-editor"></div>
+        <form class="form-horizontal" id="form-delete-form" method="POST" {% if form.instance.id %}action="{% url 'dashboard:extensions-delete-form' pk=form.instance.id %}{% endif %}">
+            {% csrf_token %}
+        </form>
+
+    {% endblock dashboard_content %}
+
+    {% block extrascripts %}
+        {{ super }}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script src="{% static 'core/js/form-builder.js' %}"></script>
+        <script src="{% static 'core/js/form-render.js' %}"></script>
+        <script>
+          jQuery(function($) {
+              var fbEditor = document.getElementById('fb-editor');
+
+              var formData = {% if current_form %}{{ current_form|safe }}{% else %}[]{% endif %};
+              var formBuilder = $(fbEditor).formBuilder({formData:formData});
+
+
+              // remove required attribute from form textarea
+              document.querySelector('#form-json-data').removeAttribute('required');
+
+              $('.form-submit-btn').click(function (e) {
+                  e.preventDefault();
+                  console.log("HELLO");
+                  {#$('.get-data').click();#}
+                  $('#form-json-data').val(JSON.stringify(formBuilder.actions.getData()));
+                  $('#form-creation-form').submit();
+              });
+
+              $('#form-creator').click(function () {
+                  $('#name-form-txt').focus();
+              });
+
+              $('#delete-form').click(function(e) {
+                  e.preventDefault();
+                  var confirmation = confirm('Are you sure you want to delete this?');
+                  if(confirmation) {
+                      $('#form-delete-form').submit();
+                  }
+              });
+          });
+        </script>
+    {% endblock %}

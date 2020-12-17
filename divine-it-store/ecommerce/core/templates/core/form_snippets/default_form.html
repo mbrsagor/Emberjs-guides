@@ -1,0 +1,10 @@
+{% load static %}
+
+<form method="POST" action="{% url 'submit-custom-form' pk=form_id mail_to=mail_to subject=subject %}">
+    {% csrf_token %}
+    <div class="render-wrap"></div>
+</form>
+
+<script>
+    var formData = {% if form_data %}{{ form_data|safe }}{% else %}[]{% endif %}
+</script>

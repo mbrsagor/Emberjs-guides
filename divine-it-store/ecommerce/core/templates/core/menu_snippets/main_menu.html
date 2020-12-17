@@ -1,0 +1,29 @@
+{% if not menu_type == 'as_list' %}
+    <nav class="navbar-expand-lg main-menu-wrap">
+       {% if menu_type == "left_with_logo" or menu_type == "right_with_logo" %}
+                {% if config.logo %}
+                    <a class="navbar-brand" href="/"><img src="/media/{{ config.logo }}" alt=""></a>
+                {% else %}
+                    <a class="navbar-brand" href="/">Navbar</a>
+                {% endif %}
+            {% endif %}
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fa fa-bars"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav main-menu {% if menu_type == 'right_with_logo' or menu_type == 'right_without_logo' %}ml-auto{% endif %}">
+              {% include 'core/menu_snippets/recursive_menu.html' with item=menu_data menu_level=menu_level counter=0 %}
+            </ul>
+          </div>
+    </nav>
+{% else %}
+
+    <ul>
+        {% for item in menu_data %}
+            {% if item.text %}
+                <li><a href="{{ item.href }}">{{ item.text }}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+{% endif %}

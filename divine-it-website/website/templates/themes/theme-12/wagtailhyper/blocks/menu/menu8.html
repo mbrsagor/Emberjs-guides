@@ -1,0 +1,16 @@
+{% load util_tags %}
+<div id="{{ obj.id }}" class="footer-bottom-horizontal-menu">
+    {% if menuItems %}
+        <nav class="navbar navbar-expand-sm">
+            <ul class="navbar-nav">
+                {% for menuItem in menuItems %}
+                <li class="nav-item">
+                    <a href="{% abs_url menuItem.get_url %}" class="nav-link">
+                        {{ menuItem.title }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </nav>
+    {% endif %}
+</div>

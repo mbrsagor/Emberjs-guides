@@ -1,0 +1,40 @@
+
+//contact us page form
+
+
+.contact-section{
+    position: relative;
+    display: block;
+    overflow: hidden;
+    margin-top: -200px
+}
+
+.contact-form-wrap{
+    h3{
+      font-weight: normal;
+    }
+    form{
+      margin: 40px 0;
+      .form-group{
+        .form-control{
+          border-top: transparent;
+          border-left: transparent;
+          border-right: transparent;
+          border-bottom: 1px solid $border-color;
+          transition: all 0.3s ease-in;
+          border-radius: 0;
+          background: transparent;
+          &:focus{
+            border-color: $primary-color;
+          }
+        }
+      }
+    }
+    .form-action-wrap{
+      .btn{
+        padding: .375rem 3.75rem;
+        margin-bottom: 15px;
+      }
+    }
+}
+

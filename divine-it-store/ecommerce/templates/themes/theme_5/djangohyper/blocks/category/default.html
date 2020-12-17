@@ -1,0 +1,10 @@
+
+{% load product_tags %}
+
+<div class="row">
+    {% for product in products %}
+    <div class="col-md-3 col-sm-6">
+        {% render_product product %}
+    </div>
+    {% endfor %}
+</div>

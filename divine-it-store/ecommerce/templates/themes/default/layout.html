@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load promotion_tags %}
+{% load i18n hyper_tags %}
+
+{% block title %}
+    {{ shop_name }}
+{% endblock %}
+
+{% block styles %}
+    {% comment %}
+        If you are developing Oscar's CSS, or overriding Oscar's CSS
+        files in your project, then set OSCAR_USE_LESS = True in your
+        settings file. This will enable the on-the-fly less compiler.
+    {% endcomment %}
+
+
+{#    {% if use_less %}#}
+{#        <link rel="stylesheet/less" type="text/css" href="{% static "oscar/less/styles.less" %}" />#}
+{#    {% else %}#}
+{#        <link rel="stylesheet" type="text/css" href="{% static "oscar/css/styles.css" %}" />#}
+{#    {% endif %}#}
+{#    #}
+
+
+    {% block favicon %}
+        {% if config.favicon != '' %}
+            <link rel="shortcut icon" href="/media/{{ config.favicon }}" />
+        {% else %}
+            <link rel="shortcut icon" href="{% static "oscar/favicon.ico" %}" />
+        {% endif %}
+    {% endblock %}
+
+    <link rel="stylesheet" href="{% static "oscar/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "oscar/css/datetimepicker.css" %}" />
+
+    <!--all css plugin link start-->
+    <link rel="stylesheet" type="text/css" href="{% static "vendors/css/fontawesome.min.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "vendors/css/bootstrap.min.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "vendors/css/xzoom.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "vendors/css/owl.carousel.min.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "vendors/css/owl.theme.default.min.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "vendors/css/magnific-popup.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "vendors/css/themify-icons.css" %}" />
+    <!--all css plugin link end-->
+
+
+    <!--custom css link start-->
+    <link rel="stylesheet" type="text/css" href="{% static "themes/"|add:config.theme|add:"/css/style.css" %}" />
+    <!--custom css link end-->
+{% endblock %}
+
+{% block layout %}
+    {# Top-horizontal bar with account, notifictions, dashboard links #}
+    {% include "partials/nav_accounts.html" %}
+
+    {# Site logo/title, mini-basket, browse dropdown and searchbox #}
+    {% block navigation %}
+        {% if config.header_content %}
+            <header class="header">
+            {% hyperfield_render config.header_content %}
+            </header>
+        {% endif %}
+{#            {% include "partials/nav_primary.html" %}#}
+    {% endblock %}
+
+    {% include "partials/nav_secondary.html" %}
+
+
+    {# Main content of page - other layout templates may override this block #}
+    {% block content_wrapper %}
+        <div class="main-container-wrap">
+{#            {% block breadcrumbs %}#}
+{##}
+{#            {% endblock %}#}
+{#            {% block header %}#}
+{#                <div class="page-header action">#}
+{#                    <h1>{% block headertext %}{% endblock %}</h1>#}
+{#                </div>#}
+{#            {% endblock %}#}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        {% include "partials/alert_messages.html" %}
+                    </div>
+                </div>
+            </div>
+            {% block subnavigation %}{% endblock %}
+            <div class="content">
+                {% block subheader %}{% endblock subheader %}
+
+                {# Render promotions #}
+                <div id="promotions">
+                    {% for promotion in promotions_page %}
+                        {% render_promotion promotion %}
+                    {% endfor %}
+                </div>
+            </div>
+            {# Div exists for AJAX updates to entire content section #}
+            {% block content %}{% endblock %}
+        </div>
+    {% endblock %}
+    {% if config.footer_content %}
+        <footer class="footer">
+            {% hyperfield_render config.footer_content %}
+        </footer>
+    {% endif %}
+
+
+
+{% endblock %}
+
+{% block cdn_scripts %}
+  {{ block.super }}
+  {% if use_less and debug %}
+    {# Load the on-the-fly less compiler. Never do this in production. #}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+  {% endif %}
+{% endblock %}
+
+{# Local scripts #}
+{% block scripts %}
+    {{ block.super }}
+    <!-- Twitter Bootstrap -->
+{#    <script src="{% static "oscar/js/bootstrap3/bootstrap.min.js" %}"></script>#}
+    <!-- Oscar -->
+    <script src="{% static "oscar/js/oscar/ui.js" %}"></script>
+
+    <script src="{% static "oscar/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js" %}"></script>
+    <script src="{% static "oscar/js/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.all.js" %}"></script>
+
+
+
+    <!--all js plugin link js start-->
+    <script src="{% static "/vendors/js/popper.min.js" %}"></script>
+    <script src="{% static "/vendors/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "/vendors/js/xzoom.min.js" %}"></script>
+    <script src="{% static "/vendors/js/jquery.easing.min.js" %}"></script>
+    <script src="{% static "/vendors/js/owl.carousel.min.js" %}"></script>
+    <script src="{% static "/vendors/js/magnific-popup.min.js" %}"></script>
+    <!--all js plugin link js end-->
+
+    <script src="{% static "/themes/default/js/setup.js" %}"></script>
+    <script src="{% static "/themes/default/js/main.js" %}"></script>
+{% endblock %}
+
+{% block extrascripts %}
+    {% include "partials/extrascripts.html" %}
+    {{ block.super }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="{% static 'core/js/form-render.js' %}"></script>
+    <script>
+      jQuery(function($) {
+          $('.render-wrap').formRender({formData:formData});
+      });
+    </script>
+{% endblock %}
+
+{% block onbodyload %}
+    {{ block.super }}
+    oscar.init();
+{% endblock %}

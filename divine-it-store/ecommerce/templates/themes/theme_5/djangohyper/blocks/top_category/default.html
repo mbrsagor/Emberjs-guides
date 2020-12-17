@@ -1,0 +1,21 @@
+{% load thumbnail %}
+{% load product_tags %}
+{% load hyper_tags %}
+
+
+<!--start top category-->
+<ul class="list-inline top-category-wrap">
+     {% for category in categories|slice:":12" %}
+        <li class="list-inline-item">
+            <a href="{{ category.get_absolute_url }}">
+               {% if category.image %}
+                    <div class="category-image">
+                        <img src="{{ category.image.url }}" alt="img" class="img-fluid">
+                    </div>
+                {% endif %}
+                <h5 class="align-items-end">{{ category.name }}</h5>
+            </a>
+        </li>
+    {% endfor %}
+ </ul>
+<!--end top category-->

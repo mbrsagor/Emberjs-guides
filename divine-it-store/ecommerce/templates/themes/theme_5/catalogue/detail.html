@@ -1,0 +1,203 @@
+{% extends "layout_2_col.html" %}
+
+{% load history_tags %}
+{% load currency_filters %}
+{% load reviews_tags %}
+{% load staticfiles %}
+{% load product_tags %}
+{% load display_tags %}
+{% load i18n %}
+{% load purchase_info_tags %}
+{% load category_tags %}
+{% load thumbnail %}
+
+{% load hyper_tags %}
+
+{% block title %}
+    {{ product.title }} | {{ block.super }}
+{% endblock %}
+
+{% block description %}
+    {{ product.description|default:""|striptags }}
+{% endblock %}
+
+{% block breadcrumbs %}
+
+    <style type="text/css">
+        .content-wrapper {
+            margin: 0 !important;
+        }
+    </style>
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 bg-transparent">
+            <li class="breadcrumb-item">
+                <a href="{{ homepage_url }}">{% trans "Home" %}</a>
+            </li>
+            {% with category=product.categories.all.0 %}
+                {% for c in category.get_ancestors_and_self %}
+                    <li class="breadcrumb-item">
+                        <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                    </li>
+                {% endfor %}
+                <li class="breadcrumb-item active">{{ product.title }}</li>
+
+                {% get_back_button as backbutton %}
+                {% if backbutton %}
+                    <li class="pull-right">
+                        <a href="{{ backbutton.url }}">
+                            <i class="icon-arrow-left"></i> {{ backbutton.title }}
+                        </a>
+                    </li>
+                {% endif %}
+            {% endwith %}
+        </ol>
+    </nav>
+{% endblock %}
+
+{% block header %}
+{% endblock header %}
+
+{% block content %}
+
+    <div class="product-content-single">
+{#        <div class="container">#}
+{#            <div class="row justify-content-around">#}
+{#                <div class="col-md-4 col-sm-12">#}
+{#                    {% block product_gallery %}#}
+{#                        {% include "catalogue/partials/gallery.html" %}#}
+{#                    {% endblock %}#}
+{#                </div>#}
+{#                <div class="col-md-8 col-sm-12">#}
+{#                    <div class="product-details-info">#}
+{#                        {% block product_main %}#}
+{#                            {% if user.is_authenticated and user.is_staff %}#}
+{#                                <a class="text-right" href="{% url 'dashboard:catalogue-product' pk=product.id %}">#}
+{#                                    <small><i class="icon-edit"></i> {% trans "Edit this product" %}</small>#}
+{#                                </a>#}
+{#                            {% endif %}#}
+{#                            <h1>{{ product.get_title }}</h1>#}
+{#                            {% iffeature "reviews" %}#}
+{#                                {% include "catalogue/reviews/partials/review_stars.html" %}#}
+{#                            {% endiffeature %}#}
+{##}
+{#                            {% block product_stock_record %}#}
+{#                                {% if not product.product_class.can_be_customized %}#}
+{#                                    <h3 class="mt-4">{% include "catalogue/partials/stock_record.html" with verbose=1 %}</h3>#}
+{#                                {% endif %}#}
+{#                            {% endblock %}#}
+{##}
+{##}
+{#                            {% block product_basket_form %}#}
+{#                                #}
+{#                            {% endblock %}#}
+{#                        {% endblock %}#}
+{#                    </div>#}
+{#                </div>#}
+{##}
+{#            </div>#}
+{#        </div>#}
+
+        <div class="product-custom-details">
+            {% block product_description %}
+                {% if product.description %}
+                    {% hyperfield_render product.description %}
+                {% endif %}
+            {% endblock %}
+        </div>
+
+    </div>
+
+    <section class="pricing-section">
+        {% if product.structure != product.PARENT %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 py-5 text-center">
+                        {% include "catalogue/partials/add_to_basket_form.html" with popup=True %}
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="variants">
+                {% include 'catalogue/partials/pricing_table.html' %}
+            </div>
+        {% endif %}
+
+    </section>
+
+
+
+    <div id="customer-review" class="container">
+        <div class="row">
+            {% iffeature "reviews" %}
+                {% block product_review %}
+                    <div class="col-md-12">
+                        <div id="reviews" class="sub-header">
+                            <h4>{% trans "Customer Reviews" %}</h4>
+                        </div>
+
+                        {% if product.num_approved_reviews == 0 %}
+                            <p class="review-links">
+                                {% if product|is_review_permitted:user %}
+                                    {% url 'catalogue:reviews-add' product_slug=product.slug product_pk=product.id as add_review_url %}
+                                    {% blocktrans %}This product does not have any reviews yet -
+                                        <a href="{{ add_review_url }}#addreview">Be the first to write
+                                            one</a>.
+                                    {% endblocktrans %}
+                                {% else %}
+                                    {% trans "This product does not have any reviews yet" %}.
+                                {% endif %}
+                            </p>
+                        {% else %}
+                            <ol class="list-unstyled review-list">
+                                {% for review in product.reviews.approved.all|slice:":4" %}
+                                    <li>
+                                        {% include 'catalogue/partials/review.html' %}
+                                    </li>
+                                {% endfor %}
+                            </ol>
+                        {% endif %}
+                        {% if product.num_approved_reviews > 3 %}
+                            <a href="{% url 'catalogue:reviews-list' product_slug=product.slug product_pk=product.id %}"
+                               class="btn accent-btn btn-small mb-4">{% trans "See all reviews" %}</a>
+                        {% endif %}
+                    </div>
+                {% endblock product_review %}
+            {% endiffeature %}
+        </div>
+    </div>
+
+    <div class="bg--custom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    {% with recommended_products=product.recommended_products.all|slice:":4" %}
+                        {% if recommended_products %}
+                            <div class="sub-header mb-4">
+                                <h4>{% trans "Recommended items" %}</h4>
+                            </div>
+                            <ul class="row">
+                                {% for product in recommended_products %}
+                                    <li class="col-md-3 col-lg-3">
+                                        {% render_product product %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endwith %}
+
+{#                    {% recently_viewed_products current_product=product %}#}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+
+{% block extrascripts %}
+    {{ block.super }}
+    <script type="text/javascript">
+
+    </script>
+{% endblock %}

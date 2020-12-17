@@ -1,0 +1,200 @@
+// leadership css
+.ProductsBlock{
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  .at-grid {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+  .at-grid[data-column="1"] .at-column {
+    width: 99%;
+    max-width: 99%;
+    min-width: 10990%;
+    -ms-flex-preferred-size: 99%;
+        flex-basis: 99%;
+        margin: 1%;
+  }
+  .at-grid[data-column="2"] .at-column {
+    width: 49%;
+    max-width: 49%;
+    min-width: 49%;
+    -ms-flex-preferred-size: 49%;
+        flex-basis: 49%;
+        margin: 1%;
+  }
+  .at-grid[data-column="3"] .at-column {
+    width: 31.33333%;
+    max-width: 31.33333%;
+    min-width: 31.33333%;
+    -ms-flex-preferred-size: 31.33333%;
+        flex-basis: 31.33333%;
+        margin: 1%;
+  }
+  .at-grid[data-column="4"] .at-column {
+    width: 24%;
+    max-width: 24%;
+    min-width: 24%;
+    -ms-flex-preferred-size: 24%;
+        flex-basis: 24%;
+        margin: 1%;
+  }
+  .at-grid[data-column="5"] .at-column {
+    width: 19%;
+    max-width: 19%;
+    min-width: 19%;
+    -ms-flex-preferred-size: 19%;
+        flex-basis: 19%;
+        margin: 1%;
+  }
+  .at-grid[data-column="6"] .at-column {
+    width: 14.66667%;
+    max-width: 14.66667%;
+    min-width: 14.66667%;
+    -ms-flex-preferred-size: 14.66667%;
+        flex-basis: 14.66667%;
+        margin: 1%;
+  }
+  .at-grid[data-column="7"] .at-column {
+    width: 12.28571%;
+    max-width: 12.28571%;
+    min-width: 12.28571%;
+    -ms-flex-preferred-size: 12.28571%;
+        flex-basis: 12.28571%;
+        margin: 1%;
+  }
+  .at-grid[data-column="8"] .at-column {
+    width: 10.5%;
+    max-width: 10.5%;
+    min-width: 10.5%;
+    -ms-flex-preferred-size: 10.5%;
+        flex-basis: 10.5%;
+        margin: 1%;
+  }
+  .at-grid[data-column="9"] .at-column {
+    width: 11.11111%;
+    max-width: 11.11111%;
+    min-width: 11.11111%;
+    -ms-flex-preferred-size: 11.11111%;
+        flex-basis: 11.11111%;
+        margin: 1%;
+  }
+  .at-column {
+    height: 100%;
+    z-index: 0;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    background: $white;
+    box-shadow: 0 0 0 1px $border-color;
+    box-sizing: border-box;
+    .bg-img{
+      -webkit-transition: all 0.3s ease-in;
+        transition: all 0.3s ease-in;
+        transition: all 0.3s ease-in;
+        transition: all 0.3s ease-in;
+    }
+    &:hover{
+      .bg-img{
+        -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+          -webkit-transition: all 0.3s ease-in;
+          transition: all 0.3s ease-in;
+          transition: all 0.3s ease-in;
+          transition: all 0.3s ease-in;
+      }
+    }
+    &:focus{
+      .bg-img{
+        -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+          -webkit-transition: all 0.3s ease-in;
+          transition: all 0.3s ease-in;
+          transition: all 0.3s ease-in;
+          transition: all 0.3s ease-in;
+      }
+    }
+  }
+  @media (max-width: 800px) {
+    .at-column {
+      width: 48% !important;
+      max-width: 48% !important;
+      min-width: 48% !important;
+      -ms-flex-preferred-size: 48% !important;
+          flex-basis: 48% !important;
+    }
+  }
+  @media (max-width: 600px) {
+    .at-column {
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 100% !important;
+      -ms-flex-preferred-size: 100% !important;
+      flex-basis: 100% !important;
+    }
+  }
+  
+  .product-content-wrap{
+    padding: 15px;
+    p{
+    text-align: left;
+    height: 115px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    max-height: 115px;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    margin: 10px 0;
+    }
+    .product-features-list{
+      li{
+        font-size: 16px;
+        position: relative;
+        padding: 4px 0px 4px 0px;
+        border-bottom: 1px solid $border-color;
+        cursor: pointer;
+        &:last-child{
+          border-bottom: none;
+        }
+        a{
+          color: $p-color-light;
+          display: block;
+          i{
+            color: $border-color;
+          }
+        }
+        &:hover{
+          a{
+            color: $primary-color;
+            i{
+              color: $primary-color;
+            }
+          }
+        }
+      }
+    }
+  }
+  .product-pricing-wrap{
+    border-top: 1px solid $border-color;
+    padding: 15px;
+    background: $background-color-rgba;
+    h5{
+      margin-bottom: 0;
+    }
+    p{
+      font-size: 14px;
+    }
+  }
+
+}
+
+

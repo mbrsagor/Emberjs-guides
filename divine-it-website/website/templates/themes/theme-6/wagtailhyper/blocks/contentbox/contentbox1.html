@@ -1,0 +1,17 @@
+{% load sekizai_tags static %}
+
+<div class="contentBoxWrap counter-box-wrap" id="{{ obj.id }}">
+    <div class="row">
+        <div class="col">
+            <div class="single-counter-box">
+                <img src="{{ obj.settings.image.url }}" class="img-fluid" />
+                <h3>{{ obj.settings.title }}</h3>
+                <p class="mb-2">{{ obj.settings.subtitle }}</p>
+                <strong>{{ obj.settings.description|safe }}</strong>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

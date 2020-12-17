@@ -1,0 +1,173 @@
+@media (min-width: 1200px){
+    .container {
+      max-width: 1200px;
+  }
+}
+
+
+/**! 02. Typography **/
+html {
+  font-size: 96.5%;
+}
+
+@media all and (max-width: 768px) {
+  html {
+    font-size: 87.5%;
+  }
+}
+
+body {
+  font-size: $body-font-size;
+  line-height: $body-line-height;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: $body-font-family;
+  color: $body-color;
+  font-weight: $regular;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6{
+  font-family: $heading-font-family;
+  color: $heading-color;
+  font-weight: $light;
+  font-variant-ligatures: common-ligatures;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.badge{
+  letter-spacing: .5px;
+  line-height: initial;
+  text-transform: uppercase;
+  padding: 4px 15px;
+  text-align: center;
+  border-radius: 10rem;
+  font-family: $heading-font-family;
+}
+h1,
+.h1 {
+  font-size: 3.14285714em;
+  line-height: 1.31818182em;
+}
+
+h2,
+.h2 {
+  font-size: 2.35714286em;
+  line-height: 1.36363636em;
+}
+
+h3,
+.h3 {
+  font-size: 1.78571429em;
+  line-height: 1.5em;
+}
+
+h4,
+.h4 {
+  font-size: 1.35714286em;
+  line-height: 1.36842105em;
+}
+
+h5,
+.h5 {
+  font-size: 1em;
+  line-height: 1.85714286em;
+}
+
+h6,
+.h6 {
+  font-size: 0.85714286em;
+  line-height: 2.16666667em;
+}
+
+.lead {
+  font-size: 1.35714286em;
+  line-height: 1.68421053em;
+}
+
+@media all and (max-width: 767px) {
+  h1,
+  .h1 {
+    font-size: 2.35714286em;
+    line-height: 1.36363636em;
+  }
+
+  h2,
+  .h2 {
+    font-size: 1.78571429em;
+    line-height: 1.5em;
+  }
+
+  h3,
+  .h3 {
+    font-size: 1.35714286em;
+    line-height: 1.85714286em;
+  }
+
+  .lead {
+    font-size: 1.35714286em;
+    line-height: 1.36842105em;
+  }
+}
+
+p,
+ul,
+ol,
+pre,
+table,
+blockquote {
+  margin-bottom: 1.85714286em;
+}
+
+ul,
+ol {
+  list-style: none;
+  line-height: 1.85714286em;
+}
+
+ul.bullets {
+  list-style: inside;
+}
+
+ol {
+  list-style-type: upper-roman;
+  list-style-position: inside;
+}
+
+blockquote {
+  font-size: 1.78571429em;
+  line-height: 1.5em;
+  padding: 0;
+  margin: 0;
+  border-left: 0;
+}
+
+strong {
+  font-weight: $semi-bold;
+}
+
+hr {
+  margin: 1.85714286em 0;
+  border-color: $custom-color;
+}
+.footer-left-text p a:hover, a:active{
+   color: $secondary-color !important;
+}
+
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  outline: none;
+  color: $secondary-color;
+}

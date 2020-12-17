@@ -1,0 +1,78 @@
+{% load hyper_tags sekizai_tags %}
+
+<ul class="megamenuNav navbar-nav ml-auto desktop">
+    {% for item in menu_items %}
+        <li class="megaMenuItem nav-item {% active_class item %} {% if item.has_dropdown %} dropdown {% endif %}">
+            <a class="nav-link {% if item.has_dropdown %} dropdown-link {% endif %}" {% if item.has_dropdown %} data-toggle="dropdown" {% endif %} href="{{ item.get_url }}">{{ item.title }}</a>
+            {% if item.has_dropdown %}
+{#            <div class="col">#}
+                <div class="dropdown-menu">
+                    {% hyperfield_render item.content %}
+                </div>
+{#            </div>#}
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+
+
+{% addtoblock 'js' %}
+<script type="text/javascript">
+$(document).ready(function() {
+
+    var megamenuItems = $('.megaMenuItem')
+
+    function getPos(el) {
+        // yay readability
+        for (var lx=0, ly=0;
+             el != null;
+             lx += el.offsetLeft, ly += el.offsetTop, el = el.offsetParent);
+        return {x: lx,y: ly};
+    }
+
+    function get_siblings_width(item) {
+        var aggregatedWidth = 0
+        $(item).nextAll().each(function(i, it) {
+            aggregatedWidth += $(it).width()
+        })
+        return aggregatedWidth
+    }
+
+    function resize_single_dropdown(i, item) {
+        var dropdownItem = $(item).children('.dropdown-menu')
+
+        if (dropdownItem.length > 0) dropdownItem = dropdownItem[0]
+        else return // no dropdown so return
+
+        var menuItemWidth = $(item).width()
+        var dropdownWidth = $(dropdownItem).width()
+
+        // go right half of dropdown width - half of menu item width px
+        var calcMiddle = (dropdownWidth / 2) - (menuItemWidth / 2)
+
+        // if on right side small width then half of dropdown width
+        // then shif menu to left half of dropdown width - sum of all item right to the current menu item
+        var maxRightWidth = get_siblings_width(item) + (menuItemWidth / 2)
+        if (dropdownWidth / 2 > maxRightWidth) {
+            calcMiddle -= (dropdownWidth/2 - maxRightWidth)
+        }
+        $(dropdownItem).css('right', '-' + Math.round(calcMiddle) + 'px')
+
+    }
+
+    megamenuItems.each(resize_single_dropdown)
+
+
+
+     $('.megamenuNav').hover(function(){
+        $('#darkness').fadeTo("fast", 1);
+        }, function(){
+        $('#darkness').fadeTo("fast", 0, function(){
+            $(this).css("display", "none");
+        });
+     });
+
+
+})
+</script>
+{% endaddtoblock %}

@@ -1,0 +1,252 @@
+/**! 26. Colors **/
+body {
+  background: $white-color;
+}
+
+.primary-color {
+  color: $primary-color !important;
+}
+
+a {
+  color: $primary-color;
+}
+.secondary-color {
+  color: $secondary-color !important;
+}
+
+.accent-color {
+  color: $accent-color !important;
+}
+
+.white-color {
+  color: $white-color;
+}
+
+.dark-color {
+  color: $dark-color;
+}
+
+.success-color {
+  color: $success-color;
+}
+
+.error-color {
+  color: $error-color;
+}
+
+.dark-bg {
+  background: $dark-color;
+}
+
+.dark-bg:not(.nav-bar):not(.bar) {
+  color: $white-color;
+}
+
+.dark-bg:not(.nav-bar):not(.bar) h1,
+.dark-bg:not(.nav-bar):not(.bar) h2,
+.dark-bg:not(.nav-bar):not(.bar) h3,
+.dark-bg:not(.nav-bar):not(.bar) h4,
+.dark-bg:not(.nav-bar):not(.bar) h5,
+.dark-bg:not(.nav-bar):not(.bar) h6,
+.dark-bg:not(.nav-bar):not(.bar) i,
+.dark-bg:not(.nav-bar):not(.bar) span,
+.dark-bg:not(.nav-bar):not(.bar) p {
+  color: $white-color;
+}
+
+.dark-bg:not(.nav-bar):not(.bar) a:not(.btn) {
+  color: $white-color;
+}
+
+.primary-bg {
+  background: $primary-color;
+}
+.bg--custom {
+  background: $custom-color;
+}
+.primary-bg p,
+.primary-bg span,
+.primary-bg ul,
+.primary-bg a:not(.btn) {
+  color: $white-color;
+}
+
+.primary-bg h1,
+.primary-bg h2,
+.primary-bg h3,
+.primary-bg h4,
+.primary-bg h5,
+.primary-bg h6,
+.primary-bg i {
+  color: $white-color;
+}
+
+.primary-bg .color--primary {
+  color: $white-color !important;
+}
+
+.bg--white {
+  background: $white-color;
+}
+
+.bg--white p,
+.bg--white span,
+.bg--white ul,
+.bg--white a:not(.btn) {
+  color: $body-color;
+}
+
+.bg--white h1,
+.bg--white h2,
+.bg--white h3,
+.bg--white h4,
+.bg--white h5,
+.bg--white h6,
+.bg--white i {
+  color: $dark-color;
+}
+
+.bg--error {
+  background: $error-color;
+}
+
+.bg--success {
+  background: $success-color;
+}
+.bg-image:not(.light-bg-image) .bg--white p,
+.bg-image:not(.light-bg-image) .bg--white span,
+.bg-image:not(.light-bg-image) .bg--white ul,
+.bg-image:not(.light-bg-image) .bg--white a:not(.btn) {
+  color: $body-color;
+}
+
+.bg-image:not(.light-bg-image) .bg--white h1,
+.bg-image:not(.light-bg-image) .bg--white h2,
+.bg-image:not(.light-bg-image) .bg--white h3,
+.bg-image:not(.light-bg-image) .bg--white h4,
+.bg-image:not(.light-bg-image) .bg--white h5,
+.bg-image:not(.light-bg-image) .bg--white h6,
+.bg-image:not(.light-bg-image) .bg--white i {
+  color: $dark-color;
+}
+
+.bg-image:not(.light-bg-image) .bg--custom {
+  background: rgba(250, 250, 250, 0.2);
+}
+
+.secondary-bg {
+  background: $secondary-color;
+}
+
+.secondary-bg p,
+.secondary-bg span,
+.secondary-bg ul,
+.secondary-bg a:not(.btn) {
+  color: $white-color;
+}
+
+.secondary-bg h1,
+.secondary-bg h2,
+.secondary-bg h3,
+.secondary-bg h4,
+.secondary-bg h5,
+.secondary-bg h6,
+.secondary-bg i {
+  color: $white-color;
+}
+
+.accent-bg {
+  background: $accent-color;
+}
+
+.accent-bg p,
+.accent-bg span,
+.accent-bg ul,
+.accent-bg a:not(.btn) {
+  color: $white-color;
+}
+
+.accent-bg h1,
+.accent-bg h2,
+.accent-bg h3,
+.accent-bg h4,
+.accent-bg h5,
+.accent-bg h6,
+.accent-bg i {
+  color: $white-color;
+}
+
+.image-bg:not(.image-light) *:not(a) {
+  color: $white-color;
+}
+
+.facebook-color {
+  color: $facebook-color;
+}
+
+.twitter-color {
+  color: $twitter-color;
+}
+
+.googleplus-color {
+  color: $googleplus-color;
+}
+
+.instagram-color {
+  color: $instagram-color;
+}
+
+.pinterest-color {
+  color: $pinterest-color;
+}
+
+.dribbble-color {
+  color: $dribbble-color;
+}
+
+.behance-color {
+  color: $behance-color;
+}
+
+.linkedin-color{
+  color: $linkedin-color;
+}
+.facebook-bg {
+  background: $facebook-color;
+  color: $white-color;
+}
+
+.twitter-bg {
+  background: $twitter-color;
+  color: $white-color;
+}
+
+.googleplus-bg {
+  background: $googleplus-color;
+  color: $white-color;
+}
+
+.instagram-bg {
+  background: $instagram-color;
+  color: $white-color;
+}
+
+.pinterest-bg {
+  background: $pinterest-color;
+  color: $white-color;
+}
+
+.dribbble-bg {
+  background: $dribbble-color;
+  color: $white-color;
+}
+
+.behance-bg {
+  background: $behance-color;
+  color: $white-color;
+}
+
+.linkedin-bg {
+  background: $linkedin-color;
+  color: $white-color;
+}

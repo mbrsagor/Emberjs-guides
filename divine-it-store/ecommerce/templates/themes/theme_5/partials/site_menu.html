@@ -1,0 +1,82 @@
+{% load static %}
+{% load category_tags %}
+{% load dit_tags %}
+
+
+{% if remote_product_menu_url and remote_product_menu_url != '' %}
+    {% if not mobile %}
+        <section class="header_bottom">
+            {% remote_template_raw  remote_product_menu_url %}
+        </section>
+    {% else %}
+        {% add_get_param remote_product_menu_url mobile=True as mobile_menu_url %}
+        {% remote_template_raw  mobile_menu_url %}
+    {% endif %}
+
+{% else %}
+
+    {% if not mobile %}
+    <section class="header_bottom">
+        <div class="container d-none d-md-block">
+            <div class="row">
+                <div class="col-12 d-flex flex-row">
+                    <div class="brand_name">
+                        <!--<div class="left_triangle"> </div>-->
+                        <a href="/" class="d-flex flex-row justify-content-center align-items-center">
+                            <object type="image/svg+xml" data="https://www.divineit.net/static/css/icons/menu.svg" style="height: 15px; width: 15px; margin-right: 10px; color: #555"></object>
+                            <span style="line-height: 0px; color: #555">CATEGORIES</span>
+                        </a>
+                        <!--<div class="right_triangle"> </div>-->
+                    </div>
+                    <div class="product_menu">
+                        <ul class="fixMenuAlignment d-flex flex-row">
+                            {% category_tree as tree_categories %}
+                            {% if tree_categories %}
+                                {% for tree_category, info in tree_categories %}
+                                    <li class="d-block megaMenuItem nav-item {% if info.has_children %} dropdown {% endif %}" >
+                                        <a class="nav-link {% if info.has_children %} dropdown-link {% endif %}" href="{{ tree_category.get_absolute_url }}"> {{ tree_category.name|safe }} </a>
+                                        {% if info.has_children %}
+                                        <div class="fixItem dropdown-menu">{% else %} {% endif %}
+                                            {% for n in info.num_to_close %}
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    {% else %}
+
+    <div class="site-menu-mobile">
+        <h5>Categories</h5>
+        <div class="main-menu-group">
+            {% category_tree as tree_categories %}
+            {% if tree_categories %}
+            {% for tree_category, info in tree_categories %}
+                <div class="d-block nav-item  {% if info.has_children %}  dropdown-mobile {% endif %}">
+
+                    <a class="nav-link {% if info.has_children %} dropdown-link {% endif %}" {% if info.has_children %}
+                       data-toggle="dropdown" {% endif %} href="{{ tree_category.get_absolute_url }}">{{ tree_category.name|safe }}</a>
+                    {% if info.has_children %}
+
+                        <div class="dropdown-menu">
+                        {% else %} {% endif %}
+                        {% for n in info.num_to_close %}
+    {#                        {% hyperfield_render item.mobile_menu %}#}
+                        </div>
+                </div>
+                 {% endfor %}
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+    {% endif %}
+{% endif %}

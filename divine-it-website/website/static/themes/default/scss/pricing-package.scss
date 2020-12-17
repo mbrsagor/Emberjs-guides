@@ -1,0 +1,85 @@
+.hyper-pricing{
+    border-radius: 4px;
+    transition: all 0.3s ease-in;
+    .single-pricing-package{
+        border: 1px solid $border-color;
+        height: 100%;
+        width: 100%;
+        position: relative;
+        transition: all 0.3s ease-in;
+        margin-bottom: 40px;
+        .popular-label{
+            position: absolute;
+            top: -38px;
+            text-align: center;
+            left: 0;
+            right: 0;
+            margin: auto;
+            padding: 5px;
+        }
+        .package-type{
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid $border-color;
+            p{
+                margin-bottom: 0;
+                font-size: 20px;
+            }
+            h4{
+                font-size: 30px;
+                line-height: 36px;
+                margin-bottom: 5px;
+                color: $theme-color;
+            }
+        }
+        .pricing-feature-wrap{
+            padding: 15px 15px 0;
+            h6{
+                font-size: 15px;
+                margin-bottom: 0;
+                color: $primary-color;
+            }
+            .pricing-feature-list{
+                li{
+                    font-size: 14px;
+                    color: $p-color-light;
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                   i{
+                       font-size: 10px;
+                       line-height: 10px;
+                       color: green;
+                       margin-right: 5px;
+                   }
+                }
+            }
+        }
+
+        &:hover{
+            webkit-box-shadow: 1.563px 8.863px 20px 0 rgba(0, 0, 0, 0.13);
+            -moz-box-shadow: 1.563px 8.863px 20px 0 rgba(0, 0, 0, 0.13);
+            -o-box-shadow: 1.563px 8.863px 20px 0 rgba(0, 0, 0, 0.13);
+            box-shadow: 1.563px 8.863px 20px 0 rgba(0, 0, 0, 0.13);
+            -webkit-transform: translate(0, -5px);
+            -moz-transform: translate(0, -5px);
+            -ms-transform: translate(0, -5px);
+            -o-transform: translate(0, -5px);
+            transform: translate(0, -5px);
+            border-radius: 4px;
+            background: $background-color-active;
+        }
+        // custom button for pricing table  
+        .package-view-more{
+            text-align: center;
+            text-transform: uppercase;
+            .package-custom-button{
+                padding: .375rem 3.75rem;
+            }
+        }
+    }
+}
+
+.annual_text {
+    font-size: 15px !important;
+}

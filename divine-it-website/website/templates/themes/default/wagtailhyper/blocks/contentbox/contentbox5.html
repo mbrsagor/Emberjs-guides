@@ -1,0 +1,17 @@
+{% load sekizai_tags static %}
+
+<div class="contentBoxWrap content-list-type-wrap" id="{{ obj.id }}">
+    <div class="row">
+        <div class="col">
+            <div class="single-list-type">
+                <img data-src="{{ obj.settings.image.url }}" class="lazy img-fluid" alt="{{ obj.settings.title }}" />
+                <p>{{ obj.settings.title }}</p>
+                {% if obj.settings.actionUrl %}
+                    <a href="{{ obj.settings.actionUrl }}" class="btn btn-primary">
+                        {{ obj.settings.actionTitle }}
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

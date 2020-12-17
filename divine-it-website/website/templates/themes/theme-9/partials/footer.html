@@ -1,0 +1,145 @@
+{% load menu_tags hyper_tags %}
+{% load static %}
+
+<section class="footer-top-section pt-3 pb-3 align-middle">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-8 col-sm-8">
+                <div class="footer-logo">
+                    {% if settings.base.ApplicationSettings.footer_logo %}
+                        <a href="/
+" target="_blank"><img src="{{ settings.base.ApplicationSettings.footer_logo.url }}" alt="Footer Logo"
+                             class="img-fluid"></a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <div class="footer-social-list float-right">
+                    <ul class="nav-item d-inline-flex ml-auto">
+                        <p>Follow us </p>
+                        {% if settings.base.ApplicationSettings.facebook_url %}
+                            <li class="list-inline-item"><a target="blank"
+                                                            href="{{ settings.base.ApplicationSettings.facebook_url }}"><i
+                                    class="fa fa-facebook"></i></a></li>
+                        {% endif %}
+                        {% if settings.base.ApplicationSettings.twitter_url %}
+                            <li class="list-inline-item"><a target="blank"
+                                                            href="{{ settings.base.ApplicationSettings.twitter_url }}"><i
+                                    class="fa fa-twitter"></i></a></li>
+                        {% endif %}
+                        {% if settings.base.ApplicationSettings.linkedin_url %}
+                            <li class="list-inline-item"><a target="blank"
+                                                            href="{{ settings.base.ApplicationSettings.linkedin_url }}"><i
+                                    class="fa fa-linkedin"></i></a></li>
+                        {% endif %}
+                        {% if settings.base.ApplicationSettings.youtube_url %}
+                            <li class="list-inline-item"><a target="blank"
+                                                            href="{{ settings.base.ApplicationSettings.youtube_url }}"><i
+                                    class="fa fa-youtube"></i></a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% if settings.base.ApplicationSettings.footer %}
+<footer class="footer-section">
+    {% hyperfield_render settings.base.ApplicationSettings.footer.content %}
+</footer>
+{% endif %}
+
+
+<!--{% if settings.base.ApplicationSettings.footer %}-->
+<!--<footer id="footer" class="space-small footer-section pt-5 pb-5">-->
+    <!--<div class="footer-section-wrap">-->
+        <!--<div class="container">-->
+            <!--<div class="row">-->
+                <!--<div class="col-lg-4 mb-5 mb-lg-0">-->
+                    <!--{% if settings.base.ApplicationSettings.footer_logo %}-->
+                        <!--<a href="/" target="_blank"><img src="{{ settings.base.ApplicationSettings.footer_logo.url }}" alt="{{ self.get_site.site_name }}"-->
+                             <!--class="img-fluid navbar-brand"></a>-->
+                    <!--{% endif %}-->
+                    <!--<p> PrismVAT is an easy-to-use VAT Management Software approved by National Board of Revenue, Bangladesh which is mandatory for large businesses and service providing entities having annual turnover of Tk 5 crore and above.</p>-->
+                <!--</div>-->
+                <!--<div class="col-lg-2 col-6 col-sm-4 ml-lg-auto mb-5 mb-lg-0">-->
+                    <!--<h6>Company</h6>-->
+                    <!--<ul class="list-unstyled">-->
+                       <!--<li><a href="https://www.divineit.net/about/overview/" target="_blank">Overview</a></li>-->
+                       <!--<li><a href="https://www.divineit.net/about/resources/" target="_blank">Resources</a></li>-->
+                       <!--<li><a href="https://www.divineit.net/about/leadership/" target="_blank">Leadership</a></li>-->
+                       <!--<li><a href="https://www.divineit.net/about/customers/" target="_blank">Customers</a></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+                <!--<div class="col-lg-2 col-6 col-sm-4 mb-5 mb-lg-0">-->
+                    <!--<h6>Products</h6>-->
+                    <!--<ul class="list-unstyled">-->
+                        <!--<li><a href="https://www.divineit.net/products/prismerp/" target="_blank">PrismERP</a></li>-->
+                        <!--<li><a href="https://www.divineit.net/products/prismpos/" target="_blank">PrismPos</a></li>-->
+                        <!--<li><a href="https://www.divineit.net/products/onebook/" target="_blank">Onebook</a></li>-->
+                        <!--<li><a href="https://www.divineit.net/products/linespay/" target="_blank">LinesPay</a></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+                <!--<div class="col-lg-2 col-sm-4 mb-5 mb-lg-0">-->
+                    <!--<h6>Contact</h6>-->
+                     <!--<ul class="list-unstyled">-->
+                       <!--<li><a href="https://www.divineit.net/contact/sales/" target="_blank">Sales</a></li>-->
+                       <!--<li><a href="https://www.divineit.net/contact/support/" target="_blank">Support</a></li>-->
+                       <!--<li><a href="https://www.divineit.net/contact/visit-us/" target="_blank">Visit Us</a></li>-->
+                       <!--<li><a href="https://www.divineit.net/contact/get-a-quote/" target="_blank">Get a Quote</a></li>-->
+                     <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="row align-items-center justify-content-md-between footer-bottom pt-3">-->
+                <!--<div class="col-md-6">-->
+                    <!--<p class="small-text text-center text-md-left">&copy; 2005-2019 <a href="https://divineit.net/" target="_blank">Divine IT Limited</a> Your Reliable Software Partner.</p>-->
+                <!--</div>-->
+                <!--<div class="col-md-6">-->
+                    <!--{% hyperfield_render settings.base.ApplicationSettings.footer.content %}-->
+                    <!--<ul class="nav justify-content-center align-items-center justify-content-md-end footer-social">-->
+                        <!--{% if settings.base.ApplicationSettings.facebook_url %}-->
+                            <!--<li class="nav-item">-->
+                                <!--<a class="nav-link" href="{{ settings.base.ApplicationSettings.facebook_url }}" target="_blank">-->
+                                    <!--<i class="fa fa-facebook"></i>-->
+                                <!--</a>-->
+                            <!--</li>-->
+                        <!--{% endif %}-->
+                        <!--{% if settings.base.ApplicationSettings.id_instagram_url %}-->
+                            <!--<li class="nav-item">-->
+                                <!--<a class="nav-link" href="{{ settings.base.ApplicationSettings.instagram_url }}" target="_blank">-->
+                                    <!--<i class="fa fa-instagram"></i>-->
+                                <!--</a>-->
+                            <!--</li>-->
+
+                        <!--{% endif %}-->
+                        <!--{% if settings.base.ApplicationSettings.twitter_url %}-->
+                            <!--<li class="nav-item">-->
+                                <!--<a class="nav-link" href="{{ settings.base.ApplicationSettings.twitter_url }}" target="_blank">-->
+                                    <!--<i class="fa fa-twitter"></i>-->
+                                <!--</a>-->
+                            <!--</li>-->
+                        <!--{% endif %}-->
+                        <!--{% if settings.base.ApplicationSettings.linkedin_url %}-->
+                            <!--<li class="nav-item">-->
+                                <!--<a class="nav-link" href="{{ settings.base.ApplicationSettings.linkedin_url }}" target="_blank">-->
+                                    <!--<i class="fa fa-linkedin"></i>-->
+                                <!--</a>-->
+                            <!--</li>-->
+                        <!--{% endif %}-->
+                        <!--{% if settings.base.ApplicationSettings.youtube_url %}-->
+                            <!--<li class="nav-item">-->
+                                <!--<a class="nav-link" href="{{ settings.base.ApplicationSettings.youtube_url }}" target="_blank">-->
+                                    <!--<i class="fa fa-youtube"></i>-->
+                                <!--</a>-->
+                            <!--</li>-->
+                        <!--{% endif %}-->
+                    <!--</ul>-->
+
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</footer>-->
+
+<!--{% endif %}-->

@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load promotion_tags %}
+{% load i18n hyper_tags %}
+{% load dit_tags %}
+{% load cache %}
+
+{% block title %}
+    {{ shop_name }}
+{% endblock %}
+
+{% block styles %}
+    {% comment %}
+        If you are developing Oscar's CSS, or overriding Oscar's CSS
+        files in your project, then set OSCAR_USE_LESS = True in your
+        settings file. This will enable the on-the-fly less compiler.
+    {% endcomment %}
+
+
+{#    {% if use_less %}#}
+{#        <link rel="stylesheet/less" type="text/css" href="{% static "oscar/less/styles.less" %}" />#}
+{#    {% else %}#}
+{#        <link rel="stylesheet" type="text/css" href="{% static "oscar/css/styles.css" %}" />#}
+{#    {% endif %}#}
+{#    #}
+
+
+    {% block favicon %}
+        {% if config.favicon != '' %}
+            <link rel="shortcut icon" href="/media/{{ config.favicon }}" />
+        {% else %}
+            <link rel="shortcut icon" href="{% static "oscar/favicon.ico" %}" />
+        {% endif %}
+    {% endblock %}
+
+    <link rel="stylesheet" href="{% static "oscar/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "oscar/css/datetimepicker.css" %}" />
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">
+
+    <!--all css plugin link start-->
+{#    <link rel="stylesheet" type="text/css" href="{% static "vendors/css/fontawesome.min.css" %}" />#}
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static "vendors/css/bootstrap.min.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "vendors/css/xzoom.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "vendors/css/owl.carousel.min.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "vendors/css/owl.theme.default.min.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "vendors/css/magnific-popup.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "vendors/css/themify-icons.css" %}" />
+    <!--all css plugin link end-->
+
+
+    <!--custom css link start-->
+    <link rel="stylesheet" type="text/css" href="{% static "themes/"|add:config.theme|add:"/css/style.css" %}" />
+    <!--custom css link end-->
+{% endblock %}
+
+{% block layout %}
+    {# Top-horizontal bar with account, notifictions, dashboard links #}
+
+
+
+
+
+    {# Site logo/title, mini-basket, browse dropdown and searchbox #}
+    {% block navigation %}
+        {% if config.header_content %}
+            <header class="header">
+                {% include "partials/header.html" %}
+            </header>
+        {% endif %}
+{#            {% include "partials/nav_primary.html" %}#}
+
+    {% endblock %}
+
+    {% if request.user.is_authenticated and not request.user.email_verified %}
+        <div class="alert alert-warning m-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <form method="post" class="d-inline-block" action="{% url 'email-verification' %}">
+                            {% csrf_token %}
+                        <strong><i class="fa fa-warning"></i> Email not verified.</strong>
+                            <p>
+                                We have sent a verification email to your inbox. Click attached link to verify your email address.
+
+                                <button type="submit" class="btn btn-link btn-sm">Resend Email</button>
+                            </p>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {# Main content of page - other layout templates may override this block #}
+    {% block content_wrapper %}
+        <div class="main-container-wrap">
+
+            {% block subnavigation %}{% endblock %}
+            <div class="content">
+                {% block subheader %}{% endblock subheader %}
+
+                {# Render promotions #}
+                <div id="promotions">
+                    {% for promotion in promotions_page %}
+                        {% render_promotion promotion %}
+                    {% endfor %}
+                </div>
+            </div>
+            {# Div exists for AJAX updates to entire content section #}
+            {% block content %}{% endblock %}
+        </div>
+    {% endblock %}
+
+
+{#        cache 500 foter section was there #}
+    {% block footer %}
+
+        {% remote_template '/api/partial/?partial=partials/footer' as remote_footer %}
+
+        {% if remote_footer %}
+            {{ remote_footer }}
+        {% else %}
+            {% if config.footer_content %}
+                <footer class="footer">
+                    {% hyperfield_render config.footer_content %}
+                </footer>
+            {% endif %}
+        {% endif %}
+
+    {% endblock %}
+{% endblock %}
+
+{% block cdn_scripts %}
+  {{ block.super }}
+  {% if use_less and debug %}
+    {# Load the on-the-fly less compiler. Never do this in production. #}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+  {% endif %}
+{% endblock %}
+
+{# Local scripts #}
+{% block scripts %}
+    {{ block.super }}
+    <!-- Twitter Bootstrap -->
+{#    <script src="{% static "oscar/js/bootstrap3/bootstrap.min.js" %}"></script>#}
+    <!-- Oscar -->
+    <script src="{% static "oscar/js/oscar/ui.js" %}"></script>
+
+    <script src="{% static "oscar/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js" %}"></script>
+    <script src="{% static "oscar/js/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.all.js" %}"></script>
+
+
+
+    <!--all js plugin link js start-->
+    <script src="{% static "/vendors/js/popper.min.js" %}"></script>
+    <script src="{% static "/vendors/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "/vendors/js/xzoom.min.js" %}"></script>
+    <script src="{% static "/vendors/js/jquery.easing.min.js" %}"></script>
+    <script src="{% static "/vendors/js/owl.carousel.min.js" %}"></script>
+    <script src="{% static "/vendors/js/magnific-popup.min.js" %}"></script>
+    <!--all js plugin link js end-->
+
+    <script src="{% static "/themes/theme_5/js/nav.js" %}"></script>
+    <script src="{% static "/themes/theme_1/js/setup.js" %}"></script>
+    <script src="{% static "/themes/theme_1/js/sidenav.js" %}"></script>
+    <script src="{% static "/themes/theme_1/js/main.js" %}"></script>
+
+{% endblock %}
+
+{% block extrascripts %}
+    {% include "partials/extrascripts.html" %}
+    {{ block.super }}
+{% endblock %}
+
+{% block onbodyload %}
+    {{ block.super }}
+    oscar.init();
+{% endblock %}

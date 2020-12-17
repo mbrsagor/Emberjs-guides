@@ -1,0 +1,7 @@
+{% load i18n hyper_tags %}
+
+{% if config.footer_content %}
+    <footer class="footer">
+        {% hyperfield_render config.footer_content %}
+    </footer>
+{% endif %}

@@ -1,0 +1,16 @@
+{% load wagtailimages_tags hyper_tags %}
+
+<div class="row d-flex justify-content-center flex-wrap" id="{{ obj.id }}">
+    {% for news in news_list %}
+        <div class="col-md-3 col-sm-6 mt-4 mb-4">
+            <div class="card">
+                {% image news.image fill-300x300-c100 class="img-fulid" %}
+                <div class="card-body text-center p-3">
+                    <a href="{%if news.detailsUrl %}{{ news.detailsUrl }}{%endif%}"><h5>{{ news.title }}</h5></a>
+                    <small>{{ news.date }}</small>
+                    <!--{% hyperfield_render news.content %}-->
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

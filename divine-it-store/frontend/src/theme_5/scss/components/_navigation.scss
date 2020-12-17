@@ -1,0 +1,252 @@
+// top bar
+
+.topbar.bar-small {
+    padding: 0.352857143em 0;
+}
+.topbar{
+  font-size: 0.868714286em;
+  line-height: 21px;
+  //topbar right side
+  ul.list-inline{
+    margin-bottom: 0;
+    li{
+      a{
+        font-weight: $light;
+        display: block;
+        i{
+
+        }
+        &:hover{
+          color: $primary-color;
+        }
+      }
+    }
+  }
+}
+
+
+//header or middle navbar
+
+
+
+//header bottom css
+
+.header-bottom{
+  .category-nav{
+     background: rgba(0, 0, 0, 0.15);
+    li{
+      a{
+        position: relative;
+        display: block;
+        font-size: 14px;
+        font-family: $heading-font-family;
+        padding: 0.90rem 1.12rem;
+        span{
+          position: absolute;
+          right: 15px;
+        }
+      }
+      .dropdown-menu{
+        margin-top: -1px;
+        padding: 0;
+        li{
+          a{
+            color: $body-color;
+            padding: .45rem 1rem;
+            &:hover{
+              background: $primary-color;
+              color: $white-color;
+              border-radius: 0;
+            }
+            &:active{
+              background: $primary-color;
+              color: $white-color;
+              border-radius: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+  ////search box
+  //.custom-search-field{
+  //  input{
+  //
+  //  }
+  //  .form-control{
+  //
+  //    border-radius: 30px;
+  //  }
+  //  .input-group-append{
+  //    position: relative;
+  //    z-index: 99;
+  //    right: 80px;
+  //     button{
+  //       background: $dark-color;
+  //       border-radius: 0 30px 30px 0;
+  //       i{
+  //        font-weight: $bold;
+  //       }
+  //     }
+  //  }
+  //
+  //}
+
+  //basket nav
+  .basket-mini{
+    ul{
+      li{
+        a{
+          display: inline-block;
+        }
+      }
+    }
+  }
+
+}
+
+
+//main menu area
+
+.main-menu-area{
+  position: absolute;
+  width: 100%;
+  z-index: 99;
+  section{
+    padding: 0;
+    nav{
+      button{
+        position: absolute;
+        right: 0;
+        top: 8px;
+      }
+      .collapse{
+        background: $accent-color;
+      }
+    }
+  }
+}
+
+
+@media (min-width: 320px) and (max-width: 767px){
+  .main-menu-area{
+    top: -40px;
+  }
+}
+
+//main menu css
+.main-menu-wrap{
+  .main-menu{
+    li{
+      a.nav-link{
+        padding: 0.56rem 1rem;
+      }
+    }
+  }
+}
+
+.main-menu{
+  li{
+    a{
+      font-size: 14px;
+      font-family: $heading-font-family;
+      &:hover{
+        cursor: pointer;
+        color: $white-color !important;
+      }
+    }
+
+    ul.dropdown-menu{
+      padding: 0;
+      margin-top: 0;
+      li.dropdown-submenu{
+        position: relative;
+        a{
+          padding: 0.45rem 1rem !important;
+          &:after{
+            transform: rotate(-90deg);
+            position: absolute;
+            right: 6px;
+            top: 45%;
+          }
+        }
+        .dropdown-menu{
+          top: 0;
+          left: 100%;
+          margin-left: -1px;
+        }
+      }
+    }
+
+    //last child dropwoan
+    &:last-child.dropdown{
+      ul.dropdown-menu{
+        .dropdown-submenu{
+          .dropdown-menu{
+            right: 100%;
+            left: inherit;
+            margin-right: -1px;
+          }
+          &:after{
+
+          }
+        }
+      }
+
+    }
+  }
+}
+
+
+//auto search form css
+.auto-search-form{
+  .form-group{
+    position: relative;
+    span{
+      input{
+        background: $custom-color !important;
+      }
+    }
+  }
+  .twitter-typeahead{
+    width: 100%;
+    display: block;
+
+    .tt-menu.tt-open{
+      padding: 5px 15px;
+      background: $white-color;
+      width: 100%;
+      cursor: pointer;
+      border-radius: 0 0 4px 4px;
+      box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+    }
+  }
+
+  button{
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 0 4px 4px 0;
+    height: calc(2.6rem + 2px);
+    i{
+      color: #ffffff;
+      font-size: 20px;
+      position: absolute;
+      text-align: center;
+      top: 11px;
+      left: 30px;
+    }
+  }
+
+}
+
+
+//product filter option
+
+.product-filtering-section{
+  form{
+    .form-control{
+      background: $custom-color;
+    }
+  }
+}

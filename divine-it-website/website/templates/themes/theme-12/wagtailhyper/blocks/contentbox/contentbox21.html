@@ -1,0 +1,19 @@
+{% load sekizai_tags static %}
+<div class="contentBoxWrap" id="{{ obj.id }}">
+    <div class="row">
+        <div class="col">
+            <div class="product_grid">
+                <div class="card">
+                    <a href="{{ obj.settings.actionUrl }}">
+                        <img src="{{ obj.settings.image.url }}" class="card-img-top" alt="{{ obj.settings.title }}">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title product_card_title">{{ obj.settings.title }}</h5>
+                        {{ obj.settings.description|safe }}
+                        <a href="{{ obj.settings.actionUrl }}" class="btn btn-primary btn-sm custom_btn_color">{{ obj.settings.actionTitle }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

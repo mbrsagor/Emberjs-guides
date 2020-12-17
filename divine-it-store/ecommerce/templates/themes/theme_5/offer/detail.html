@@ -1,0 +1,65 @@
+{% extends "layout_2_col.html" %}
+
+
+{% load i18n %}
+{% load product_tags %}
+
+{% block title %}
+    {{ offer.name }} | {{ block.super }}
+{% endblock %}
+
+{% block breadcrumbs %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 bg-transparent">
+            <li class="breadcrumb-item">
+                <a href="{{ homepage_url }}">{% trans "Home" %}</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{% url 'offer:list' %}">{% trans "Offers" %}</a>
+            </li>
+            <li class="breadcrumb-item active">{{ offer.name }}</li>
+        </ol>
+    </nav>
+{% endblock %}
+
+{% block headertext %}{{ offer.name }}{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        {% if not offer.is_available %}
+            <div class="alert alert-danger">{% trans " This offer is no longer available." %}</div>
+        {% endif %}
+
+        {% if upsell_message %}
+            <div class="row">
+
+                <div class="col-sm-5">
+                    <div class="my-3">
+                        <h4><i class="icon-exclamation-sign icon-large"></i> {% trans "What you need to do" %}</h4>
+                        <p>{{ upsell_message }}</p>
+                    </div>
+                </div>
+                {% if offer.description %}
+                    <div class="col-sm-7">
+                        <p>{{ offer.description|safe }}</p>
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+
+    {% if products %}
+        <div class="container">
+            <div class="row">
+                {% for product in products %}
+                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">{% render_product product %}</div>
+                {% endfor %}
+            </div>
+            {% include "partials/pagination.html" %}
+            <br>
+        </div>
+    {% else %}
+        <p class="nonefound">{% trans "No products found." %}</p>
+    {% endif %}
+{% endblock content %}

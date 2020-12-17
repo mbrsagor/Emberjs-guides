@@ -1,0 +1,192 @@
+{% extends "layout.html" %}
+{% load currency_filters %}
+{% load thumbnail %}
+{% load i18n %}
+{% load purchase_info_tags %}
+{% load staticfiles %}
+
+{% block title %}
+    {% trans "Checkout" %} | {{ block.super }}
+{% endblock %}
+
+{#{% block checkout_nav %}#}
+{#    {% include 'checkout/nav.html' %}#}
+{#{% endblock %}#}
+
+{% block content %}
+    <section class="space-small">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    {% if error %}
+                        <div class="alert alert-danger">
+                            {{ error }}
+                        </div>
+                    {% endif %}
+
+                    <div class="row shipping-payment">
+                        {% block shipping_address %}
+                            <div class="col-sm-6">
+                                <div class="sub-header">
+                                    <h4 class="mb-3">{% trans "Shipping" %}</h4>
+                                </div>
+                                {% if shipping_address %}
+                                    <div class="card">
+                                        <div class="card-body">
+                                            {% block shipping_address_actions %}
+                                                <a href="{% url 'checkout:shipping-address' %}" class="pull-right">
+                                                    {% trans "Change" %}
+                                                </a>
+                                            {% endblock %}
+                                            <h5><strong>{% trans "Address" %}</strong></h5>
+                                            <address>
+                                                {% for field in shipping_address.active_address_fields %}
+                                                    {{ field }}<br/>
+                                                {% endfor %}
+                                            </address>
+
+                                            {% if shipping_address.phone_number %}
+                                                <h5><strong>{% trans "Contact" %}</strong></h5>
+                                                <p>
+                                                    {% trans "Phone" %}: {{ shipping_address.phone_number }}
+                                                    {% if guest_email %}
+                                                        <br/>{% trans "Email" %}: {{ guest_email }}
+                                                    {% endif %}
+                                                </p>
+                                            {% endif %}
+
+                                            {% if shipping_address.notes %}
+                                                <h5><strong>{% trans "Instructions" %}</strong></h5>
+                                                <p class="mb-0">{{ shipping_address.notes|linebreaks }}</p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+
+                            </div>
+                        {% endblock shipping_address %}
+
+                        {# You will almost certainly want to override this block to provide a payment summary #}
+                        {% block payment_method %}
+                            <div class="col-sm-6">
+                                <div class="sub-header">
+                                    <h4 class="mb-3">{% trans "Payment" %}</h4>
+                                </div>
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <a href="{% url 'checkout:payment-details' %}" class="pull-right">
+                                            {% trans "Change" %}
+                                        </a>
+                                        <h5><strong>{% trans "Payment" %}</strong></h5>
+                                        <p class="mb-0">{% trans "Payment details to go here" %}</p>
+                                    </div>
+                                </div>
+                                {% if shipping_method %}
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5><strong>{% trans "Shipping method" %}</strong></h5>
+                                            {% block shipping_method_actions %}
+                                                <a href="{% url 'checkout:shipping-method' %}" class="pull-right">
+                                                    {% trans "Change" %}
+                                                </a>
+                                            {% endblock %}
+
+                                            <p class="mb-0">{{ shipping_method.name }}
+                                                {% if shipping_method.description %}
+                                                    - {{ shipping_method.description|safe }}
+                                                {% endif %}
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                {% endif %}
+
+                            </div>
+                        {% endblock payment_method %}
+                    </div>
+
+                    {% block order_contents %}
+                        <div class="sub-header">
+                            {% block order_contents_actions %}
+                                <a href="{% url 'basket:summary' %}" class="pull-right">
+                                    {% trans "Edit order contents" %}
+                                </a>
+                            {% endblock %}
+
+                            <h4>{% trans "Order contents" %}</h4>
+                        </div>
+                        <div class="table-responsive-sm pt-2 pb-2">
+                            <table class="table table-bordered table-striped table-hover table-sm">
+                                <thead>
+                                <tr>
+                                    <th class="center"><Strong>Item</Strong></th>
+                                    <th><strong>Title</strong></th>
+                                    <th><strong>Quantity</strong></th>
+                                    <th class="right"><strong>Total</strong></th>
+                                </tr>
+                                </thead>
+                                <tbody id="products_tbody">
+                                {% for line in basket.all_lines %}
+                                    {% purchase_info_for_line request line as session %}
+
+                                    <tr>
+                                        <td>
+                                            {% with image=line.product.primary_image %}
+                                                {% thumbnail image.original "60x60" upscale=False as thumb %}
+                                                    <a href="{{ form.instance.product.get_absolute_url }}"><img
+                                                            class="thumbnail img-fluid" src="{{ thumb.url }}"
+                                                            alt="{{ product.get_title }}"></a>
+                                                {% endthumbnail %}
+                                            {% endwith %}
+                                        </td>
+                                        <td>
+                                            <h5>
+                                                <a href="{{ line.product.get_absolute_url }}">{{ line.description }}</a>
+                                            </h5>
+                                            <span class="availability {{ session.availability.code }}">{{ session.availability.message }}</span>
+                                        </td>
+                                        <td>
+                                            {{ line.quantity }}
+                                        </td>
+                                        <td>
+                                            <p class="price_color">
+                                                {% if not show_tax_separately and line.is_tax_known %}
+                                                    {{ line.line_price_incl_tax|currency:basket.currency }}
+                                                {% else %}
+                                                    {{ line.line_price_excl_tax|currency:basket.currency }}
+                                                {% endif %}
+                                            </p>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                        <div class="row justify-content-end">
+                            <div class="col-sm-6">
+                                <div class="sub-header">
+                                    <h4 class="mb-2">{% trans 'Totals' %}</h4>
+                                </div>
+                                {% include 'basket/partials/basket_totals.html' %}
+                            </div>
+                        </div>
+
+                    {% endblock order_contents %}
+
+                    {% block shipping_method %}
+                    {% endblock shipping_method %}
+
+                    {% block payment_details %}
+                    {% endblock payment_details %}
+
+                    {% block place_order %}
+                    {% endblock place_order %}
+
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

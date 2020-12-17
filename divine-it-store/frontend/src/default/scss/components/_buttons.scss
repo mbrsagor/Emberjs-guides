@@ -1,0 +1,268 @@
+
+/**! 06. Buttons **/
+.btn {
+  font-family: $heading-font-family;
+  padding-top: 0.40428571em;
+  padding-bottom: 0.40428571em;
+  padding-right: 2.58571429em;
+  padding-left: 2.58571429em;
+  line-height: 1.85714286em;
+  position: relative;
+  transition: 0.2s linear;
+  -webkit-transition: 0.2s linear;
+  -moz-transition: 0.2s linear;
+  font-weight: $semi-bold;
+}
+//.btn:hover {
+//  transform: translate3d(0, -1px, 0);
+//  -webkit-transform: translate3d(0, -1px, 0);
+//}
+.btn:focus{
+  box-shadow: none !important;
+}
+.btn-rounded{
+  border-radius: 10rem;
+}
+.btn.br-0{
+  border-radius: 0;
+}
+
+.btn[class*='col-'] {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.btn:active {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+.btn + p, .btn + span{
+  margin-top: 1.08333333333334em;
+}
+
+.btn.facebook-bg,
+.btn.twitter-bg,
+.btn.instagram-bg,
+.btn.googleplus-bg,
+.btn.pinterest-bg,
+.btn.dribbble-bg,
+.btn.behance-bg,
+.btn.dark-bg {
+  border-color: rgba(0, 0, 0, 0) !important;
+}
+
+.btn.facebook-bg ,
+.btn.twitter-bg ,
+.btn.instagram-bg ,
+.btn.googleplus-bg ,
+.btn.pinterest-bg ,
+.btn.dribbble-bg ,
+.btn.behance-bg,
+.btn.dark-bg  {
+  color: $white-color;
+}
+
+.btn.facebook-bg i,
+.btn.twitter-bg i,
+.btn.instagram-bg i,
+.btn.googleplus-bg i,
+.btn.pinterest-bg i,
+.btn.dribbble-bg i,
+.btn.behance-bg i,
+.btn.dark-bg i {
+  color: $white-color;
+}
+
+.btn.facebook-bg:hover,
+.btn.twitter-bg:hover,
+.btn.instagram-bg:hover,
+.btn.googleplus-bg:hover,
+.btn.pinterest-bg:hover,
+.btn.dribbble-bg:hover,
+.btn.behance-bg:hover,
+.btn.dark-bg:hover {
+  opacity: .9;
+}
+
+.btn.bg--error {
+  background: $error-color;
+  border-color: $error-color !important;
+}
+
+.btn.bg--error:hover {
+  background: #e54c4c;
+  border-color: #e54c4c !important;
+  color: $white-color !important;
+}
+
+.btn.bg--error {
+  color: $white-color;
+}
+
+.btn.bg--error i {
+  color: $white-color;
+}
+
+@media all and (min-width: 768px) {
+  .btn + .btn {
+    margin-right: 1em;
+  }
+  .btn + .btn:last-child{
+    margin-right: 0;
+  }
+}
+button.btn:first-child, a.btn:first-child{
+  margin-right: 1em;
+}
+.btn-extra-small {
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-right: 1.39285714em;
+  padding-left: 1.39285714em;
+}
+
+.btn-small {
+  padding-top: 0.30952381em;
+  padding-bottom: 0.30952381em;
+  padding-right: 1.85714286em;
+  padding-left: 1.85714286em;
+}
+
+.btn-large {
+  padding-top: 0.58035714em;
+  padding-bottom: 0.58035714em;
+  padding-right: 3.48214286em;
+  padding-left: 3.48214286em;
+}
+
+.btn-large{
+  font-size: 1.07142857em;
+}
+
+
+.default-btn {
+  background: $custom-color;
+  border-color: $custom-dark-border-color;
+}
+.default-btn,
+.default-btn:hover {
+  background: $white-color;
+}
+
+.default-btn:active {
+  background: $custom-color;
+}
+.outline-default-btn{
+  border-color: $custom-dark-border-color;
+}
+.outline-primary-btn{
+  color: $primary-color;
+  border-color: $primary-border-color;
+}
+
+.primary-btn{
+  background: $primary-color;
+  border-color: $primary-border-color;
+}
+.primary-btn:hover, .outline-primary-btn:hover, .primary-btn:active {
+  background: $primary-light-color;
+  border-color: $primary-light-color;
+}
+
+
+.primary-btn,
+.primary-btn:hover, .outline-primary-btn:hover{
+  color: $white-color;
+}
+.primary-btn i,
+.primary-btn:hover i {
+  color: $white-color;
+}
+
+.outline-secondary-btn{
+  color: $secondary-color;
+  border-color: $secondary-color;
+}
+
+.secondary-btn,
+.secondary-btn:hover, .outline-secondary-btn:hover {
+  background: $secondary-light-color;
+  border-color: $secondary-light-color;
+}
+.secondary-btn:hover, .secondary-btn:active{
+  background: $secondary-light-color;
+  border-color: $secondary-light-color;
+}
+
+.secondary-btn,
+.secondary-btn:hover, .outline-secondary-btn:hover{
+  color: $white-color;
+}
+.secondary-btn i,
+.secondary-btn:hover i {
+  color: $white-color;
+}
+
+.outline-accent-btn{
+  color: $accent-color;
+  border-color: $accent-border-color;
+}
+
+.accent-btn,
+.accent-btn:hover, .outline-accent-btn:hover {
+  background: $accent-color;
+  border-color: $accent-border-color;
+}
+.accent-btn:hover, .accent-btn:active{
+  background: $accent-light-color;
+  border-color: $accent-light-color;
+}
+.accent-btn,
+.accent-btn:hover, .outline-accent-btn:hover{
+  color: $white-color;
+}
+.accent-btn i,
+.accent-btn:hover i {
+  color: $white-color;
+}
+
+
+.btn--white {
+  background: $white-color;
+  color: $accent-color;
+  border-color: $white-color;
+}
+
+.btn--white i {
+  color:  $accent-color;
+}
+
+.btn--transparent {
+  background: none;
+  border-color: rgba(0, 0, 0, 0);
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.btn--transparent.btn--white {
+  color: $white-color;
+}
+
+.btn--unfilled {
+  background: none;
+}
+
+.btn--unfilled.btn--white{
+  color: $white-color;
+}
+
+.btn--unfilled.btn--white i {
+  color: $white-color;
+}
+
+.btn--floating {
+  position: fixed;
+  bottom: 3.71428571em;
+  right: 3.71428571em;
+  z-index: 10;
+}

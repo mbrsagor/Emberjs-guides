@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {% block head_title %}{% endblock %} | {{ block.super }}
+{% endblock %}
+
+{% block navigation %}
+{% endblock %}
+
+
+{% block footer %}
+{% endblock %}
+
+{% block content %}
+    <style type="text/css">
+        body {
+            background: #f2f2f2;
+        }
+        label {
+            color: #888;
+        }
+    </style>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12 col-md-6 offset-md-3">
+                <div class="d-flex flex-row justify-content-between my-4">
+                    <h4 style="font-weight: normal; letter-spacing: 1px; color: #444;">
+                        {% block form_title %}{% endblock %}
+                    </h4>
+                    <a href="/"><img src="/media/{{ config.logo }}" height="30px"></a>
+                </div>
+                {% include "partials/alert_messages_minimal.html" %}
+                {% block contentarea %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

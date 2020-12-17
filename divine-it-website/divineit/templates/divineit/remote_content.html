@@ -1,0 +1,17 @@
+{% if not js and content %}
+    <div id="{{ id }}" class="remoteContent {{ classes }}" style="{{ style }}">
+        {{ content|safe }}
+    </div>
+{% else %}
+    <div id="{{ id }}" class="remoteContent" style="{{ style }}"></div>
+    <script type="text/javascript">
+        fetch("{{ url }}", {credentials: 'include'}).then(function (resp) {
+            return resp.text()
+        }).then(function (text) {
+            document.getElementById('{{ id }}').innerHTML = text;
+            if(typeof document.reorderMenu === 'function') {
+                document.reorderMenu()
+            }
+        })
+    </script>
+{% endif %}

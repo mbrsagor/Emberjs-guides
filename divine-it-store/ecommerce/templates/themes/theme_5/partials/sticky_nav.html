@@ -1,0 +1,30 @@
+{% load i18n %}
+{% load staticfiles %}
+{% load static %}
+{% load currency_filters %}
+{% load product_tags %}
+{% load thumbnail %}
+{% block sticky_nav %}
+    <!-- scroll item menu start -->
+    <div id="fix-category-menu" class="fix-category-menu">
+        <nav class="fixed-nav-menu">
+            <ul class="nav-stacked">
+                {% for category in selected_categories %}
+                    {% with category=category.category %}
+                        <li class="sticky-nav-list">
+                            <a href="#{{ category.slug }}" class="smooth" title="{{ category.name|safe }}">
+
+                                {% thumbnail request.scheme|add:'://'|add:request.get_host|add:category.icon.url "600x1000" upscale=False as thumb %}
+                                    <img src="{{ thumb.url }}" alt="{{ category.name|safe }}"
+                                         class="img-responsive">
+                                {% endthumbnail %}
+                            </a>
+
+                        </li>
+                    {% endwith %}
+                {% endfor %}
+            </ul>
+        </nav>
+    </div>
+    <!-- scroll item menu end -->
+{% endblock %}

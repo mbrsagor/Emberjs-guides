@@ -1,0 +1,51 @@
+{% load wagtailimages_tags %}
+
+<div class="row LeadershipBlock" id="{{ obj.id }}">
+    <ul>
+        
+        <li class="at-grid" data-column="3">
+            {% for leadership in obj.settings.items %}
+                <div class="at-column">
+                    <div class="at-user">
+                        <div class="at-user__avatar"><img data-src="{{ leadership.image.url }}" class="lazy img-fluid" alt="{{ leadership.name }}"/></div>
+                        <div class="at-user__name"><h5>{{ leadership.name }}</h5></div>
+                        <div class="at-user__title"><p>{{ leadership.designation }}</p></div>
+                        <ul class="at-social">
+
+                            {% if leadership.facebookUrl %}
+                            <li class="at-social__item"><a href="{{ leadership.facebookUrl }}" target="_blank">
+                                <i class="fa fa-facebook"></i></a>
+                            </li>
+                            {% endif %}
+                            {% if leadership.twitterUrl %}
+                            <li class="at-social__item"><a href="{{ leadership.twitterUrl }}" target="_blank">
+                                <i class="fa fa-twitter"></i></a>
+                            </li>
+                            {% endif %}
+
+                            {% if leadership.linkedinUrl %}
+                            <li class="at-social__item"><a href="{{ leadership.linkedinUrl }}" target="_blank">
+                                <i class="fa fa-linkedin"></i></a>
+                            </li>
+                            {% endif %}
+
+                            {% if leadership.githubUrl %}
+                            <li class="at-social__item"><a href="{{ leadership.githubUrl }}" target="_blank">
+                                <i class="fa fa-github"></i></a>
+                            </li>
+                            {% endif %}
+
+                            {% if leadership.personalnUrl %}
+                            <li class="at-social__item"><a href="{{ leadership.personalnUrl }}" target="_blank">
+                                <i class="fa fa-globe"></i></a>
+                            </li>
+                            {% endif %}
+
+                        </ul>
+                    </div>
+                </div>
+            {% endfor %}
+        </li>
+        
+    </ul>
+</div>

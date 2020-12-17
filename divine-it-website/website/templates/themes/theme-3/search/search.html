@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% load static wagtailcore_tags hyper_tags %}
+
+{% block content %}
+{% include 'partials/header_home.html' %}
+    <div id="main" class="main">
+        <div class="main-content-inner">
+            <div class="search-section-heading">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h1>Search</h1>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="search-form pull-right">
+                                <form action="{% url 'search' %}" method="get">
+                                    <input required class="form-control" type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
+                                    <input type="submit" value="Search" class="btn btn-primary">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    {% if search_results %}
+                    <div class="col-md-12">
+                        <div class="search-result-list">
+                        <ul>
+                            {% for result in search_results %}
+                                <div class="card mt-3 mb-3">
+                                    <li>
+                                        <h2><a href="{% pageurl result %}">{{ result }}</a></h2>
+                                        {% if result.search_description %}
+                                            <p>{{ result.search_description }} <a href="{% pageurl result %}" class="search-detail-link">View Details</a></p>
+
+                                        {% endif %}
+                                    </li>
+                                </div>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="search-pagination">
+                            {% if search_results.has_previous %}
+                                <a class="btn btn-outline-info pull-left mb-5" href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
+                            {% endif %}
+
+                            {% if search_results.has_next %}
+                                <a class="btn btn-outline-primary pull-right mb-5" href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        {% elif search_query %}
+                           <div class="col-md-12">
+                                <div class="mt-5 mb-5 alert alert-danger">
+                                    <p>Sorry no results were found</p>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'partials/footer.html' %}
+{% endblock %}

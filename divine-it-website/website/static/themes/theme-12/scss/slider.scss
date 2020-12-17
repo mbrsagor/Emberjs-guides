@@ -1,0 +1,671 @@
+//slider default hero slider css
+
+.hyper-slider-content-wrap{
+  height: 600px;
+  position: relative;
+  .hero-content-wrap{
+    -js-display: flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    max-width: 775px;
+    height: 100%;
+    width: 100%;
+    .hyper-slider-content{
+      h1{
+        margin-top: 10px;
+        font-size: 50px;
+        line-height: 50px;
+        font-weight: 500;
+        font-family: $primary-color;
+        color: $white;
+      }
+      p{
+        font-size: 20px;
+        line-height: 28px;
+        color: $white;
+        span{
+          background-color: $primary-color-rgba;
+          font-size: 15px;
+          opacity: 1;
+          padding: 2px 15px 5px;
+          -ms-flex-item-align: start;
+          align-self: flex-start;
+          letter-spacing: .5px;
+          color: $white;
+        }
+      }
+    }
+  }
+}
+
+
+//slider one testimonial slider style css
+
+.testimonial-slider{
+  .single-slider-content{
+    .author-content{
+      background: $white none repeat scroll 0 0;
+      padding: 30px;
+      position: relative;
+      margin-top: 20px;
+      margin-bottom: 40px;
+      border-radius: 4px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.12)
+    }
+    .author-info{
+      position: relative;
+      overflow: hidden;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      height: 80px;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      margin-bottom: 15px;
+      .author-image {
+        border: 2px solid $background-color-active;
+        border-radius: 50%;
+        height: 80px;
+        left: 0;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        width: 80px;
+      }
+      .author-text{
+        text-align: left;
+        padding-left: 95px;
+        h4{
+          margin-bottom: 0;
+          font-size: 18px;
+          line-height: 22px;
+          font-weight: bold;
+        }
+        p{
+          color: $primary-color;
+        }
+      }
+    }
+    
+  }
+  .owl-nav{
+    position: absolute;
+    bottom: -25px !important;
+    right: 0;
+    color: $white;
+    margin-top: 0;
+    button{
+      margin: 2px;
+      i{
+        font-size: 20px;
+        width: 30px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      }
+    }
+  }
+}
+
+
+//background with image slider 2
+
+.slider-with-background-image{
+  position: relative;
+  display: block;
+  overflow: hidden;
+  .item{
+    background-size: cover;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    height: 70vh;
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .single-content-wrap{
+      -js-display: flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+        span{
+          background-color: $primary-color-rgba;
+          font-size: 15px;
+          opacity: 1;
+          padding: 2px 15px;
+          -ms-flex-item-align: start;
+          align-self: flex-start;
+          letter-spacing: .5px;
+          color: $white;
+          margin-bottom: 10px;
+        }
+
+        p{
+          font-size: 20px;
+          line-height: 28px;
+          color: inherit;
+        }
+      h1{
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        color: inherit;
+        font-size: 50px;
+        line-height: 55px;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .owl-dots{
+    -js-display: flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: absolute;
+    bottom: 20px;
+    left: 45%;
+    .owl-dot{
+      span{
+        background: $background-color-active;
+        display: inline-block;
+        height: 5px;
+        width: 20px;
+        vertical-align: middle;
+        border: none;
+        -webkit-transition: all .3s linear;
+        transition: all .3s linear;
+      }
+    }
+    .owl-dot.active{
+      span{
+        background: $primary-color;
+      }
+    }
+  }
+}
+
+.slider-with-background-image-2{
+  .item{
+    height: 460px;
+      -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
+    .single-content-wrap{
+        width: 50%;
+    }
+    .container-fluid{
+      padding-left: 85px;
+      padding-right: 85px;
+    }
+  }
+}
+
+// slider action btn style
+
+.hero-action-btn{
+  margin-top: 20px;
+  a{
+    padding: 10px 20px;
+    border: 1px solid $primary-color;
+    color: $white;
+    background: $primary-color;
+    transition: all 0.3s ease-in;
+    font-family: $secondary-font;
+    i{
+      color: $white;
+      transition: all 0.3s ease-in;
+    }
+    &:hover{
+      background: $primary-color;
+      color: $white;
+      i{
+        padding-left: 10px;
+      }
+    }
+  }
+}
+
+
+//slider 3 success story slider on product page
+
+.success-story-slider{
+    .single-slider-content{
+      .slider-image{
+        margin-bottom: 15px;
+      }
+      .slider-content{
+        h3{
+          color: inherit;
+        }
+      }
+    }
+}
+
+
+
+
+
+// owl carousel arrow and dot indicator css
+.custom-indicator-arrow .owl-nav{
+position: absolute;
+  top: -80px;
+  right: 0;
+}
+.custom-indicator-arrow .owl-nav button {
+	display: inline-block;
+	left: 1%;
+	text-align: center;
+	transform: translateX(-1%);
+	transition: all 0.3s ease 0s;
+}
+
+
+.custom-indicator-arrow .owl-nav button i{
+	font-size: 35px;
+	line-height: 35px;
+    font-weight: normal;
+
+}
+.custom-indicator-arrow .owl-nav button.owl-next {
+	left: auto;
+	right: 0;
+}
+.custom-indicator-arrow .owl-nav button.owl-prev{
+	left: 0;
+}
+
+.owl-theme.custom-indicator-arrow .owl-nav [class*=owl-]:hover{
+  background: transparent;
+}
+
+
+
+
+//company overview slider
+
+.overview-slider-wrap{
+  overflow: hidden;
+  position: relative;
+  &:after{
+    content: '';
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    left: 0;
+    top: 255px;
+    background: $primary-color-rgba;
+    z-index: 3;
+  }
+}
+
+.slider-item{
+  display: block;
+  vertical-align: top;
+  position: relative;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  padding: 15px;
+  height: 320px;
+  letter-spacing: normal;
+  white-space: normal;
+  -webkit-transition: background-color .3s;
+  -moz-transition: background-color .3s;
+  -ms-transition: background-color .3s;
+  -o-transition: background-color .3s;
+  transition: background-color .3s;
+  overflow: hidden;
+  border-radius: 4px;
+    .single-slider-content{
+      position: relative;
+      display: block;
+      .slider-content{
+        min-height: 180px;
+        overflow: hidden;
+        display: block;
+        p{
+          line-height: 22px;
+          font-size: 14px;
+        }
+        h5{
+          font-size: 18px;
+          line-height: 22px;
+          font-weight: 400;
+          margin-bottom: 5px;
+        }
+      }
+      .border-bottom-text{
+        position: absolute;
+        bottom: -110px;
+        width: 100%;
+        .slider-image{
+          position: relative;
+          top: -35px;
+          img{
+            margin: auto;
+            width: auto;
+          }
+        }
+        .overview-year{
+          text-align: center;
+          h4{
+            margin: 0 auto;
+            font-weight: 500;
+
+          }
+        }
+      }
+
+    }
+  &:hover{
+    border-color: $primary-color;
+    background: $background-color-active;
+    cursor: move;
+  }
+  &:after{
+    content: '';
+    position: absolute;
+    display: block;
+    border: 1px solid $primary-color;
+    height: 20px;
+    top: 255px;
+    left: 50%;
+  }
+}
+
+
+
+
+// slider blog style with link
+.blog-style-with-link{
+    .item{
+      box-shadow: 0 0 30px rgba(10, 10, 10,0.07);
+    -moz-box-shadow: 0 0 30px rgba(10, 10, 10,0.07);
+    -webkit-box-shadow: 0 0 30px rgba(10, 10, 10,0.07);
+      .single-slider-content{
+        .slider-image{
+          background: $heading-color;
+          overflow: hidden;
+          position: relative;
+          display: block;
+          img{
+            display: block;
+            max-width: 100%;
+            height: auto;
+            transition: opacity 300ms ease-out, transform 300ms ease-out, filter 300ms ease-out;
+            -moz-transition: opacity 300ms ease-out, -moz-transform 300ms ease-out, -moz-filter 300ms ease-out;
+            -o-transition: opacity 300ms ease-out, -o-transform 300ms ease-out, -o-filter 300ms ease-out;
+            -webkit-transition: opacity 300ms ease-out, -webkit-transform 300ms ease-out, -webkit-filter 300ms ease-out;
+          }
+          &:hover img{
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+            opacity: 0.5;
+          filter: alpha(opacity=50);
+          }
+        }
+        .slider-content{
+          padding: 15px 25px;
+          background: $white;
+          h3{
+            color: $heading-color;
+            font-size: 18px;
+            line-height: 24px;
+            font-weight: 600;
+            letter-spacing: 0;
+            margin-bottom: 0;
+          }
+          &:hover{
+            h3{
+              color: $primary-color;
+            }
+          }
+        }
+      }
+    }
+    .owl-dots{
+    -js-display: flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: absolute;
+    bottom: -40px;
+    left: 45%;
+    .owl-dot{
+      span{
+        background: $p-color;
+        display: inline-block;
+        height: 5px;
+        width: 20px;
+        vertical-align: middle;
+        border: none;
+        -webkit-transition: all .3s linear;
+        transition: all .3s linear;
+      }
+    }
+    .owl-dot.active{
+      span{
+        background: $primary-color;
+      }
+    }
+  }
+}
+
+
+
+
+
+// customer slider Merquee style
+.customerMerquee{
+  .item{
+    .single-merquee-item{
+      padding: 15px; 
+      .item-media-logo{
+        img{
+          width: 175px;
+          position: relative;
+          display: block;
+          margin: 0 auto;
+        }
+      }
+
+      .item-text{
+        text-align: center;
+        height: 40%;
+        position: relative;
+        padding: 20px 5px;
+        -webkit-transition: all .45s ease-out;
+        transition: all .45s ease-out;
+        h5{
+          margin-bottom: 5px;
+          font-size: 17px;
+          line-height: 19px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+        }
+        p{
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          max-height: 25px;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+        }
+
+        a{
+          font-size: 13px;
+          font-weight: 500;
+          line-height: 1;
+          color: $primary-color;
+          text-transform: uppercase;
+          bottom: 10px;
+          position: absolute;
+          -js-display: flex;
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-align: center;
+          -ms-flex-align: center;
+          align-items: center;
+          left: 50%;
+          -webkit-transform: translateX(-50%);
+          -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+          opacity: 0;
+          -webkit-transition: all .25s ease-out;
+          transition: all .25s ease-out;
+          -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+        }
+      }
+    }
+  }
+}
+
+
+
+// slider 7 image and content slider
+
+
+.image-content-slider-wrap{
+position: relative;
+}
+
+
+.image-content-slider .item{
+height: auto;
+padding: 50px 0;
+position: relative;
+display: flex;
+justify-content: center;
+flex-direction: column;
+z-index: 2;
+
+  .single-slider-content{
+
+    .slider-content{
+      span{
+        background-color: $white;
+        font-size: 20px;
+        opacity: 1;
+        padding: 5px 15px;
+        -ms-flex-item-align: start;
+        align-self: flex-start;
+        letter-spacing: .5px;
+        color: $primary-color;
+        margin-bottom: 10px;
+        vertical-align: middle;
+        text-align: center;
+        display: inline-block;
+        border-radius: 4px;
+      }
+      h1{
+        font-size: 45px;
+        line-height: 50px;
+        color: inherit;
+        margin-bottom: 10px;
+      }
+      p{
+        font-size: 20px;
+        line-height: 28px;
+      }
+    }
+  }
+
+}
+
+//sliderV2
+
+.sliderV2 .slide_content{
+  color: #ffffff;
+}
+
+.sliderV2 .slide_content h1{
+  color: #ffffff;
+}
+
+.sliderV2 .slide_image img {
+  width: 100%;
+  height: 250px;
+}
+
+.slider_control_btn .owl-dots .owl-dot span {
+  width: 10px !important;
+  height: 10px !important;
+}
+
+.product_slider_left_icon{
+  top: 150px !important;
+}
+
+.product_slider_right_icon {
+  top: 150px !important;
+}
+
+// Video Slider
+.videoSlide_V2 {
+  margin-top: 100px !important;
+}
+
+.videoSlide_V2 span {
+  background: transparent !important;
+  color: #ffffff !important;
+}
+
+.videoSlide_V2 h1 {
+  color: #ffffff !important;
+}
+
+// testimonial
+.testimonial_content {
+  color: #ffffff;
+}
+
+.testimonial_content h1{
+  color: #ffffff;
+}
+
+.testimonial_content img {
+  width: 100px !important;
+  height: 100px !important;
+  margin: auto;
+  border-radius: 50%;
+}
+
+.client_testmonial .owl-dots {
+  margin-top: 0;
+}

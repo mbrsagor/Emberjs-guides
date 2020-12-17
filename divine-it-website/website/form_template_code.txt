@@ -1,0 +1,59 @@
+*** Schedule demo form 2 ***
+*** Admin template short code for recieving data from user ***
+{{firstname}} = First Name
+{{lastname}} = Last Name
+{{website}} = URL of the website
+{{email}} = Email Address
+{{phone}} = Phone Number
+{{message}} = Extra Message
+
+*** Template code of User ***
+"dlp_reply"
+*** Template code for Admin ***
+"dlp_qoute"
+
+*** Custom quote form [request vapt] ***
+*** Admin template short code for recieving data from user ***
+{{firstname}} = First Name
+{{lastname}} = Last Name
+{{website}} = URL of the website
+{{email}} = Email Address
+{{phone}} = Phone Number
+{{message}} = Extra Message
+
+*** Template code of admin ***
+"vapt_qoute"
+*** Template code for user ***
+"vapt_qoute_reply"
+
+
+
+*** NDV partner form ***
+*** Partner Joining Form ***
+
+{{first_name}},
+{{last_name}}
+{{phone}},
+{{email}},
+{{address}},
+{{city}},
+{{state}},
+{{pin_code}},
+{{message}},
+
+*** partner_qoutes = Admin ***
+*** partner_reply = user reply ***
+
+
+
+** Training Entroll Form **
+*** Template Code ***
+
+Admin = training_quote
+User = training_quote_reply
+
+Add following field name to get data of the user in admin template
+Name: {{name}}
+Email: {{email}}
+Mobile: {{phone}}
+Message: {{message}}

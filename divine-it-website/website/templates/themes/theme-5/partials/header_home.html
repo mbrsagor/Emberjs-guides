@@ -1,0 +1,52 @@
+{% load menu_tags hyper_tags %}
+{% load hyper_tags sekizai_tags %}
+
+
+
+
+
+
+<header id="header" class="header">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container mt-3 mb-3">
+           <!-- Start Header Navigation -->
+            <a class="navbar-brand" href="/">
+                {% if settings.base.ApplicationSettings.website_logo %}
+                    <img src="{{ settings.base.ApplicationSettings.website_logo.url }}" class="logo logo-display img-fluid" alt="{{ self.get_site.site_name }} Logo" />
+                {% else %}
+                    {{ self.get_site.site_name }}
+                {% endif %}
+            </a>
+             <button class="navbar-toggler ml-auto" id="sidebarCollapse" type="button" data-toggle="collapse" aria-controls="navbarSupportedContent" aria-expanded="false">
+                <span class="fa fa-bars"></span>
+            </button>
+        </div>
+    </nav>
+    <nav class="navbar navbar-expand-lg bg-primary header-menu">
+        <div class="container">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                {% megamenu %}
+            </div><!-- /.navbar-collapse -->
+
+            <!--search-->
+            {% if settings.base.ApplicationSettings.header_top %}
+                <div class="hotline-text">
+                    {% hyperfield_render settings.base.ApplicationSettings.header_top.content %}
+                </div>
+            {% endif %}
+
+        </div>
+    </nav>
+
+
+
+
+
+</header>
+<div class="wrapper2">
+    {% megamenu template="wagtailhyper/mobilemenu.html" %}
+</div>
+<div class="clearfix"></div>
+
+

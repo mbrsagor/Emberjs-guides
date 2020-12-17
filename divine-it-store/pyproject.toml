@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "ecommerce-pricing"
+version = "0.1.0"
+description = ""
+authors = ["Shimul Chowdhury <shimul@divine-it.net>"]
+
+[tool.poetry.dependencies]
+python = "==3.6"
+django-oscar = "==1.6"
+django-allauth = "*"
+djangohyper = {git = "https://shimul:vyWhqSgMPXByfETWRwGw@git.divineit.net/shimul/django-hyper.git"}
+django-constance = {extras = ["database"],version = "*"}
+django-filer = "*"
+django-oscar-api = "*"
+django-filter = "*"
+whoosh = "*"
+dit_email_addon = {git = "https://shimul:vyWhqSgMPXByfETWRwGw@git.divineit.net/web/dit_email_addon.git", branch="dit_v2"}
+django-sekizai = "*"
+pandas = "^0.25.3"
+oauth2client = "^4.1"
+google-api-python-client = "^1.7"
+xlrd = "^1.2"
+demjson = "^2.2"
+docxtpl = "^0.6.3"
+mysqlclient = "^1.4.6"
+urllib3 = "^1.25.8"
+geoip2 = "^3.0.0"
+django-extensions = "^2.2.8"
+
+
+[tool.poetry.dev-dependencies]

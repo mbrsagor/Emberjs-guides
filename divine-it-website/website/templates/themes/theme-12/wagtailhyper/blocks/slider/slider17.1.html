@@ -1,0 +1,26 @@
+<div id="{{ obj.id }}" class="{{ obj.general.classes }} image-content-slider-wrap">
+    <div class="owl-carousel owl-theme image-content-slider client_testmonial">
+        {% for slider in obj.settings.slides %}
+            <div class="item">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-md-12 text-center">
+                            <div class="testimonial_content">
+                                {% if slider.image.url %}
+                                <img data-src="{{ slider.image.url }}" alt="{{ slider.title }}" class="lazy">
+                                {% endif %}
+                                {% if slider.subTitle %}
+                                <span>Client name: {{ slider.subTitle }}</span>
+                                {% endif %}
+                                {% if slider.shortDescription %}
+                                Client say: {{ slider.shortDescription|safe }}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+

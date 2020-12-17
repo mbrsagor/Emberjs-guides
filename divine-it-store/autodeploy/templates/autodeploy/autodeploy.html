@@ -1,0 +1,45 @@
+{% extends 'layout_2_col.html' %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 my-5">
+                {% if eligible %}
+                    <form method="post" class="card">
+                        {% csrf_token %}
+                        <div class="card-header">
+                            <span class="card-title">{{ product.get_title }} Free Trial</span>
+                        </div>
+                        <div class="card-body">
+                            <p class="mb-4 text-muted">Pick an address, on which we will prepare demo for you!</p>
+
+                            {% if form.non_field_errors %}
+                                {% for error in form.non_field_errors %}
+                                    <div class="alert alert-danger">
+                                        <i class="icon-exclamation-sign"></i> {{ error }}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+
+                                {% render_field form.product %}
+                            <div class="input-group mb-3">
+                                {% render_field form.sub_domain class+="form-control" %}
+                                  <div class="input-group-append">
+                                    <span class="input-group-text">.{{ product.domain }}</span>
+                                  </div>
+                            </div>
+                            {% if form.sub_domain.errors %}
+                                <div class="text-danger">{{ form.sub_domain.errors }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="card-footer text-right">
+                            <button type="submit" class="btn btn-primary btn-sm">Next <i class="fa fa-arrow-right"></i></button>
+                        </div>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

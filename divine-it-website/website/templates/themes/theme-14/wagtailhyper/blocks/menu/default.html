@@ -1,0 +1,27 @@
+{% load util_tags %}
+<div id="{{ obj.id }}" class="default-menu">
+    {% if obj.settings.title %}
+        <h6>{{ obj.settings.title }}</h6>
+    {% endif %}
+    {% if menuItems %}
+        <ul>
+            {% for menuItem in menuItems %}
+            <li>
+                <a href="{{ menuItem.get_url }}">
+                    {% if menuItem.image %}
+                        <div class="menu-icon-image">
+                            {% image menuItem.image fill-26x26 %}
+                        </div>
+                    {% endif %}
+                    <div class="menu-list-info">
+                        <p>{{ menuItem.title }}</p>
+                        {% if menuItem.description %}
+                            <small>{{ menuItem.description }}</small>
+                        {% endif %}
+                    </div>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>

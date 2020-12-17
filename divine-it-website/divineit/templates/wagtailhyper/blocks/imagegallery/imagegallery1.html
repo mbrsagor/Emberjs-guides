@@ -1,0 +1,22 @@
+{% load wagtailimages_tags %}
+<div class="row justify-content-center" id="{{ obj.id }}">
+    {% for imagegallery in obj.settings.items %}
+        <div class="col mb-4">
+            <div class="zoom-gallery">
+                {% if imagegallery.image %}
+                    <a href="{{ imagegallery.image.url }}" data-source="{{ imagegallery.image.url }}" title="{{ imagegallery.name }}">
+                        <img data-src="{{ imagegallery.image.url }}" class="lazy img-fluid" alt="{{ imagegallery.name }}"/>
+                    </a>
+                {% endif %}
+                 <div class="gallery-detail-info">
+                     {% if imagegallery.name%}
+                        <h5 class="mb-2 mt-2">{{ imagegallery.name }}</h5>
+                     {% endif%}
+                     {% if imagegallery.description %}
+                        <p>{{ imagegallery.description|safe }}</p>
+                    {% endif %}
+                 </div>
+            </div>
+        </div>
+     {% endfor %}
+</div>

@@ -1,0 +1,18 @@
+{% load sekizai_tags static %}
+
+<div class="contentBoxWrap counter-box-wrap counter-circle" id="{{ obj.id }}">
+    <div class="circle-counter-wrap">
+        <div class="circle-counter">
+            <div class="circle-content">
+                <div class="circle-icon">
+                    <img src="{{ obj.settings.image.url }}" class="img-fluid" />
+                </div>
+                <h3>{{ obj.settings.title }}</h3>
+                <p>{{ obj.settings.subtitle }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

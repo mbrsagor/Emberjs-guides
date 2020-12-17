@@ -1,0 +1,15 @@
+{% load util_tags %}
+
+<div id="{{ obj.id }}" class="header-top-menu-bar float-right">
+    {% if menuItems %}
+        <ul class="nav">
+            {% for menuItem in menuItems %}
+            <li class="nav-item">
+                <a href="{{ menuItem.get_url }}" class="nav-link">
+                    {{ menuItem.title }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>

@@ -1,0 +1,303 @@
+
+/**! 12. Form Elements **/
+form {
+  max-width: 100%;
+}
+
+form + form {
+  margin-top: 30px;
+}
+
+form:before,
+form:after {
+  content: ".";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+.form-control{
+  height: calc(2.6rem + 2px);
+}
+form:after {
+  clear: both;
+}
+
+label {
+  font-size: 1.094285714em;
+  font-weight: 400;
+  line-height: initial;
+  margin-bottom: 0.3em;
+}
+
+input[type],
+textarea.form-control, select{
+  background: $form-bg-color;
+  padding: 0.76428571em;
+  border-radius: 4px;
+  border: 1px solid $custom-dark-border-color;
+}
+
+.input-icon .form-control{
+  padding-left: 2.575rem;
+}
+
+.input-icon .input-with-icon{
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+  top: 0;
+  width: 2.575rem;
+  text-align: center;
+  pointer-events: none;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+
+input[type]:focus,
+textarea.form-control:focus,
+select:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+input[type]:active,
+textarea.form-control:active,
+select:active {
+  outline: none;
+  box-shadow: none;
+}
+
+input[type]::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder,
+select::-webkit-input-placeholder {
+  color: $form-color;
+  font-size: .90285714em;
+}
+
+input[type]:-moz-placeholder,
+textarea:-moz-placeholder,
+select:-moz-placeholder {
+  /* Firefox 18- */
+  color: $form-color;
+  font-size: 1.14285714em;
+}
+
+input[type]::-moz-placeholder,
+textarea::-moz-placeholder,
+select::-moz-placeholder {
+  /* Firefox 19+ */
+  color: $form-color;
+  font-size: 1.14285714em;
+}
+
+input[type]:-ms-input-placeholder,
+textarea:-ms-input-placeholder,
+select:-ms-input-placeholder {
+  color: $form-color;
+  font-size: 1.14285714em;
+}
+
+input[type="image"] {
+  border: none;
+  padding: 0;
+  width: auto;
+}
+
+select {
+  cursor: pointer;
+  padding-right: 1.85714286em;
+  -webkit-appearance: none;
+}
+
+input[type="submit"] {
+  background: none;
+  outline: none;
+  border: none;
+  background: $primary-color;
+  padding: 0.46428571em 2.78571429em 0.46428571em 2.78571429em;
+  color: $white-color;
+}
+
+
+button {
+  background: none;
+}
+
+button[type="submit"].btn--loading {
+  position: relative;
+  overflow: hidden;
+  pointer-events: none;
+  color: rgba(0, 0, 0, 0);
+}
+
+button[type="submit"].btn--loading * {
+  opacity: 0;
+}
+
+button[type="submit"].btn--loading:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 100%;
+  background: $custom-color;
+  animation: load 1.5s ease-out infinite;
+  left: 0;
+  top: 0;
+}
+
+button[type="submit"].btn--loading {
+  opacity: 0;
+}
+
+button:focus {
+  outline: none !important;
+}
+
+button.bg--error {
+  color: $white-color;
+}
+
+.input-icon {
+  position: relative;
+}
+
+.input-icon i {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+  position: absolute;
+}
+
+.input-checkbox,
+.input-radio,
+.input-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  display: inline-block;
+}
+
+.input-checkbox input,
+.input-radio input,
+.input-select input {
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  position: absolute !important;
+}
+
+.input-checkbox label,
+.input-radio label,
+.input-select label {
+  display: block !important;
+  cursor: pointer;
+}
+
+.input-checkbox {
+  padding: 0;
+}
+
+.input-checkbox label {
+  width: 1.85714286em;
+  height: 1.85714286em;
+  border-radius: 6px;
+  background: $dark-color;
+}
+
+.input-radio {
+  padding: 0;
+}
+
+.input-radio label {
+  width: 1.85714286em;
+  height: 1.85714286em;
+  border-radius: 50%;
+  background: $dark-color;
+}
+
+.input-select {
+  position: relative;
+}
+
+.input-select i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  right: 1em;
+  font-size: .87em;
+}
+
+.input-file {
+  position: relative;
+  display: inline-block;
+}
+
+.input-file input {
+  display: none;
+}
+
+.form-error {
+  margin-top: 1.5625em;
+  padding: 0.78125em;
+  background: $error-color;
+  color: $white-color;
+  position: fixed;
+  min-width: 350px;
+  left: 50%;
+  bottom: 1.5625em;
+  transform: translate3d(-50%, 0, 0);
+  -webkit-transform: translate3d(-50%, 0, 0);
+  z-index: 999;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+}
+
+.form-success {
+  margin-top: 1.5625em;
+  padding: 0.78125em;
+  background: $success-color;
+  color: $white-color;
+  position: fixed;
+  min-width: 350px;
+  left: 50%;
+  bottom: 1.5625em;
+  transform: translate3d(-50%, 0, 0);
+  -webkit-transform: translate3d(-50%, 0, 0);
+  z-index: 999;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+}
+
+.attempted-submit .field-error {
+  border-color: $error-color !important;
+}
+
+.attempted-submit div.recaptcha.field-error {
+  border-color: $error-color !important;
+  border-style: solid;
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+div.recaptcha iframe {
+  min-height: 0;
+}
+
+// form css update:27/10/2019
+
+.rendered-form .form-control {
+    height: 50px !important;
+    font-size: 16px !important;
+    border-radius: 6px !important;
+    border: 1px solid #ccc !important;
+    resize: none;
+    font-weight: 600 !important;
+    color: #9C9C9F !important;
+}

@@ -1,0 +1,20 @@
+{% load util_tags %}
+<div id="{{ obj.id }}" class="default-menu">
+    <h6>{{ obj.settings.title }}</h6>
+    {% if menuItems %}
+        <ul>
+            {% for menuItem in menuItems %}
+            <li>
+                <a href="{% abs_url menuItem.get_url %}">
+                    <div class="menu-logo-image">
+                        {% image menuItem.image original %}
+                    </div>
+                    <div class="menu-list-info">
+                        <small>{{ menuItem.description }}</small>
+                    </div>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>

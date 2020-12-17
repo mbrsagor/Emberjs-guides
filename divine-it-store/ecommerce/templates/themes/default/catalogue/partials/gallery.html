@@ -1,0 +1,41 @@
+{% load thumbnail %}
+{% load i18n %}
+{% load staticfiles %}
+
+{% with all_images=product.images.all %}
+    {% if all_images|length > 0 %}
+        <div class="xzoom-container">
+            {% for image in all_images %}
+                {% thumbnail image.original "400x400" upscale=False as thumb %}
+                    {% if forloop.first %}
+                        <img class="xzoom5" id="xzoom-magnific" src="{{ thumb.url }}"
+                             xoriginal="{{ image.original.url }}"/>
+                    {% endif %}
+                {% endthumbnail %}
+            {% endfor %}
+            <div class="xzoom-thumbs">
+                {% if not product.is_parent %}
+
+                    {% for image in all_images %}
+                        {% thumbnail image.original "400x400" as thumb %}
+                            <a href="{{ image.original.url }}">
+                                <img class="xzoom-gallery5" width="80" src="{{ thumb.url }}"  {% if forloop.first %} xpreview="{{ thumb.url }}" {% endif %} ></a>
+                        {% endthumbnail %}
+                    {% endfor %}
+                {% endif %}
+                {% for item in product.children.all %}
+                    {% for image in item.images.all %}
+                        {% thumbnail image.original "400x400" as thumb %}
+                            <a href="{{ image.original.url }}" class="child_thumbs child_id_{{ item.id }}">
+                                <img class="xzoom-gallery5" src="{{ thumb.url }}" {% if forloop.first %}
+                                     xpreview="{{ thumb.url }}"{% endif %}>
+                            </a>
+                        {% endthumbnail %}
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+
+    {% endif %}
+{% endwith %}

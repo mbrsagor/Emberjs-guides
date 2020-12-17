@@ -1,0 +1,34 @@
+<div id="{{ obj.id }}" class="hero-slider {{ obj.general.classes }}">
+    <div class="owl-carousel owl-theme hero-slider-1 dot-indicator-right">
+        {% for slider in obj.settings.slides %}
+            <div class="item bg-image" data-overlay="6">
+                <div class="background-image-wraper"
+                     style="background: url('{{ slider.image.url }}')no-repeat center center / cover; opacity: 1;">
+                    <img alt="background" src="{{ slider.image.url }}">
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="hero-slider-contents">
+                                <h2>{{ slider.title }}</h2>
+                                <p class="lead">
+                                    {{ slider.subTitle }}
+                                </p>
+
+                                {{ slider.shortDescription|safe }}
+
+                                <div class="action-btn">
+                                    {% if slider.actionUrl %}
+                                        <a href="{{ slider.actionUrl }}" class="btn primary-btn">{{ slider.actionTitle }}</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </div>
+        {% endfor %}
+    </div>
+</div>

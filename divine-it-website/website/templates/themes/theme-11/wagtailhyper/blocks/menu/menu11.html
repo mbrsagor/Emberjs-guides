@@ -1,0 +1,18 @@
+{% load util_tags %}
+{% if menuItems %}
+<ul>
+    {% for menuItem in menuItems %}
+        {% get_submenu_items menuItem as submenuItems %}
+        <li>
+            <a href="{% abs_url menuItem.get_url %}"> {{ menuItem.title }}</a>
+            {% if submenuItems %}
+                <ul class="sub-menu">
+                    {% for submenuItem in submenuItems %}
+                    <li class="menu-item-has-children"><a href="{% abs_url submenuItem.get_url %}"> {{ submenuItem.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+{% endif %}

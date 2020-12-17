@@ -1,0 +1,135 @@
+//
+//@media all and (max-width: 1024px) {
+//  html {
+//    font-size: 80%;
+//  }
+//}
+//h1,
+//.h1 {
+//  letter-spacing: -0.01em;
+//}
+//h1:not(:last-child),
+//.h1:not(:last-child) {
+//  margin-bottom: 0.59090909090909em;
+//}
+//
+//h2,
+//.h2 {
+//  margin-bottom: 0.78787878787879em;
+//}
+//h3,
+//.h3 {
+//  margin-bottom: 1.04em;
+//}
+//h3 strong,
+//.h3 strong {
+//  font-weight: $regular;
+//}
+//blockquote {
+//  font-family: 'Merriweather', serif;
+//  font-style: italic;
+//  font-weight: 300;
+//}
+//blockquote:not(:last-child) {
+//  margin-bottom: 1.04em;
+//}
+//blockquote > p {
+//  font-size: 1em !important;
+//}
+//h4,
+//.h4 {
+//  margin-bottom: 1.36842105263158em;
+//  font-weight: 400;
+//}
+//h4.inline-block + .h4.inline-block:not(.typed-text),
+//.h4.inline-block + .h4.inline-block:not(.typed-text) {
+//  margin-left: 0.68421052631579em;
+//}
+//h5,
+//.h5 {
+//  font-weight: $medium;
+//}
+//h5:not(:last-child),
+//.h5:not(:last-child) {
+//  margin-bottom: 1.85714286em;
+//}
+//h6,
+//.h6 {
+//  font-weight: $bold;
+//}
+//h6:not(:last-child),
+//.h6:not(:last-child) {
+//  margin-bottom: 2.16666666666667em;
+//}
+//h6.type--uppercase,
+//.h6.type--uppercase {
+//  letter-spacing: 1px;
+//  margin-right: -1px;
+//}
+//span.h1:not(.inline-block),
+//span.h2:not(.inline-block),
+//span.h3:not(.inline-block),
+//span.h4:not(.inline-block),
+//span.h5:not(.inline-block),
+//span.h6:not(.inline-block) {
+//  display: block;
+//}
+//b {
+//  font-weight: $medium;
+//}
+//hr {
+//  border-color: #ECECEC;
+//}
+//.dark-bg hr {
+//  border-color: #585858;
+//}
+//[class*='bg-']:not(.bg--white):not(.bg--custom) p,
+//[class*='bg-image']:not(.light-bg-image) p {
+//  opacity: .9;
+//}
+//.lead {
+//  font-weight: $regular;
+//  color: #808080;
+//}
+//.lead:not(:last-child) {
+//  margin-bottom: 1.36842105263158em;
+//}
+//.lead + .btn:last-child {
+//  margin-top: 0.92857143em;
+//}
+//p:last-child {
+//  margin-bottom: 0;
+//}
+//p strong {
+//  color: #010e28;
+//}
+///*! -- softpack Colours -- */
+//.dark-bg .bg--custom {
+//  background: #343434;
+//}
+///*! -- softpack Links -- */
+//a {
+//  color: $primary-color;
+//  font-weight: $semi-bold;
+//}
+//a:hover {
+//  color: $primary-light-color;
+//}
+//a.block {
+//  font-weight: normal;
+//  text-decoration: none;
+//  color: #666666;
+//}
+//p a,
+//span a,
+//label a {
+//  font-size: 1em;
+//  text-decoration: underline;
+//  font-weight: $regular;
+//  line-height: 1.85714286em;
+//}
+//p + a:not(.btn) {
+//  font-size: 0.85714286em;
+//  line-height: 2.16666667em;
+//}
+//

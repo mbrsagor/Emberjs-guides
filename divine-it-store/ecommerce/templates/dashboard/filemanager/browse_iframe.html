@@ -1,0 +1,45 @@
+{% extends 'dashboard/layout.html' %}
+{% load admin_urls %}
+{% load i18n %}
+
+{% block body_class %}{{ block.super }} browse filemanager{% endblock %}
+
+{% block title %}
+    {% trans "Browse Files & Folders" %} | {{ block.super }}
+{% endblock %}
+
+{% block breadcrumbs %}
+    <ul class="breadcrumb">
+        <li>
+            <a href="{% url 'dashboard:index' %}">{% trans "Dashboard" %}</a>
+        </li>
+        <li class="active">File Browser</li>
+    </ul>
+{% endblock %}
+
+{% block header %}
+
+    <h1>File Browser</h1>
+{% endblock %}
+
+{% block dashboard_content %}
+
+    <style type="text/css">
+        .well {
+            padding: 0px;
+        }
+        #admin_iframe {
+            min-height: 800px;
+            border:none;
+        }
+
+    </style>
+
+    <div class="table-header">
+        <h2>Root</h2>
+    </div>
+    <div class="well">
+        <iframe id="admin_iframe" src="{{ iframe_url }}" width="100%" height="100%"></iframe>
+
+    </div>
+{% endblock dashboard_content %}

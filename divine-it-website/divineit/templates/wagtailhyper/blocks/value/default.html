@@ -1,0 +1,33 @@
+{% load wagtailimages_tags hyper_tags %}
+<div class="circle-container">
+        <span class="line1 line"></span>
+        <span class="line2 line"></span>
+        <span class="line3 line"></span>
+        <span class="line4 line"></span>
+        <span class="line5 line"></span>
+        <div class="about-circle shadow center d-flex align-items-center"><h3 class="mb-0 m-auto">Our Value</h3></div>
+        {% for value in obj.settings.items %}
+           <div class="d-block">
+                <a href="#small-dialog-{{ forloop.counter }}" class="popup-with-move-anim">
+                    <span class="about-circle deg{{ forloop.counter }} align-items-center d-flex"><h5 class="mb-0 m-auto">{{ value.value }}</h5></span>
+                </a>
+                <!--popup content start-->
+                <div id="small-dialog-{{ forloop.counter }}" class="small-dialog zoom-anim-dialog mfp-hide">
+                    <div class="popup-heading">
+
+                        {% if value.image %}
+                            <img data-src="{{ value.image.url }}" alt="{{ value.heading }}" class="lazy img-fluid">
+                        {% endif %}
+
+                        <h2>{{ value.heading }}</h2>
+                    </div>
+                    <div class="popup-contents">
+                         {% if value.description %}
+                            {{ value.description|safe }}
+                        {% endif %}
+                    </div>
+                </div>
+           </div>
+        <!--popup content end-->
+        {% endfor %}
+    </div>

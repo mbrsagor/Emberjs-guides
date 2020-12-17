@@ -1,0 +1,20 @@
+{% load util_tags %}
+<div class="{{ obj.general.classes }} footer-left-right">
+
+     <div id="{{ obj.id }}" class="footer-nav ">
+        <p>{{ obj.settings.title }}</p>
+         {% if menuItems %}
+            <ul class="nav flex-column">
+                {% for menuItem in menuItems %}
+                <li class="nav-item">
+                    <a href="{% abs_url menuItem.get_url %}">
+                        {{ menuItem.title }}
+                    </a>
+
+                </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+
+</div>

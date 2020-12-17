@@ -1,0 +1,62 @@
+{% load reviews_tags %}
+{% load thumbnail %}
+{% load i18n %}
+{% load display_tags %}
+{% load staticfiles %}
+
+{% block product %}
+    <div class="single-product mb-4">
+        {% block product_image %}
+            <figure class="product-image-container">
+            {% with all_images=product.images.all %}
+                {% if all_images|length > 0 %}
+                    <a href="{{ product.get_absolute_url }}" class="product-image">
+                    {% for image in all_images %}
+                        {% if forloop.counter0 < 2 %}
+                            {% thumbnail image.original "600x600" upscale=False as thumb %}
+                                    <img src="{{ thumb.url }}" alt="{{ product.get_title }}" class="img-fluid {% cycle 'primary-img' 'hover-image' %}"/>
+                            {% endthumbnail %}
+                        {% endif %}
+                    {% endfor %}
+                    </a>
+{#                    <span class="badge badge-warning">Hot</span>#}
+                {% endif %}
+            {% endwith %}
+            </figure>
+        {% endblock %}
+
+        <div class="product-details">
+            {% block product_title %}
+                <h2 class="product-title"><a href="{{ product.get_absolute_url }}" title="{{ product.get_title }}">{{ product.get_title|truncatewords:3 }}</a></h2>
+            {% endblock %}
+
+{#            {% block product_review %}#}
+{#                {% iffeature "reviews" %}#}
+{#                    <p class="star-rating {{ product.rating|as_stars }}">#}
+{#                        <i class="ti-star"></i>#}
+{#                        <i class="ti-star"></i>#}
+{#                        <i class="ti-star"></i>#}
+{#                        <i class="ti-star"></i>#}
+{#                        <i class="ti-star"></i>#}
+{#                    </p>#}
+{#                {% endiffeature %}#}
+{#            {% endblock %}#}
+
+            {% block product_price %}
+                <div class="price-box">
+                     {% include "catalogue/partials/stock_record.html" %}
+                </div><!-- End .price-box -->
+            {% endblock %}
+
+            <div class="product-details-inner">
+                <div class="product-action">
+                   {% if not product.is_parent %}
+                        {% include "catalogue/partials/add_to_basket_form_compact.html" %}
+                    {% endif %}
+                </div><!-- End .product-action -->
+
+
+            </div><!-- End .product-details-inner -->
+        </div><!-- End .product-details -->
+    </div>
+{% endblock %}

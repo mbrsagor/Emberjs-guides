@@ -1,0 +1,20 @@
+{% load sekizai_tags static %}
+
+<div class="contentBoxWrap content-link-type-wrap" id="{{ obj.id }}">
+    <div class="center-image-with-link">
+        <img src="{{ obj.settings.image.url }}" class="img-fluid link-icon-image"/>
+        <div class="link-box-content">
+            <h5 class="link-box-title">{{ obj.settings.title }}</h5>
+            <div class="desc link-box-description">
+                {{ obj.settings.description|safe }}
+            </div>
+            <div class="view-more-link">
+                {% if obj.settings.actionUrl %}
+                    <a href="{{ obj.settings.actionUrl }}" class="view-more-link">
+                        {{ obj.settings.actionTitle }} <i class="fa fa-angle-right"></i>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

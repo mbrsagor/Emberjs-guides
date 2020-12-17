@@ -1,0 +1,49 @@
+<div id="{{ obj.id }}" class="carousel slide  {{ obj.general.classes }}">
+    <div class="owl-carousel owl-theme slider-bg-image slider-with-background-image">
+        {% for slider in obj.settings.items %}
+            <div class="item" style="background: url('{{ slider.image.url }}')no-repeat center center / cover" >
+               <div class="container">
+                  <div class="row align-item-center">
+                      <div class="col-md-4 offset-md-2 col-sm-12 col-xs-12 animated fadeInLeft justify-content-center">
+                          <div class="logo-content-wrap">
+                                {% if slider.overviewUrl2 %}
+                                <div class="logo-slider-layer">
+                                    <img class="img-fluid" src="{{ slider.overviewUrl2 }}"/>
+                                </div>
+                                {% endif %}
+                                {% if slider.overviewUrl %}
+                                    <div class="logo-slider-layer">
+                                        <img class="img-fluid" src="{{ slider.overviewUrl }}"/>
+                                    </div>
+                                {% endif %}
+                                {% if slider.image.url %}
+                                <div class="logo-slider-layer">
+                                    <img src="{{ slider.logoImage.url }}" alt="{{slider.title}}" class="img-fluid"/>
+                                </div>
+                                {% endif %}
+                          </div>
+
+                      </div>
+
+                    <div class="col-md-4 col-sm-12 offset-md-2 col-xs-12 slider-content-main-wrap animated  bounceInRight">
+                       <div class="single-content-wrap">
+                        {% if slider.subTitle %}
+                         <span>{{ slider.subTitle }}</span>
+                        {% endif %}
+                         <h1>{{ slider.title }}</h1>
+                         <p>{{ slider.description|safe }}</p>
+
+                         <div class="hero-action-btn">
+                          {% if slider.actionUrl %}
+                              <a href="{{ slider.actionUrl }}" class="btn solid-btn">{{ slider.actionTitle }} <i class="fa fa-angle-double-right"></i></a>
+                          {% endif %}
+                         </div>
+
+                        </div>
+                    </div>
+                  </div>
+               </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

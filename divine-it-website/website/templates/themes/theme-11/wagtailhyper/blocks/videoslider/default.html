@@ -1,0 +1,42 @@
+
+<div id="{{ obj.id }}" class="{{ obj.general.classes }} image-content-slider-wrap">
+    <div class="owl-carousel owl-theme image-content-slider">
+        {% for slider in obj.settings.items %}
+            <div class="item">
+                <div class="container">
+                    <div class="row single-slider-content justify-content-center">
+                        <div class="col-12 col-md-7">
+                            <div class="slider-content mt-3">
+                                {% if slider.sub_heading %}
+                                    <span>{{ slider.sub_heading }}</span>
+                                {% endif %}
+                                <h1>{{ slider.title }}</h1>
+                                <p>{{ slider.description|safe }}</p>
+                            </div>
+                            <div class="hero-action-btn">
+                                {% if slider.url%}
+                                    <a href="{{ slider.url }}" class="btn solid-btn">{{ slider.actionTitle }} <i class="fa fa-angle-double-right"></i></a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-5">
+                            {% if slider.image %}
+                                <div class="slider-image mt-3">
+                                    <img data-src="{{ slider.image.url }}" alt="{{ slider.title }}" class="lazy img-fluid">
+                                </div>
+                            {% else %}
+                                {% if slider.videoId %} 
+                                    <div class="embed-responsive embed-responsive-16by9 mt-3">
+                                        <iframe class="lazy embed-responsive-item" width="100%" height="auto" data-src="https://www.youtube.com/embed/{{ slider.videoId }}?autoplay=1&loop=1&mute=1&playlist={{ slider.videoId }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+

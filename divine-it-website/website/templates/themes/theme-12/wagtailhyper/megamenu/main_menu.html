@@ -1,0 +1,17 @@
+{% load hyper_tags sekizai_tags %}
+
+<ul class="megamenuNav navbar-nav ml-auto desktop">
+    {% for item in menu_items %}
+        <li class="megaMenuItem nav-item theme_12_csutom_menu{% active_class item %} {% if item.has_dropdown %} dropdown {% endif %}">
+            <a class="nav-link {% if item.has_dropdown %} dropdown-link {% endif %}" {% if item.has_dropdown %} data-toggle="dropdown" {% endif %} href="{{ item.get_url }}">{{ item.title }}</a>
+            {% if item.has_dropdown %}
+{#            <div class="col">#}
+                <div class="dropdown-menu">
+                    {% hyperfield_render item.content %}
+                </div>
+{#            </div>#}
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+

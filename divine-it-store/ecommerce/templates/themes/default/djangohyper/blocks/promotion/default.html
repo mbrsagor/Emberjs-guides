@@ -1,0 +1,57 @@
+{% load product_tags %}
+{% load hyper_tags %}
+
+
+<div class="row">
+    <div class="col-md-6">
+        {% if obj.settings.title %}
+             <h2>{{ obj.settings.title }}</h2>
+        {% endif %}
+        {% if  obj.settings.description %}
+            {{ obj.settings.description|safe }}
+        {% endif %}
+        <div class="promotion-product-features">
+            {% if obj.settings.items %}
+                <ul class="leaders">
+                    {% for line in obj.settings.items %}
+                        <li>
+                            <span>{{ line.text }}</span>
+                            {% if line.image %}
+                                <img src="{{ line.image.url }}" alt="">
+                            {% endif %}
+
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <!--end of modal instance-->
+    </div>
+    <div class="col-md-6">
+        <div class="offer-product text-right">
+            <div class="offer-product-badges">
+                <div class="offer-persent">
+                    <span>
+                         {% if  obj.settings.price %}
+                            {{ obj.settings.price }}
+                        {% endif %}
+                    </span>
+                </div>
+                <div class="offer-price">
+                    <span class="h2">
+                        {% if obj.settings.discount %}
+                            {{ obj.settings.discount }}
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+            <div class="offer-product-img">
+                {% if  obj.settings.image %}
+                    <img src="{{ obj.settings.image.url }}" alt="Product Offer" class="img-fluid">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+

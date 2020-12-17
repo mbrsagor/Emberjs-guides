@@ -1,0 +1,16 @@
+{% load sekizai_tags static %}
+
+<div class="contentBoxWrap content-box-card-without-image" id="{{ obj.id }}">
+    <div class="row">
+        <div class="col">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h3 class="card-title">{{ obj.settings.title }}</h3>
+                    <div class="desc">
+                        <p class="card-text">{{ obj.settings.description|safe }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

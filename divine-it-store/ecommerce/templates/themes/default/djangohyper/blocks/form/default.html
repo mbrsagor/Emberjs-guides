@@ -1,0 +1,7 @@
+{% load block_renderer %}
+
+{% if form %}
+    {% render_form form.code %}
+{% else %}
+    <p>Please select a form</p>
+{% endif %}

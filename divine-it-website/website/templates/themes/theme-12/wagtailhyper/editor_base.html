@@ -1,0 +1,52 @@
+{% load static wagtailuserbar compress sekizai_tags i18n %}
+
+<!DOCTYPE html>
+{% get_current_language as LANG %}
+<html class="no-js" lang="{{ LANG }}">
+    <head>
+        <meta charset="utf-8" />
+        <title>
+            {% block title %}
+                {% if self.seo_title %}{{ self.seo_title }}{% else %} {{ self.title }} {% endif %}
+            {% endblock %}
+            {% block title_suffix %}
+                {% with self.get_site.site_name as site_name %}
+                    {% if site_name %}- {{ site_name }}{% endif %}
+                {% endwith %}
+            {% endblock %}
+        </title>
+
+        {% include 'partials/meta_tags.html' %}
+
+        {% if settings.base.ApplicationSettings.website_favicon_icon %}
+            <link rel="icon" href="{{ settings.base.ApplicationSettings.website_favicon_icon.url }}">
+        {% else %}
+            <link rel="icon" href="{% static 'themes/theme-12/img/favicon.ico' %}">
+        {% endif %}
+
+        {% compress css file base %}
+            <!--live min css-->
+            <link href="{% static 'css/live.min.css' %}" type="text/css" rel="stylesheet">
+            <!-- responsive css -->
+            <link href="{% static 'css/responsive.css' %}" type="text/css" rel="stylesheet">
+            <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}" />
+        {% endcompress %}
+
+        {% compress css %}
+            <link rel="stylesheet" type="text/scss" href="{% static 'themes/theme-12/scss/application.scss' %}"/>
+        {% endcompress %}
+
+        {% render_block "css" postprocessor "compressor.contrib.sekizai.compress" %}
+
+    </head>
+
+    <body class="{% block body_class %}{% endblock %}">
+
+        {% block editor %}{% endblock %}
+
+
+    </body>
+</html>
+
+
+

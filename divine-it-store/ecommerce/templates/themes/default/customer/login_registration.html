@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% trans 'Login or register' %} | {{ block.super }}
+{% endblock %}
+
+{% block breadcrumbs %}
+    <ul class="breadcrumb">
+        <li>
+            <a href="{{ homepage_url }}">{% trans 'Home' %}</a>
+        </li>
+        <li class="active">{% trans 'Login or register' %}</li>
+    </ul>
+{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block content %}
+
+   <section>
+    <div class="container">
+        <div class="row justify-content-center justify-content-around">
+        <div class="col-md-4 login_form">
+            <form id="login_form" action="{{ request.get_full_path }}" method="post" class="well" >
+                <h4>{% trans 'Log In' %}</h4>
+                {% csrf_token %}
+                {% include "partials/form_fields.html" with form=login_form %}
+                <p><a href="{% url 'password-reset' %}">{% trans "I've forgotten my password" %}</a></p>
+                <button name="login_submit" type="submit" value="Log In" class="btn primary-btn" data-loading-text="{% trans "Logging in..." %}">{% trans 'Log In' %}</button>
+            </form>
+        </div>
+        <div class="col-md-4 register_form">
+            <form id="register_form" action="{{ request.get_full_path }}" method="post" class="well">
+                <h4>{% trans 'Register' %}</h4>
+                {% csrf_token %}
+                {% include "partials/form_fields.html" with form=registration_form %}
+                <button name="registration_submit" type="submit" value="Register" class="btn accent-btn" data-loading-text="{% trans 'Registering...' %}">{% trans 'Register' %}</button>
+            </form>
+        </div>
+    </div>
+    </div>
+   </section>
+
+{% endblock content %}

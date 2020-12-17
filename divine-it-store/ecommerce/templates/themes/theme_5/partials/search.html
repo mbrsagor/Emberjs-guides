@@ -1,0 +1,10 @@
+{% load i18n widget_tweaks %}
+
+<form method="get" action="{% url 'search:search' %}" class="auto-search-form">
+    <div class="form-group mb-0">
+         {% render_field search_form.q class="form-control typeahead" %}
+        <button class="btn secondary-btn search-btn" type="submit">
+            <i class="ti-search"></i>
+        </button>
+    </div>
+</form>

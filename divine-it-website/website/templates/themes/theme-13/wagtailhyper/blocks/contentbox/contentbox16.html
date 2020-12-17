@@ -1,0 +1,22 @@
+{% load sekizai_tags static %}
+
+<div class="contentBoxWrap content-box-card-with-image-link" id="{{ obj.id }}">
+    <div class="row">
+        <div class="col">
+            <div class="card mb-4">
+                <a href="{{ obj.settings.actionUrl }}">
+                    <img data-src="{{ obj.settings.image.url }}" class="lazy img-fluid card-img-top" alt="{{ obj.settings.title }}" />
+                    <div class="card-body">
+                        <h3 class="card-title">{{ obj.settings.title }}</h3>
+                        <div class="desc">
+                            {{ obj.settings.description|safe }}
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

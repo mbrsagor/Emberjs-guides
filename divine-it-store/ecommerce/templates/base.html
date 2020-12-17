@@ -1,0 +1,169 @@
+{% load i18n %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:"en-gb" }}" class="no-js">
+<head>
+    <title>{% block title %}{{ shop_name }} - {{ shop_tagline }}{% endblock %}</title>
+
+    {#        <style>#}
+    {#            div.bxslider {#}
+    {#                margin-left: 25%;#}
+    {#                margin-right: 25%;#}
+    {#            }#}
+    {#        </style>#}
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="created" content="{% now "jS M Y h:i" %}"/>
+    <meta name="robots" content="NOARCHIVE,NOCACHE"/>
+
+    {% include 'partials/meta.html' %}
+    {% block favicon %}
+        <link rel="shortcut icon" href="{% static "oscar/favicon.ico" %}"/>
+    {% endblock %}
+
+    {# Block where global CSS will go. #}
+    {% block styles %}{% endblock %}
+
+    {# Additional CSS - specific to certain pages #}
+    {% block extrastyles %}{% endblock %}
+
+    {% block extrahead %}{% endblock %}
+
+    {% block tracking %}
+        {# Default to using Google analytics #}
+        {% include "partials/google_analytics.html" %}
+    {% endblock %}
+    {% if config.gtags_container_id != '' %}
+        <!-- Google Tag Manager -->
+        <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', '{{ config.gtags_container_id }}');</script>
+        <!-- End Google Tag Manager -->
+    {% endif %}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"/>
+
+</head>
+
+<body id="{% block body_id %}default{% endblock %}" class="{% block body_class %}default{% endblock %}">
+<div id="darkness"></div>
+{% if config.gtags_container_id != '' %}
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id={{ config.gtags_container_id }}"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+{% endif %}
+
+
+{# Main content goes in this 'layout' block #}
+{% block layout %}{% endblock %}
+
+{# Scripts loaded from a CDN. #}
+{% block cdn_scripts %}
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="{% static "oscar/js/jquery/jquery.min.js" %}"><\/script>')</script>
+{% endblock %}
+
+{# Local scripts #}
+{% block scripts %}
+{% endblock %}
+
+{# Additional JS scripts #}
+{% block extrascripts %}{% endblock %}
+
+{# Block for body onload functions #}
+<script src="{% static "core/js/typeahead.bundle.js" %}"></script>
+<script src="{% static "core/js/ajax_filter.js" %}"></script>
+<script>
+    $(function () {
+        {% block onbodyload %}{% endblock %}
+    });
+
+    $(document).ready(function () {
+        $('.typeahead').typeahead({
+                minLength: 2
+            }, {
+                name: 'stuff',
+                display: '',
+                source: function (query, processSync, processAsync) {
+                    return $.get('/autocomplete/', {q: query}, function (data) {
+                        return processAsync(data.results);
+                    });
+                },
+                limit: 5,
+            }
+        );
+    })
+</script>
+
+{# Page meta-data - this is populated by the 'metadata' template context processor #}
+<script type="text/javascript">
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function () {
+        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = 'https://embed.tawk.to/5b87a797f31d0f771d844867/default';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
+        s0.parentNode.insertBefore(s1, s0);
+    })();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $(".alert.autoClose").delay(4000).slideUp(200, function() {
+            $(this).alert('close');
+        });
+
+        $(".owl-carousel").owlCarousel({
+            dots: false,
+            margin: 15,
+            rewind: !0,
+            loop: false,
+            nav: true,
+            autoplay: false,
+            autoplaySpeed: 500,
+            navText : ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"],
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 2
+                },
+                800: {
+                    items: 2
+                },
+                1000: {
+                    items: 3
+                },
+                1400: {
+                    items: 3
+                }
+                ,
+                1853: {
+                    items: 3
+                }
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

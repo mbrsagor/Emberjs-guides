@@ -1,0 +1,29 @@
+{% load basket_tags %}
+{% load i18n %}
+{% load purchase_info_tags %}
+{% load wishlist_tags %}
+
+{% purchase_info_for_product request product as session %}
+
+
+<div class="product-action">
+    {% if session.availability.is_available_to_buy %}
+        {% basket_form request product 'single' as basket_form %}
+        <form action="{% url 'basket:add' pk=product.pk %}" method="post">
+            {% csrf_token %}
+            {{ basket_form.as_p }}
+            <button type="submit" class="btn primary-btn paction" data-toggle="tooltip"
+                    data-placement="top" title="Add to Cart"><i class="fas fa-shopping-basket"></i></button>
+        </form>
+    {% else %}
+{#        <span class="btn btn-default btn-block disabled">{% trans "Add to basket" %}</span>#}
+    {% endif %}
+
+    {% include "catalogue/partials/add_to_wishlist_from_product.html" %}
+
+    <a href="{{ product.get_absolute_url }}">
+        <button type="submit" class="btn primary-btn paction" data-toggle="tooltip"
+                    data-placement="top" title="Quick View"><i class="fas fa-eye"></i></button>
+    </a>
+
+</div><!-- End .product-action -->

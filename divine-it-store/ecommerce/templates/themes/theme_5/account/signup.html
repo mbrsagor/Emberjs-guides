@@ -1,0 +1,78 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load widget_tweaks %}
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block form_title %}{% trans "Create Account" %}{% endblock %}
+
+{% block contentarea %}
+
+    {% if form.is_bound and not form.is_valid %}
+        <div class="alert alert-danger">
+            <strong>{% trans "Oops! We found some errors" %}</strong>
+            - {% trans "please check the error messages below and try again" %}
+        </div>
+    {% endif %}
+
+    {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+                <i class="icon-exclamation-sign"></i> {{ error }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+
+    <form method="post" action="{% url 'account_signup' %}">
+
+        {% csrf_token %}
+        {#                        {% include "partials/form_fields.html" with form=form %}#}
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                {% include 'partials/form_field.html' with field=form.first_name %}
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                {% include 'partials/form_field.html' with field=form.last_name %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                {% include 'partials/form_field.html' with field=form.email %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                {% include 'partials/form_field.html' with field=form.company_name %}
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                {% include 'partials/form_field.html' with field=form.mobile_number %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                {% include 'partials/form_field.html' with field=form.password1 %}
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                {% include 'partials/form_field.html' with field=form.password2 %}
+            </div>
+        </div>
+        {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+        {% endif %}
+
+        <button class="btn btn-primary btn-block text-uppercase" type="submit">{% trans "Sign Up" %}</button>
+        <p>
+            {% blocktrans %}Already have an account? Then please
+                <a href="{{ login_url }}">Sign in</a>
+                .{% endblocktrans %}
+        </p>
+        </div>
+    </form>
+    </div>
+    </div>
+    </div>
+
+    <br/>
+
+{% endblock %}

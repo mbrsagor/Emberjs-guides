@@ -1,0 +1,73 @@
+//header top css
+
+.search-box-wrap{
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  float: right;
+  right: -15px;
+  #search{
+    width: 25px;
+    height: 26px;
+    background: $white;
+    border: none;
+    font-size: 10pt;
+    float: right;
+    padding: 5px 10px;
+    -webkit-border-radius: .2rem;
+    -moz-border-radius: .2rem;
+    border-radius: .2rem;
+    color: $p-color;
+    -webkit-transition: width .55s ease;
+    -moz-transition: width .55s ease;
+    -ms-transition: width .55s ease;
+    -o-transition: width .55s ease;
+    transition: width .55s ease;
+    &:active{
+      outline:none;
+      width: 200px;
+    }
+    &:focus{
+      outline:none;
+      width: 200px;
+    }
+  }
+  .icon{
+    position: absolute;
+    right: 0;
+    width: 25px;
+    height: 30px;
+    vertical-align: middle;
+    text-align: center;
+    z-index: 1;
+    color: $white;
+    padding: 5px;
+    background: $primary-color;
+    font-size: 13px;
+    line-height: initial;
+  }
+  &:hover{
+    cursor: pointer;
+    #search{
+      width: 200px;
+    }
+  }
+}
+
+
+
+//search result css
+
+.search-result-list{
+  ul{
+    li{
+      padding: 15px;
+      background: $background-color-active;
+      h2{
+        font-size: 18px;
+        line-height: 20px;
+        margin-bottom: 5px;
+      }
+    }
+  }
+}

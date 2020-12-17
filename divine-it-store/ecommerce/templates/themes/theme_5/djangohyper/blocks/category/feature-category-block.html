@@ -1,0 +1,57 @@
+{% load product_tags widget_tweaks %}
+<div id="{{ obj.id }}" class="border rounded bg--custom feature-category-product my-4">
+    <div class="row pt-4 pl-4 pr-4">
+        <div class="col-md-3 d-none d-md-block">
+            <div class="feature-sub-category-list">
+                <h5>{{ category.name }}</h5>
+                <ul class="flex-column nav p-0">
+                    {% for subcategory in category.get_descendants %}
+                        <li class="nav-item"><a class="nav-link small-text" href="{{ subcategory.get_absolute_url }}">{{ subcategory.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="hidden-xs feature-category-banner single-section-ad mt-20">
+            {% if obj.settings.items %}
+                <a href="{{ obj.settings.action_url }}">
+                    {% if  obj.settings.image %}
+                        <img src="{{ obj.settings.image.url }}" alt="Product Offer" class="img-fluid">
+                    {% endif %}
+                </a>
+             {% endif %}
+            </div>
+        </div>
+        <div class="col-md-9 col-sm-12">
+            <div class="product-filtering-section">
+                <form class="ajax-filter-form" data-viewport="pg-{{ obj.id }}" data-url="{{ category.get_absolute_url }}">
+                    <div class="d-flex flex-row align-items-end" id="parent">
+                        {% for field in filter_form %}
+                            <input type="hidden" name="per_page" value="8"/>
+                            <div class="flex-grow-1 mr-2">
+                                {{ field.errors }}
+                                {{ field.label_tag }}
+                                {% render_field field class="form-control" %}
+                                {% if field.help_text %}
+                                <p class="help">{{ field.help_text|safe }}</p>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                        <div>
+                            <button type="submit" class="btn primary-btn">Filter</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="pg-{{ obj.id }} feature-category-block mt-3">
+                <div class="row no-gutters">
+                    {% for product in products %}
+                         {% if forloop.counter0 < 8 %}
+                            <div class="col-md-4 col-lg-3 col-sm-6">
+                                {% render_product product %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

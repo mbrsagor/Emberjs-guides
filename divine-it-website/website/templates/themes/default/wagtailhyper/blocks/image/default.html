@@ -1,0 +1,13 @@
+{% load util_tags %}
+
+
+
+<div class="image-wrap">
+    <img data-src="{% abs_url obj.settings.image.url %}"
+            class="lazy img-fluid {% if obj.general.classes %}{{ obj.general.classes }}{% endif %}"
+            id="{{ obj.id }}"
+            alt="{{ obj.settings.img.attr.alt }}"
+            width="{{ obj.settings.img.attr.width }}px"
+            height="{{ obj.settings.img.attr.height }}px"
+            />
+</div>

@@ -1,0 +1,35 @@
+{% load i18n %}
+{% load wishlist_tags %}
+
+
+{% if user.is_authenticated %}
+    {% with wishlists=user.wishlists.all %}
+        {# Select wishlists that contains product #}
+        {% wishlists_containing_product wishlists product as product_wishlists %}
+        {# 1 or no existing wishlists - show a simple button #}
+        <form id="add_to_wishlist_form"
+              action="{% url 'customer:wishlists-add-product' product_pk=product.pk %}"
+              method="post" class="">
+            {% csrf_token %}
+
+            <a href="{% url 'customer:wishlists-add-product' product_pk=product.pk %}" class="wishlisht"
+               data-toggle="tooltip" data-placement="top" title="Wishlist"><i class="ti-heart"></i> Wishlist</a>
+
+            <a href="{{ product.get_absolute_url }}" class="quick-view" data-toggle="tooltip" data-placement="top"
+               title="Quick View">
+                <i class="ti-eye"></i> Quick View
+            </a>
+        </form>
+    {% endwith %}
+{% else %}
+    <a href="/accounts/login/" data-toggle="tooltip" data-placement="top" title="Please login to add products to a wish list" class="wishlisht">
+        <i class="ti-heart"></i> Wishlist
+    </a>
+
+    <a href="{{ product.get_absolute_url }}" class="quick-view" data-toggle="tooltip" data-placement="top"
+       title="Quick View">
+        <i class="ti-eye"></i> Quick View
+    </a>
+{% endif %}
+
+

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% load wagtailcore_tags hyper_tags menu_tags %}
+
+{% block content %}
+<div class="fullscreen-page">
+     {% hyperfield_render page.content %}
+</div>
+
+{% include 'partials/fullscreen_menu.html' %}
+{% endblock %}
+{% load sekizai_tags %}

@@ -1,0 +1,28 @@
+
+<div id="{{ obj.id }}" class="{{ obj.general.classes }}">
+
+    <div class="owl-slider">
+        <div class="owl-carousel owl-theme testimonial-slider custom-indicator-arrow">
+            {% for slider in obj.settings.slides %}
+                <div class="item">
+                    <div class="single-slider-content">
+                        <div class="author-content">
+                            <p>{{ slider.shortDescription|safe }}</p>
+                        </div>
+                        <div class="author-info">
+                            <div class="author-image">
+                                <img data-src="{{ slider.image.url }}" alt="{{ slider.title }}" class="lazy img-fluid">
+                            </div>
+                            <div class="author-text">
+                                <h4>{{ slider.title }}</h4>
+                                <p>{{ slider.subTitle }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+

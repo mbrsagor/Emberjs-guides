@@ -1,0 +1,79 @@
+{% load currency_filters %}
+{% load category_tags %}
+{% load i18n hyper_tags %}
+
+<div class="header-bottom accent-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+
+                <div class="cate-lst secondary-bg">
+                    <a href="javascript:void(0);" id="sidenav-toggle"><i class="ti-list"></i> All Categories </a>
+                </div>
+                <div id="menu" class="d-none d-md-block">
+                    <ul class=" parent-menu mb-0 {% if request.path == "/" %}{% else %}single-page-category-list{% endif %}" {% if request.path != "/" %} style="display:none" {% endif %} style="display:none">
+                        {% category_tree as tree_categories %}
+                        {% if tree_categories %}
+                            {% for tree_category, info in tree_categories %}
+                                <li {% if info.has_children %} class="submenu" {% endif %}>
+                                    <a href="{{ tree_category.get_absolute_url }}"> {{ tree_category.name|safe }} </a>
+                                    {% if info.has_children %}
+                                    <ul class="sub-second">{% else %} {% endif %}
+                                        {% for n in info.num_to_close %}
+                                    </ul>
+                                </li>
+                                {% endfor %}
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+
+
+                <nav class="sidenav d-md-none d-lg-none d-block" data-sidenav data-sidenav-toggle="#sidenav-toggle">
+                    <div class="sidenav-brand accent-bg">
+                        <h4>All Categories</h4>
+                    </div>
+                    <ul class="sidenav-menu">
+                        {% category_tree as tree_categories %}
+                        {% if tree_categories %}
+                            {% for tree_category, info in tree_categories %}
+                                <li {% if info.has_children %}class="left-offcanvas-submenu" {% else %}{% if info.level == 0 %} {% else %}{% endif %}{% endif %}>
+                                    {% if info.has_children %}{% endif %}
+                                    <a href="{{ tree_category.get_absolute_url }}"
+                                       {% if info.has_children %}data-sidenav-dropdown-toggle{% endif %}>
+                                        {% if tree_category.pk == category.pk %}
+                                            <span class="sidenav-link-title">{{ tree_category.name|safe }}</span>
+                                        {% else %}
+                                            {% if info.has_children %}
+                                                <span class="sidenav-link-title">{{ tree_category.name|safe }}</span>
+                                            {% else %}
+                                                <span class="sidenav-link-title">{{ tree_category.name|safe }}</span>
+                                            {% endif %}
+                                        {% endif %}
+                                    </a>
+                                    {% if info.has_children %}
+                                    {% endif %}
+                                    {% if info.has_children %}{% endif %}
+                                    {% if info.has_children %}
+                                    <ul class="sidenav-dropdown" data-sidenav-dropdown>{% else %}
+                                        {% endif %}
+                                        {% for n in info.num_to_close %}
+                                    </ul>
+                                </li>
+                                {% endfor %}
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </nav>
+
+            </div>
+            <div class="col-md-9 pl-0">
+                {% if config.header_content %}
+                    <div class="main-menu-area">
+                        {% hyperfield_render config.main_menu %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

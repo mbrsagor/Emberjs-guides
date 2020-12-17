@@ -1,0 +1,12 @@
+{% load sekizai_tags static %}
+
+<div class="contentBoxWrap call-to-action-section" id="{{ obj.id }}">
+    <div class="call-to-action-content">
+        <div class="view-more-link solid-button">
+            {% if obj.settings.actionUrl %}
+                <a href="{{ obj.settings.actionUrl }}" class="view-more-link">
+                    {{ obj.settings.actionTitle }}  <i class="fa fa-angle-double-right"></i></a>
+            {% endif %}
+        </div>
+    </div>
+</div>

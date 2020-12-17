@@ -1,0 +1,14 @@
+
+<div class="ListBlock" id="{{ obj.id }}">
+   <ul class="list-img-link">
+        {% for item in obj.settings.items %}
+            <li class="list-type-single">
+                <a href="{{ item.url }}" target="_blank">
+                    <span class="icon-image"><img data-src="{{ item.image.url }}" width="40" alt="{{ item.title }}" class="lazy"/></span>
+                    <div class="list-title">{{ item.title }}</div>
+                </a>
+
+            </li>
+        {% endfor %}
+    </ul>
+</div>

@@ -1,0 +1,12 @@
+
+<div id="customer-logos" id="{{ obj.id }}">
+
+<span class="common-Button">See our customers</span>
+   <ul>
+        {% for item in obj.settings.items %}
+            <li class="list-type-single">
+                <img data-src="{{ item.image.url }}" alt="{{ item.title }}" class="lazy"/>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

@@ -1,0 +1,25 @@
+{% load util_tags %}
+<div id="{{ obj.id }}" class="default-menu">
+    <h6>{{ obj.settings.title }}</h6>
+    {% if menuItems %}
+        <ul>
+            {% for menuItem in menuItems %}
+            <li>
+                <a href="{% abs_url menuItem.get_url %}">
+                    {% if menuItem.image and forloop.counter == 1 %}
+                        <div class="menu-logo-image">
+                            {% image menuItem.image fill-130x30 %}
+                        </div>
+                    {% endif %}
+                    <div class="menu-list-info">
+                        {% if forloop.counter != 1 %}
+                        <p>{{ menuItem.title }}</p>
+                        {% endif %}
+                        <small>{{ menuItem.description }}</small>
+                    </div>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>

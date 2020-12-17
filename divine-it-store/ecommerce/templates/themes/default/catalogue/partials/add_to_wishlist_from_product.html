@@ -1,0 +1,23 @@
+{% load i18n %}
+{% load wishlist_tags %}
+
+{% if user.is_authenticated %}
+    {% with wishlists=user.wishlists.all %}
+        {# Select wishlists that contains product #}
+        {% wishlists_containing_product wishlists product as product_wishlists %}
+        {# 1 or no existing wishlists - show a simple button #}
+        <form id="add_to_wishlist_form" class="mt-0" action="{% url 'customer:wishlists-add-product' product_pk=product.pk %}"
+              method="post" class="">
+            {% csrf_token %}
+
+            <button type="submit" class="btn accent-btn paction" data-toggle="tooltip" data-placement="top" title="Wishlist"><i class="far fa-heart"></i></button>
+        </form>
+    {% endwith %}
+{% else %}
+    <a href="/accounts/login/" title="{% trans 'Please login to add products to a wish list.' %}">
+        <button type="submit" class="btn accent-btn paction" data-toggle="tooltip" data-placement="top" title="Please login to add products to a wish list."><i class="far fa-heart"></i></button>
+    </a>
+
+{% endif %}
+
+

@@ -1,0 +1,216 @@
+{% extends "layout_2_col.html" %}
+
+{% load history_tags %}
+{% load currency_filters %}
+{% load reviews_tags %}
+{% load staticfiles %}
+{% load product_tags %}
+{% load display_tags %}
+{% load i18n %}
+{% load purchase_info_tags %}
+{% load category_tags %}
+{% load thumbnail %}
+
+{% load hyper_tags %}
+{% load widget_tweaks %}
+
+{% block title %}
+    {{ product.title }} | {{ block.super }}
+{% endblock %}
+
+{% block description %}
+    {{ product.description|default:""|striptags }}
+{% endblock %}
+
+{% block styles %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static "pricing/pricing.min.css" %}" />
+    <style type="text/css">
+        html {
+            font-size: 14px;
+        }
+    .content-wrapper {
+        margin-top: 0;
+    }
+    .pricingApp h2 {
+        text-align: left;
+    }
+    </style>
+{% endblock %}
+
+{% block scripts %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static "pricing/pricing.min.js" %}"></script>
+{% endblock %}
+
+
+{% block breadcrumbs %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 bg-transparent">
+            <li class="breadcrumb-item">
+                <a href="{{ homepage_url }}">{% trans "Home" %}</a>
+            </li>
+            {% if product.structure == 'child' %}
+                {% with category=product.parent.categories.all.0 %}
+                    {% for c in category.get_ancestors_and_self %}
+                        <li class="breadcrumb-item">
+                            <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                        </li>
+                    {% endfor %}
+                    <li class="breadcrumb-item">
+                            <a href="{{ product.parent.get_absolute_url }}">{{ product.parent }}</a>
+                        </li>
+                {% endwith %}
+            {% else %}
+                {% with category=product.categories.all.0 %}
+                    {% for c in category.get_ancestors_and_self %}
+                        <li class="breadcrumb-item">
+                            <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                        </li>
+                    {% endfor %}
+                {% endwith %}
+            {% endif %}
+                <li class="breadcrumb-item active">{{ product.title }}</li>
+
+                {% get_back_button as backbutton %}
+                {% if backbutton %}
+                    <li class="pull-right">
+                        <a href="{{ backbutton.url }}">
+                            <i class="icon-arrow-left"></i> {{ backbutton.title }}
+                        </a>
+                    </li>
+                {% endif %}
+        </ol>
+    </nav>
+{% endblock %}
+
+
+{% block header %}
+{% endblock header %}
+
+{% block content %}
+
+
+    <!--product details section start-->
+{#        <div class="container-fluid">#}
+{#            <div class="row">#}
+{#                <div class="col-12">#}
+{#                    <h4 class="pl-4">{{ product.get_title }}</h4>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+        {% include "catalogue/partials/add_to_basket_form.html" with is_hidden=True %}
+
+
+    <section>
+        <div id="pricingWrapper"></div>
+    </section>
+
+
+
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <form class="modal-content"  method="POST" action="{% url 'account_login' %}">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Login</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              {% csrf_token %}
+              {% include "partials/form_fields.html" with form=login_form %}
+                <input type="hidden" name="next" value="{{ request.get_full_path }}"/>
+          </div>
+          <div class="modal-footer d-flex flex-row">
+            <div class="flex-grow-1">
+                <a href="{% url 'account_signup' %}?next={{ request.get_full_path }}" class="btn btn-default">Don't have an Account? Signup Here</a>
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal fade" id="verifyEmailModal" tabindex="-1" role="dialog" aria-labelledby="verifyEmailModalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Verify Your Email!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <p>Please verify your email to continue using this app.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock content %}
+
+{% block extrascripts %}
+    {{ block.super }}
+    {% csrf_token %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var csrf_token = jQuery("[name=csrfmiddlewaretoken]").val();
+
+            var pricing_config = {{ product.pricing_config_str|safe }};
+
+            var initstate = {
+                configData: pricing_config,
+                version: {{ product.pricing_version_number }},
+                currency: '{{ request.currency }}',
+                USDtoBDTRate: {{ config.USD_TO_BDT_RATE }},
+                user: {
+                    authenticated: {{ request.user.is_authenticated|yesno:"true,false" }},
+                    emailVerified: {{ request.user.email_verified|yesno:"true,false" }}
+                }
+            };
+
+            {% if CONFIGURATION_REF %}
+            var saved_config = {{ SAVED_CONFIGURATION.configuration|safe }};
+            initstate = Object.assign(initstate, saved_config);
+            {% endif %}
+
+            var addToCartListener = function (cartState) {
+                $('#id_{{ CUSTOMIZABLE_PRODUCT_OPTION_CODE }}').val('{{ CONFIGURATION_REF }}')
+                $('#id_{{ CONFIG_IDENTIFIER_OPTION_CODE }}').val('{{ CUSTOMIZE_FOR }}')
+                $('#add_to_basket_form').submit()
+            }
+
+            var loginRequiredListener = function () {
+                $('#loginModal').modal('show')
+            }
+
+            var emailVerificationRequiredListener = function () {
+                $('#verifyEmailModal').modal('show')
+            }
+
+            var changeListener = function (cartState) {
+                {% if CONFIGURATION_REF %}
+                    $.post("{% url 'pricing:save-config' %}", {
+                        csrfmiddlewaretoken: csrf_token,
+                        identifier: '{{ CUSTOMIZE_FOR }}',
+                        data: JSON.stringify(cartState),
+                        ref: '{{ CONFIGURATION_REF }}',
+                        product_id: {{ product.pk }}
+                    }, function (resp) {
+                        console.log(resp)
+                    })
+                {% endif %}
+            }
+            console.log(initstate)
+            new Pricing(
+                document.getElementById('pricingWrapper'),
+                initstate,
+                addToCartListener,
+                changeListener,
+                loginRequiredListener,
+                emailVerificationRequiredListener
+            );
+        })
+    </script>
+{% endblock %}

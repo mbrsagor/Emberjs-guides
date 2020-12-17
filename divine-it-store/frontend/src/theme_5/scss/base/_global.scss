@@ -1,0 +1,20 @@
+.container-fluid{
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
+}
+
+.edit-action{
+  position: relative;
+  display: block;
+  width: 100%;
+  right: 15px;
+  .edit-page-btn{
+    position: absolute;
+    padding: 0.5rem .85rem;
+    background: $white-color;
+    border-radius: 4px;
+    right: 0;
+    z-index: 999;
+  }
+}

@@ -1,0 +1,15 @@
+{% load sekizai_tags static %}
+
+<div class="contentBoxWrap footer-top-call-to-action" id="{{ obj.id }}">
+    <div class="call-to-action-wrap d-flex justify-content-center">
+        {% if obj.settings.actionUrl %}
+            <a href="tel:{{ obj.settings.actionUrl }}" class="callto-action-link">
+                <img src="{{ obj.settings.image.url }}" class="img-fluid"/>
+                <div class="action-info">
+                    <h3 class="link-box-title">{{ obj.settings.title }}</h3>
+                    <p>{{ obj.settings.actionTitle }}</p>
+                </div>
+            </a>
+        {% endif %}
+    </div>
+</div>

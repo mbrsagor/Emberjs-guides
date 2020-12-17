@@ -1,0 +1,22 @@
+<div id="{{ obj.id }}" class="{{ obj.general.classes }}" data-ride="carousel">
+
+    <!-- Testimonial slider start -->
+    <div class="team-2 o-hidden relative bg-light-white pt-95 pb-95">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="owl-carousel owl-theme team-slider-2">
+                        {% for slider in obj.settings.slides %}
+                        <div class="item">
+                            <div class="service_img">
+                                <img src="{{ slider.image.url }}"/>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Testimonial slider end -->
+</div>

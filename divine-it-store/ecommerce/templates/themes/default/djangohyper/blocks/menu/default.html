@@ -1,0 +1,7 @@
+{% load block_renderer %}
+
+{% if menu %}
+    {% render_menu menu.code dropdown_level "right_with_logo" template_name config request=request %}
+{% else %}
+    <p>Please select a menu</p>
+{% endif %}

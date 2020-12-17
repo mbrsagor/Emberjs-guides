@@ -1,0 +1,32 @@
+
+{% load sekizai_tags util_tags %}
+
+{% addtoblock 'css' %}
+    <style type="text/css">
+        .pricing-section .card {
+            background: #555555;
+            border: 1px solid #999999;
+            border-radius: 0;
+        }
+        .pricing-section .btn {
+            display: block;
+            width: 100%;
+            text-transform: uppercase;
+            border: none !important;
+            border-radius: 0;
+            background: #d22;
+            color: #fff;
+        }
+    </style>
+{% endaddtoblock %}
+
+
+<div id="{{ obj.id }}" class="pricing-section row">
+    {% for item in obj.settings.products %}
+        <div class="col-lg-3 d-flex">
+            {% with OSCAR_BASE_URL|add:'/partial/'|add:item.product.slug|add:'/' as addToCartUrl %}
+                {% remote_content addToCartUrl js=True style="display:flex;" %}
+            {% endwith %}
+        </div>
+    {% endfor %}
+</div>

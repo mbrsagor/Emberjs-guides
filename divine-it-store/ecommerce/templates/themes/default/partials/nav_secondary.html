@@ -1,0 +1,72 @@
+{% load currency_filters %}
+{% load category_tags %}
+{% load i18n %}
+
+<div class="primary-bg header-bottom">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-3">
+                {% block nav_dropdown %}
+                    <ul id="browse" class="navbar-nav category-nav">
+                        <li class="nav-item dropdown {% if expand_dropdown %}open{% endif %}">
+                            <a href="#" class="nav-link" {% if not expand_dropdown %} data-toggle="dropdown"{% endif %}>
+                                <strong>{% trans "Browse Category" %} <span><i class="ti-angle-down"></i></span></strong>
+                            </a>
+                            <ul class="dropdown-menu w-100" data-navigation="dropdown-menu">
+                                {% category_tree depth=2 as tree_categories %}
+                                <li class="nav-item"><a tabindex="-1" href="{% url 'catalogue:index' %}"
+                                                        class="dropdown-item">{% trans "All products" %}</a></li>
+                                {% if tree_categories %}
+                                    {% for tree_category, info in tree_categories %}
+                                        {% if info.has_children %}
+                                            <li class="dropdown-submenu">
+                                            <a tabindex="-1"
+                                               href="{{ tree_category.get_absolute_url }}" class="dropdown-item">{{ tree_category.name }}</a>
+                                            <ul class="dropdown-menu">
+                                        {% else %}
+                                            <li><a tabindex="-1"
+                                                   href="{{ tree_category.get_absolute_url }}" class="dropdown-item">{{ tree_category.name }}</a>
+                                            </li>
+                                        {% endif %}
+
+                                    {% for close in info.num_to_close %}
+                                        </ul>
+                                        </li>
+                                    {% endfor %}
+                                    {% endfor %}
+                                {% endif %}
+{#                                <div class="dropdown-divider m-0"></div>#}
+{#                                {% block nav_dropdown_extra_items %}#}
+{#                                    <li><a href="{% url 'offer:list' %}" class="dropdown-item">{% trans "Offers" %}</a></li>#}
+{#                                {% endblock %}#}
+                            </ul>
+                        </li>
+                        {% block nav_extra %}
+                        {% endblock %}
+                    </ul>
+                {% endblock %}
+            </div>
+            <div class="col-md-6">
+                {% include "partials/search.html" %}
+            </div>
+            <div class="col-md-3 text-right">
+                <div class="basket-mini justify-content-center">
+                    <ul class="navbar-nav basket-nav">
+                        <li class="nav-item">
+                            <a href="{% url 'basket:summary' %}" class="nav-link">
+                                <strong>
+                                <i class="ti-shopping-cart"></i> {% trans "My Cart:" %}
+                                {% if request.basket.is_tax_known %}
+                                    {{ request.basket.total_incl_tax|currency:request.basket.currency }}
+                                {% else %}
+                                    {{ request.basket.total_excl_tax|currency:request.basket.currency }}
+                                {% endif %}
+                                </strong>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

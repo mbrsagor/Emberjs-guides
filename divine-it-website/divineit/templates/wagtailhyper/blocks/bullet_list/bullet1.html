@@ -1,0 +1,12 @@
+{% load wagtailimages_tags %}
+
+<div class="row BulletListBlock bullet-list mb-4" id="{{ obj.id }}">
+    <h5>{{ obj.settings.heading }}</h5>
+    <ul>
+        {% for bullet_list in obj.settings.items %}
+        <li class="bullet-list" data-column="3">
+            <i class="fa fa-circle"></i> {{ bullet_list.text }}        
+        </li>
+        {% endfor %}
+    </ul>
+</div>

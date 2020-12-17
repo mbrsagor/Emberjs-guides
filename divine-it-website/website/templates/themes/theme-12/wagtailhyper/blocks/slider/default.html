@@ -1,0 +1,21 @@
+
+<div id="{{ obj.id }}" class="carousel slide hyper-slider-content-wrap{{ obj.general.classes }}" data-ride="carousel">
+        <ol class="carousel-indicators">
+            {% for slider in obj.settings.slides %}
+                <li data-target="#{{ obj.id }}" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.counter0 == 0 %}active{% endif %}"></li>
+            {% endfor %}
+        </ol>
+        <div class="hero-content-wrap">
+            <div class="carousel-inner">
+                {% for slider in obj.settings.slides %}
+                    <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
+                        <div class="hyper-slider-content">
+                            <p><span>{{ slider.subTitle }}</span></p>
+                            <h1>{{ slider.title }}</h1>
+                            <p>{{ slider.shortDescription|safe }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+</div>

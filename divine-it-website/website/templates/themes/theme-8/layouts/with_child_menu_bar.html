@@ -1,0 +1,31 @@
+
+
+{% extends 'base.html' %}
+
+{% load wagtailcore_tags hyper_tags menu_tags %}
+
+{% block content %}
+{% include 'partials/header_home.html' %}
+    <div id="main" class="main">
+        <div class="main-content-inner">
+
+                <div class="child-menu-bar">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="child-menu-bar-content">
+                                    {% children_menu page.get_parent max_levels=1 use_specific=USE_SPECIFIC_OFF %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {% hyperfield_render page.content %}
+
+        </div>
+    </div>
+
+
+    {% include 'partials/footer.html' %}
+{% endblock %}

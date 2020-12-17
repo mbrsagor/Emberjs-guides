@@ -1,0 +1,25 @@
+{% load hyper_tags %}
+<div class="social-list">
+    <ul class="list-inline">
+        {% if obj.settings.facebook_url %}
+            <li class="list-inline-item"><a href="{{ obj.settings.facebook_url }}"> <i class="fab fa-facebook-f"></i></a></li>
+        {% endif %}
+        {% if obj.settings.youtube_url %}
+            <li class="list-inline-item"><a href="{{ obj.settings.youtube_url }}"> <i class="fab fa-youtube"></i></a></li>
+        {% endif %}
+        {% if obj.settings.linkedin_url %}
+            <li class="list-inline-item"><a href="{{ obj.settings.linkedin_url }}"> <i class="fab fa-linkedin-in"></i></a></li>
+        {% endif %}
+        {% if obj.settings.googleplus_url %}
+            <li class="list-inline-item"><a href="{{ obj.settings.googleplus_url }}"><i class="fab fa-google-plus-g"></i></a></li>
+        {% endif %}
+
+        {% if obj.settings.twitter_url %}
+            <li class="list-inline-item"><a href="{{ obj.settings.twitter_url }}"> <i class="fab fa-twitter"></i></a></li>
+        {% endif %}
+    </ul>
+</div>
+
+{% if obj.settings.facebook_url %}
+    {#    facebook image pass #}
+{% endif %}

@@ -1,0 +1,21 @@
+<div class="hyper-tab tab-two">
+    <ul class="nav nav-tabs nav justify-content-end" id="{{ obj.id }}" role="tablist">
+        {% for item in obj.settings.tabItems %}
+        <li class="nav-item">
+            <a class="nav-link {% if forloop.counter == 1 %} active {% endif %}" {% if forloop.counter == 1 %}  aria-selected="true" {% endif %} id="{{ item.code }}-tab" data-toggle="tab" href="#{{ item.code }}" role="tab" aria-controls="{{ item.code }}" >
+                <img class="d-block tab-img" src="{{ item.image.url }}">
+                {{ item.title }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+<div class="tab-content" id="myTabContent">
+    {% for item in children %}
+        {% with obj.settings.tabItems|first as selected %}
+            <div class="tab-pane fade {% if selected.code == item.child.code %} show active {% endif %}" id="{{ item.child.code }}" role="tabpanel" aria-labelledby="{{ item.child.code }}-tab">
+                {{ item.rendered|safe }}
+            </div>
+        {% endwith %}
+    {% endfor %}
+</div>

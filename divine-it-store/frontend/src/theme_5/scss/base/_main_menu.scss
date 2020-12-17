@@ -1,0 +1,22 @@
+#menu ul li{
+    margin: 10px 0 !important;
+}
+#menu ul li a {
+    color: #757575 !important;
+    font-weight: 400;
+}
+.accent-bg {
+    background: $primary-color;
+}
+#menu ul.parent-menu {
+    height: 420px !important;
+    border-bottom: 0px solid transparent;
+}
+#menu ul li > ul {
+    height: 420px !important;
+    overflow: scroll !important;
+}
+
+#menu .sub-second li a{
+  padding: 5px 10px !important;
+}

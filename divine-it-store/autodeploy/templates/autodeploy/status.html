@@ -1,0 +1,97 @@
+{% extends 'layout_2_col.html' %}
+
+{% load static %}
+
+{% block content %}
+    <style type="text/css">
+
+    .notDone {
+        text-indent: -999999px;
+    }
+
+    </style>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card my-5">
+                    <div class="card-header">
+                        <h5 class="m-0">
+                            <i class="fa fa-spin fa-spinner"></i> Preparing {{ object.product.get_title }}
+                        </h5>
+                    </div>
+                    <div class="card-body mb-4">
+                        <p>Please stay tuned. Your {{ object.product.get_title }} is getting ready!</p>
+                        <div class="mb-4" id="messageWrap"></div>
+
+                        <div id="progressContainer" class="progress"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% csrf_token %}
+{% endblock %}
+
+
+<script type="text/javascript">
+{% block onbodyload %}
+    {{ block.super }}
+    var trackerInterval = null;
+
+    function done(resp) {
+        clearInterval(trackerInterval)
+        $('.fa-spinner').hide()
+        var message = '<p>Your deployment is ready. Please visit <a href="' + resp.url + '" target="_blank">' + resp.url + '</a></p>'
+        message += '<p><i class="fa fa-user"></i> '+ resp.deployment.app_user +'<br /><i class="fa fa-lock"></i> '+ resp.deployment.app_pass + '</p>'
+        message += '<iframe src="' + resp.url + '" style="display:none"></iframe>'
+        $('#messageWrap').html('<div class="alert alert-success"><strong>Successfully Deployed</strong>'+ message +'</div>')
+    }
+    function perform_deploy() {
+        $.post('{% url 'autodeploy:autodeploy' pk=object.id %}', {
+            csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value
+        }, function (resp) {
+            console.log(resp)
+        })
+    }
+    function get_progress_scale() {
+        $.get('{% url "autodeploy:progress-scale" pk=object.id %}', function(resp) {
+            var progressBars = ''
+            resp = JSON.parse(resp)
+            for(var key in resp) {
+                if (resp.hasOwnProperty(key)) {
+                    console.log(key)
+                    var goal = resp[key].goal
+                    var text = '<span class="progress-label">'+ resp[key].text +'</span>'
+                    progressBars += '<div class="progress-bar notDone" id="' + key + '" role="progressbar" style="width: '+ 0 +'%" aria-valuenow="'+ goal +'" aria-valuemin="0" aria-valuemax="'+ goal +'">' + text + '</div>'
+
+                }
+            }
+            console.log(resp)
+            $('#progressContainer').html(progressBars)
+        })
+    }
+    function track_progress() {
+        $.get('{% url "autodeploy:track-progress" pk=object.id %}', function(resp) {
+
+            if(typeof resp.deployment === 'object') {
+                if(resp.deployment.deployment_status === 2) {
+                    clearInterval(trackerInterval)
+                    $('.fa-spinner').hide()
+                    $('#messageWrap').html('<div class="alert alert-danger"><strong>' + resp.deployment.error_details + '</strong><p>' + resp.deployment.error + '</p</div>')
+                } else if (resp.deployment.deployment_status === 4) {
+                    done(resp)
+                }
+            }
+
+            $.map(resp.progress, function(key){
+                var max_val = $('#' + key).attr('aria-valuemax')
+                $('#' + key).css('width', max_val + '%')
+                $('#' + key).removeClass('notDone')
+            });
+        })
+    }
+    perform_deploy()
+    get_progress_scale()
+    trackerInterval = setInterval(track_progress, 3000)
+{% endblock %}
+</script>

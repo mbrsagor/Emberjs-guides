@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+{% load i18n %}
+{% load promotion_tags %}
+{% load category_tags %}
+
+{% block layout %}
+
+    {# Top-horizontal bar with account, notifictions, dashboard links #}
+    {% include "partials/nav_accounts.html" %}
+
+
+    {# Site logo/title, mini-basket, browse dropdown and searchbox #}
+    {% block navigation %}
+        {% if config.header_content %}
+            <header class="header">
+                {% include "partials/header.html" %}
+            </header>
+        {% endif %}
+        {#            {% include "partials/nav_primary.html" %}#}
+        {% include "partials/nav_secondary.html" %}
+    {% endblock %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                {% include 'partials/alert_messages.html' %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="sub-header mt-3">
+                <h4>{% block checkout_title %}{% endblock %}</h4>
+            </div>
+
+            <!-- The main nav on checkout pages contain links to modal flatpages -->
+            {% block modal %}
+                {% load flatpages %}
+                {% get_flatpages '/order/' as flatpages %}
+                {% for page in flatpages %}
+                    <div id="{{ page.title|slugify }}" class="modal hide fade">
+                        <div class="modal-header">
+                            <a class="close" data-dismiss="modal">×</a>
+                            <h3>{{ page.title }}</h3>
+                        </div>
+                        <div class="modal-body">
+                            <div class="large-content">
+                                {{ page.content|safe }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endblock %}
+
+            {% block content %}{% endblock %}
+
+            <div id="promotions">
+                {% for promotion in promotions_page %}
+                    {% render_promotion promotion %}
+                {% endfor %}
+            </div>
+            </div>
+        </div><!-- /page_inner -->
+    </div>
+    {% include "partials/footer_checkout.html" %}
+{% endblock %}

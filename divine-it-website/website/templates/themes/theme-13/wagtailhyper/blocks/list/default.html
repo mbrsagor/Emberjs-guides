@@ -1,0 +1,10 @@
+<ul id="{{ obj.id }}">
+    {% for item in obj.settings.items %}
+        <li>
+            {{ item.title }}
+            {{ item.subTitle }}
+            {{ item.shortDescription|safe }}
+            <img data-src="{{ item.image.url }}" class="lazy" alt="{{ item.title }}" />
+        </li>
+    {% endfor %}
+</ul>

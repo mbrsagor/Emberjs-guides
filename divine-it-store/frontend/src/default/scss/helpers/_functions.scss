@@ -1,0 +1,91 @@
+
+//promo product animation
+
+@-webkit-keyframes promo-product-animation {
+    0% {
+        -webkit-transform: translateY(-20px);
+        transform: translateY(-20px);
+    }
+    50% {
+        -webkit-transform: translateY(-10px);
+        transform: translateY(-10px);
+    }
+    100% {
+        -webkit-transform: translateY(-25px);
+        transform: translateY(-25px);
+    }
+}
+@keyframes hero-img-animation {
+    0% {
+        -webkit-transform: translateY(-20px);
+        transform: translateY(-20px);
+    }
+    50% {
+        -webkit-transform: translateY(-10px);
+        transform: translateY(-10px);
+    }
+    100% {
+        -webkit-transform: translateY(-20px);
+        transform: translateY(-20px);
+    }
+}
+
+
+
+// web animation
+
+/*circle wave*/
+@-webkit-keyframes ripple {
+    0% {
+        -webkit-box-shadow: 0 0 0 0 rgba(0, 163, 204, .1), 0 0 0 20px rgba(0, 163, 204, .1), 0 0 0 40px rgba(0, 163, 204, .1);
+        box-shadow: 0 0 0 0 rgba(0, 163, 204, .1), 0 0 0 20px rgba(0, 163, 204, .1), 0 0 0 40px rgba(0, 163, 204, .1)
+    }
+    100% {
+        -webkit-box-shadow: 0 0 0 20px rgba(0, 163, 204, .1), 0 0 0 40px rgba(0, 163, 204, .1), 0 0 0 60px rgba(0, 163, 204, 0);
+        box-shadow: 0 0 0 20px rgba(0, 163, 204, .1), 0 0 0 40px rgba(0, 163, 204, .1), 0 0 0 60px rgba(0, 163, 204, 0)
+    }
+}
+
+@keyframes ripple {
+    0% {
+        -webkit-box-shadow: 0 0 0 0 rgba(0, 163, 204, .1), 0 0 0 20px rgba(0, 163, 204, .1), 0 0 0 40px rgba(0, 163, 204, .1);
+        box-shadow: 0 0 0 0 rgba(0, 163, 204, .1), 0 0 0 20px rgba(0, 163, 204, .1), 0 0 0 40px rgba(0, 163, 204, .1)
+    }
+    100% {
+        -webkit-box-shadow: 0 0 0 20px rgba(0, 163, 204, .1), 0 0 0 40px rgba(0, 163, 204, .1), 0 0 0 60px rgba(0, 163, 204, 0);
+        box-shadow: 0 0 0 20px rgba(0, 163, 204, .1), 0 0 0 40px rgba(0, 163, 204, .1), 0 0 0 60px rgba(0, 163, 204, 0)
+    }
+}
+
+
+@-webkit-keyframes ripple-white {
+    0% {
+        -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.1), 0 0 0 20px rgba(255, 255, 255, 0.1), 0 0 0 40px rgba(255, 255, 255, 0.1);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.1), 0 0 0 20px rgba(255, 255, 255, 0.1), 0 0 0 40px rgba(255, 255, 255, 0.1)
+    }
+    100% {
+        -webkit-box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.1), 0 0 0 40px rgba(255, 255, 255, 0.1), 0 0 0 60px rgba(255, 255, 255, 0);
+        box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.1), 0 0 0 40px rgba(255, 255, 255, 0.1), 0 0 0 60px rgba(255, 255, 255, 0)
+    }
+}
+
+@keyframes ripple-white {
+    0% {
+        -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.1), 0 0 0 20px rgba(255, 255, 255, 0.1), 0 0 0 40px rgba(255, 255, 255, 0.1);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.1), 0 0 0 20px rgba(255, 255, 255, 0.1), 0 0 0 40px rgba(255, 255, 255, 0.1)
+    }
+    100% {
+        -webkit-box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.1), 0 0 0 40px rgba(255, 255, 255, 0.1), 0 0 0 60px rgba(255, 255, 255, 0);
+        box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.1), 0 0 0 40px rgba(255, 255, 255, 0.1), 0 0 0 60px rgba(255, 255, 255, 0)
+    }
+}
+
+
+//spin circle spin
+@keyframes big-spin {
+  0% {
+    transform: rotate(0deg); }
+
+  100% {
+    transform: rotate(360deg); }
+}

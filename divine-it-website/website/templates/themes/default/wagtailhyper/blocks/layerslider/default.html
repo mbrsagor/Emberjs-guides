@@ -1,0 +1,47 @@
+<div id="{{ obj.id }}" class="multi_layer_slider {{ obj.general.classes }}">
+    <div id="wrapper">
+        <div class="sim-slider" data-width="2550" data-height="1240" data-animation="250" data-current="true"
+             data-progress="true">
+            <div class="sim-slider-inner">
+                <!--start dynamic here-->
+                {% for slider in obj.settings.items %}
+                <div class="sim-slider-slide"
+                     style="background: url('{{ slider.image.url }}')no-repeat center center / cover">
+                    {% if slider.overviewUrl %}
+                    <div class="sim-slider-layer" data-effect="fadeInRight" data-left="528" data-top="280">
+                        <img src="{{ slider.overviewUrl }}"/>
+                    </div>
+                    {% endif %}
+                    {% if slider.overviewUrl2 %}
+                    <div class="sim-slider-layer" data-effect="fadeInRight" data-left="528" data-top="420">
+                        <img src="{{ slider.overviewUrl2 }}"/>
+                    </div>
+                    {% endif %}
+                    <div class="sim-slider-layer" data-effect="fadeInRight" data-left="528" data-top="580">
+                        <div class="slide_description">
+                            {{ slider.description |safe }}
+                        </div>
+                    </div>
+                    {% if slider.actionTitle %}
+                    <div class="sim-slider-layer" data-effect="fadeInRight" data-left="528" data-top="700">
+                        <a class="slide_action_link" href="{{ slider.actionUrl }}">{{slider.actionTitle}}</a>
+                    </div>
+                    {% endif %}
+                    {% if slider.title %}
+                    <div class="sim-slider-layer" data-effect="fadeInLeft" data-left="1200" data-top="300">
+                        <h1 class="slide_title">{{slider.title}}</h1>
+                    </div>
+                    {% endif %}
+                    {% if slider.image.url %}
+                    <div class="sim-slider-layer" data-effect="fadeInLeft" data-width="350" data-height="180"
+                         data-left="1900" data-top="400">
+                        <img src="{{ slider.logoImage.url }}" alt="{{slider.title}}"/>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+                <!--end dynamic here-->
+            </div>
+        </div>
+    </div>
+</div>

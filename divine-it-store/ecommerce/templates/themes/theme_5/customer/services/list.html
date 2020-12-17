@@ -1,0 +1,93 @@
+{% extends "customer/baseaccountpage.html" %}
+{% load i18n %}
+{% load currency_filters %}
+{% load staticfiles %}
+
+{% block breadcrumbs %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 bg-transparent">
+        <li class="breadcrumb-item">
+            <a href="{{ homepage_url }}">{% trans 'Home' %}</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{% url 'customer:summary' %}">{% trans 'Account' %}</a>
+        </li>
+        <li class="breadcrumb-item active">{% trans 'Services' %}</li>
+        </ol>
+    </nav>
+{% endblock %}
+
+{% block tabcontent %}
+
+
+    <style type="text/css">
+        .infoHeading {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    </style>
+{#    {% if services or form.is_bound %}#}
+{#        <h4>{% trans "Filter" %}</h4>#}
+{#        <form action="." method="get" class="form-horizontal form-row mt-2 mb-4">#}
+{#            {% include "partials/form_fields.html" with form=form style='horizontal' %}#}
+{#            <div class="col-md-12">#}
+{#                <button type="submit" class="btn btn-primary btn-small" data-loading-text="{% trans 'Filtering...' %}">{% trans 'Filter results' %}</button>#}
+{#                <a href="{% url 'customer:order-list' %}" class="btn default-btn btn-small">{% trans 'Reset' %}</a>#}
+{#            </div>#}
+{#        </form>#}
+{#    {% endif %}#}
+
+    {% if services %}
+{#        <h4 class="mb-2">{{ form.description }}</h4>#}
+        <div class="list-group">
+
+            {% for service in services %}
+                <div class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <div>
+
+                            <p>{{ service.product.get_title }} <span class="badge badge-default">{{ service.get_licence_type_display }}</span></p>
+                            {% if service.approved_for_deploy %}
+                                <a href="{{ service.url }}">{{ service.url }}</a>
+                            {% else %}
+                                <p class="text-muted">{{ service.url }}</p>
+
+                                <span class="badge badge-info">APPROVAL PENDING</span>
+                            {% endif %}
+                        </div>
+                        <div class="text-muted d-flex flex-row w-100 flex-row flex-grow-1 justify-content-end">
+                            {% if service.deployment.app_user %}
+                                <p class="mr-4">
+                                    <span class="infoHeading">Username</span><br />
+                                    <span>{{ service.deployment.app_user }}</span>
+                                </p>
+                            {% endif %}
+                            {% if service.deployment.app_pass %}
+                                <p class="mr-4">
+                                    <span class="infoHeading">Password</span><br>
+                                    <span>{{ service.deployment.app_pass }}</span>
+                                </p>
+                            {% endif %}
+                            {% if service.valid_until %}
+                                <p>
+                                    <span class="infoHeading">Expire Date</span><br>
+                                    <span>{{ service.valid_until }}</span>
+                                </p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                </div>
+            {% endfor %}
+        </div>
+        {% include "partials/pagination.html" %}
+    {% else %}
+        {% if form.is_bound %}
+            <p>{% trans "No orders match your search." %}</p>
+        {% else %}
+            <p>{% trans "You haven't placed any orders." %}</p>
+        {% endif %}
+    {% endif %}
+
+{% endblock tabcontent %}

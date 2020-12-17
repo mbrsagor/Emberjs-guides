@@ -1,0 +1,11 @@
+<div class="ListBlock contact-us-form-list" id="{{ obj.id }}">
+   <ul class="list-img-link">
+        {% for item in obj.settings.items %}
+            <li class="call-to-action-list">
+                <span class="icon-image"><img src="{{ item.image.url }}" width="50"/></span>
+                <div class="list-title">{{ item.title }}</div>
+                <div class="list-title">{{ item.shortDescription|safe }}</div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

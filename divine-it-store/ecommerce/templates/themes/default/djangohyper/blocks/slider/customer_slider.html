@@ -1,0 +1,11 @@
+<div class="owl-carousel owl-theme our-partner-slider owl-dot-indicator">
+    {% for slider in obj.settings.slides %}
+        <div class="item">
+            <div class="single-partner">
+                {% if slider.image.url %}
+                    <img src="{{ slider.image.url }}" alt="partner">
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+</div>

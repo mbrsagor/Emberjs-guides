@@ -1,0 +1,19 @@
+{% load sekizai_tags static %}
+
+<div class="contentBoxWrap content-box-card-with-image" id="{{ obj.id }}">
+    <div class="row">
+        <div class="col">
+            <div class="single_service">
+                <img data-src="{{ obj.settings.image.url }}" class="lazy img-fluid card-img-top" alt="{{ obj.settings.title }}" />
+                <div class="single_service_content">
+                    <h2><a href="{{ obj.settings.actionUrl }}">{{ obj.settings.title }}</a></h2>
+                    {{ obj.settings.description|safe }}
+                    <a class="service_link_btn" href="{{ obj.settings.actionUrl }}">{{ obj.settings.actionTitle }} <span><i class="fa fa-angle-double-right"></i></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

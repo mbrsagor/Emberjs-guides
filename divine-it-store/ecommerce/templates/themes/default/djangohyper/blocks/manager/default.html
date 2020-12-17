@@ -1,0 +1,25 @@
+
+{% load product_tags %}
+
+
+<!--feature product start-->
+<div class="row">
+    <div class="col-md-7">
+        <div class="section-heading">
+            {% if obj.settings.title %}
+                <h2>{{ obj.settings.title }}</h2>
+            {% endif %}
+            {% if obj.settings.description|safe %}
+                {{ obj.settings.description|safe }}
+            {% endif %}
+        </div>
+    </div>
+    <div class="owl-carousel owl-theme feature-products-slider owl-arrow-indicator-lr">
+         {% for product in products %}
+             <div class="item">
+             {% render_product product %}
+             </div>
+        {% endfor %}
+    </div>
+</div>
+<!--feature product end-->
