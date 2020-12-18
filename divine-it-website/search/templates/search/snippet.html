@@ -1,5 +1,0 @@
-<form action="{% url 'search' %}" method="get">
-    <input type="text" name="query" {% if search_query %} value="{{ search_query }}" {% endif %} placeholder="SEARCH">
-    <!--<input type="submit" value="Search" class="button">-->
-    <button type="submit"><i class="fa fa-search"></i></button>
-</form>

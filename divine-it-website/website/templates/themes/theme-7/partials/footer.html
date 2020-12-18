@@ -1,9 +1,0 @@
-{% load menu_tags hyper_tags %}
-{% load static %}
-
-
-{% if settings.base.ApplicationSettings.footer %}
-<footer class="footer-section">
-    {% hyperfield_render settings.base.ApplicationSettings.footer.content %}
-</footer>
-{% endif %}

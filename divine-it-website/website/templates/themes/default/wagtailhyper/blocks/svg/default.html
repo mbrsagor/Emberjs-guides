@@ -1,8 +1,0 @@
-{% load hyper_tags %}
-{% load util_tags %}
-
-<div class="imageWrap" id="{{ obj.id }}">
-    <img src="{% abs_url obj.settings.svg.url %}" class="img-fluid {% if obj.general.classes %}{{ obj.general.classes }}{% endif %}" id="{{ obj.id }}" />
-</div>
-
-

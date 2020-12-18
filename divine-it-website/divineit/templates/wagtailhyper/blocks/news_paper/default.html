@@ -1,9 +1,0 @@
-{% load wagtailimages_tags hyper_tags %}
-
-<div class="flex flex-row align-content-center">
-    {% for news in obj.settings.items %}
-        <a href="{{ news.newsUrl }}" target="_blank">
-            <img src="{{ news.image.url }}" alt="{{ promo.heading }}" style="filter:grayscale(1); width: auto; height: {{ news.maxHeight }}px">
-        </a>
-    {% endfor %}
-</div>
