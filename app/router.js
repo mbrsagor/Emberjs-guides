@@ -7,6 +7,11 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+  this.route('post', {path: '/posts/:post_id'}, function() {
+    this.route('files', function() {
+      this.route('other');
+    });
+  });
 });
 
 export default Router;
