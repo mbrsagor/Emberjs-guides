@@ -1,0 +1,7 @@
+<h2>{{@title}}</h2>
+
+<ul>
+    {{#each @items as |item|}}
+    <li {{action 'clickItem' item}}>{{item}}</li>
+    {{/each}}
+</ul>
