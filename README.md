@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 # guides
-=======
-# emberigniter
->>>>>>> de8d66b70c11ac12da27046e0c7087466fc75ac9
 
 This README outlines the details of collaborating on this Ember application.
 A short introduction of this app could easily go here.
@@ -19,11 +15,7 @@ You will need the following things properly installed on your computer.
 ## Installation
 
 * `git clone <repository-url>` this repository
-<<<<<<< HEAD
 * `cd guides`
-=======
-* `cd emberigniter`
->>>>>>> de8d66b70c11ac12da27046e0c7087466fc75ac9
 * `npm install`
 
 ## Running / Development
