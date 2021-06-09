@@ -17,7 +17,7 @@ class GetterSetterClass {
         return age;
     }
 
-    public String getName(String new_name) {
+    public String setName(String new_name) {
         name = new_name;
         return name;
     }
@@ -26,11 +26,11 @@ class GetterSetterClass {
 
 
 class EncapsulationDemo {
-    public void main(String[] args){
+    public static void main(String[] args){
         GetterSetterClass  getterSetter = new GetterSetterClass();
         getterSetter.setAge(26);
         getterSetter.setName("Bozlur Rosid Sagor");
 
-        System.out.print("Name : " + getterSetter.getName()) + " Age : " + getterSetter.getAge()));
+        System.out.print("Name : " + getterSetter.getName()+"\n" + "Age : " + getterSetter.getAge());
     }
 }
