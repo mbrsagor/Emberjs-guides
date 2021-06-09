@@ -9,6 +9,7 @@ There are four main OOP concepts in Java. OOP concepts in Java are the main idea
 - OOP
 - Class
 - Object
+- Constructor
 - Inheritance
 - Encapsulation
 - Polymorphism
@@ -34,3 +35,17 @@ class Sagor{
 ```java
 Sagor ReferenceVariable = new Sagor();
 ```
+
+###### What is Inheritance?
+
+> Inheritance is a mechanism in which one class acquires the property of another class. For example, a child inherits the traits of his/her parents. With inheritance, we can reuse the fields and methods of the existing class. Hence, inheritance facilitates Reusability and is an important concept of OOPs.
+
+```java
+class MbrSagor extends Sagor {
+  // body of the class
+}
+```
+
+###### What is Polymorphism?
+
+> The word polymorphism means having many forms. In simple words, we can define polymorphism as the ability of a message to be displayed in more than one form.
